@@ -11,7 +11,7 @@ describe Product do
 
     it "should have a name" do
       product.name = nil
-      expect(product).to be_invalid
+      expect(product).to be_invalid 
     end
 
     it "should have a description" do
