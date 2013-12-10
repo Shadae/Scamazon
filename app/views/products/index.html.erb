@@ -1,1 +1,12 @@
 
+
+<% @products.each do |product| %>
+  <br>
+  <%= product.name %>
+  <%= product.description %>
+  <%= product.category %>
+  $ <%= (product.price/100).to_f %>
+<% end %>
+<br>
+
+<%= link_to 'New Product', new_product_path %><br><br>
