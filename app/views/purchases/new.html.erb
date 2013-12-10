@@ -1,0 +1,49 @@
+<p class='purchasediv'>It's a box with your purchase information!</p>
+<br>
+<%= form_for @purchase do |f| %>
+  <h3>Shipping Address</h3>
+  <%= f.label 'First Name'%>
+    <%= f.text_field :first_name%><br>
+  <%= f.label "Last Name"%>
+    <%= f.text_field :last_name%><br>
+  <%= f.label "Address"%>
+    <%= f.text_field :address1 %><br>  
+  <%= f.label "Address (line 2)"%>
+    <%= f.text_field :address2%><br>
+  <%= f.label "City"%>
+    <%= f.text_field :city%>
+  <%= f.label "State"%>
+    <%= f.text_field :state%>
+  <%= f.label "Zip"%>
+    <%= f.text_field :zip%><br>
+  <%= f.label "Email Address"%>  
+    <%= f.text_field :email_address%><br>
+  <%= f.label "Confirm Email Address"%>
+    <%= f.text_field :email_address%><br>
+  <br>
+  <h3>Billing Address</h3>
+  <br>
+  <%= f.label 'Same as Shipping Address' %>
+  <%= f.check_box :same_address %>
+  <br><br>
+  <%= f.label 'First Name' %>
+    <%= f.text_field :billing_first%><br>
+  <%= f.label "Last Name" %>
+    <%= f.text_field :billing_last%><br>
+  <%= f.label "Credit Card Number" %>
+    <%= f.text_field :credit_card_number%><br>
+  <%= f.label "CVV" %>
+    <%= f.text_field :cvv%><br>
+  <%= f.label "Address"%>
+    <%= f.text_field :billing_address1%><br>  
+  <%= f.label "Address (line 2)"%>
+    <%= f.text_field :billing_address2%><br>
+  <%= f.label "City"%>
+    <%= f.text_field :billing_city%>
+  <%= f.label "State"%>
+    <%= f.text_field :billing_state%>
+  <%= f.label "Zip"%>
+    <%= f.text_field :billing_zip%>
+  <br>
+  <%= f.submit "Order" %>
+<% end %>

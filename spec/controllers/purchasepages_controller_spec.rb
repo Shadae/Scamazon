@@ -9,6 +9,13 @@ describe PurchasepagesController do
     end
   end
 
+  describe "POST 'purchase'" do
+    it "successfully hits the page" do
+      post :purchase
+      response.should be_successful
+    end
+  end
+
   # describe "submit button" do
   #   it "is successful" do
   #     post :make_purchase, {:name => "foo", :zip => '98106'}
