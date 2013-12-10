@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       redirect_to @product, notice: "Your product has been successfully saved!"
+    else
+      render :new
     end
   end
 

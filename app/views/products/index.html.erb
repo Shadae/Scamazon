@@ -1,12 +1,25 @@
+<h1> Check out all the products available here at Scamazon! </h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>Product Name </th>
+      <th>Product Description </th>
+      <th>Category</th>
+      <th>Price</th>
+    </tr>
+  </thead>
 
-<% @products.each do |product| %>
-  <br>
-  <%= product.name %>
-  <%= product.description %>
-  <%= product.category %>
-  $ <%= (product.price/100).to_f %>
-<% end %>
-<br>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product.id) %></td>
+        <td><%= product.description %></td>
+        <td><%= product.category %></td>
+        <td>$ <%= (product.price.to_f/100) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'New Product', new_product_path %><br><br>
