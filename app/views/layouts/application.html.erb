@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="menu_bar">
+    <a href="/products">Products</a>
+    <a href="/users">Users</a>
+    <a href="/reviews">Reviews</a>
+    <a href="/orders">Orders</a>
+    <a href="/cart">Cart</a>
+  </div>
+
+  <div class='container'>
 
 <%= yield %>
-
+  </div>
 </body>
 </html>
