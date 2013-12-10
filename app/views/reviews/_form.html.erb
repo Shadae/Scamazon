@@ -1,0 +1,21 @@
+<h2>Debug: <%= params.inspect %></h2>
+
+<%= form_tag "/reviews" do %>
+  <%= radio_button_tag(:"review[rating]", "1") %>
+  <%= label_tag(:"review[rating]", "1") %>
+  <%= radio_button_tag(:"review[rating]", "2") %>
+  <%= label_tag(:"review[rating]", "2") %>
+  <%= radio_button_tag(:"review[rating]", "3") %>
+  <%= label_tag(:"review[rating]", "3") %>
+  <%= radio_button_tag(:"review[rating]", "4") %>
+  <%= label_tag(:"review[rating]", "4") %>
+  <%= radio_button_tag(:"review[rating]", "5") %>
+  <%= label_tag(:"review[rating]", "5") %>
+  <br>
+
+  <%= label_tag :"review[:review_text]", "Review:" %>
+  <%= text_area_tag :"review[review_text]", params[:review_text] %>
+  <br>
+  <%= submit_tag "Submit" %>
+
+<% end %>
