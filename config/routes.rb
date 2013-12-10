@@ -1,7 +1,7 @@
 Scamazon::Application.routes.draw do
 
 
-  get "/reviews/new" => "reviews#new"
+  get "/reviews" => "reviews#new" #add /new to path after the location is decided
 
   get 'products' => 'products#index'
   root 'welcome#index'

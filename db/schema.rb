@@ -28,5 +28,4 @@ ActiveRecord::Schema.define(version: 20131210010455) do
     t.text     "text"
     t.integer  "rating"
   end
-
 end
