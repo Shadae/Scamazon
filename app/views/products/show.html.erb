@@ -16,6 +16,4 @@
  <p> $<%= format("%.2f",(@product.price/100.00)) %></p>
 
 <!-- This is a placeholder -- if the product belongs to the logged-in user, then it should allow user to edit or retire the product, but I'm not sure what that will look like quite yet. -->
- <% if @product.user_id == @user.id %>
-  <% end %>
 

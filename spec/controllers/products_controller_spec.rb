@@ -70,10 +70,6 @@ describe ProductsController do
   
   end
 
-  describe "edit page" do
-    
-  
-  end
 
 
   describe "show page" do
