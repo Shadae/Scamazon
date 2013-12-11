@@ -17,7 +17,12 @@ describe UsersController do
     expect(response).to be_redirect
   end
 
+  describe "show page" do
+
+  end
+
   it "should set user" do
+
   end
 
   it "should show user" do

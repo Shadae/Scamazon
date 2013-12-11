@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th class="visible-header">ID</th>
+      <th class="visible-header">Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.id %></td>
+        <td><%= purchase.first_name %></td>
+        <td><%= purchase.last_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href='/purchases/new/'>new</a>
