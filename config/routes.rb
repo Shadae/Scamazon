@@ -1,7 +1,7 @@
 Scamazon::Application.routes.draw do
 
 
-  get "/reviews" => "reviews#new" #add /new to path after the location is decided
+  get "/reviews/new" => "reviews#new" #add /new to path after the location is decided
   # post " /reviews" =>
   resources :reviews
 
