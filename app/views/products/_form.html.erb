@@ -1,4 +1,7 @@
-
+<% @product.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<br>
 
  <%= form_for(@product) do |f| %>
   <%= f.label :name %>
