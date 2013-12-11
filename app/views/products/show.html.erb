@@ -3,6 +3,8 @@
 <h2>This Product Is No Longer Available.</h2>
 <% end %>
 
+<%= image_tag(@product.image_url, :width => 400) if @product.image.present? %>
+<br>
 <strong>Product Name</strong>
 <p>  <%= @product.name %></p>
 
