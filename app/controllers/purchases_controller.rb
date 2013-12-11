@@ -1,8 +1,11 @@
 class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
-    @purchase.save
-    redirect_to purchases_path
+    if @purchase.save
+      redirect_to purchases_path, notice: 'Transaction has been completed'
+    else
+      render :new
+    end
   end
 
   def new

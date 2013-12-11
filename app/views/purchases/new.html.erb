@@ -1,5 +1,9 @@
 <p class='purchasediv'>It's a box with your purchase information!</p>
 <br>
+<% @purchase.errors.full_messages.each do |error| %>
+<br>
+<%= error %>
+<% end %>
 <%= form_for @purchase do |f| %>
   <h3>Shipping Address</h3>
   <%= f.label 'First Name'%>
@@ -21,19 +25,24 @@
   <%= f.label "Confirm Email Address"%>
     <%= f.text_field :email_address_confirmation%><br>
   <br>
-  <h3>Billing Address</h3>
+  <h3>Billing Information</h3>
   <br>
+  <div id="samebilling">
   <%= f.label 'Same as Shipping Address' %>
   <%= f.check_box :same_address %>
+</div>
   <br><br>
+  <div class="billingdeets">
   <%= f.label 'First Name' %>
     <%= f.text_field :billing_first%><br>
   <%= f.label "Last Name" %>
     <%= f.text_field :billing_last%><br>
+  </div>
   <%= f.label "Credit Card Number" %>
     <%= f.text_field :credit_card_number%><br>
   <%= f.label "CVV" %>
     <%= f.text_field :cvv%><br>
+  <div class="billingdeets">
   <%= f.label "Address"%>
     <%= f.text_field :billing_address1%><br>  
   <%= f.label "Address (line 2)"%>
@@ -44,6 +53,7 @@
     <%= f.text_field :billing_state%>
   <%= f.label "Zip"%>
     <%= f.text_field :billing_zip%>
+  </div>
   <br>
   <%= f.submit "Order" %>
 <% end %>

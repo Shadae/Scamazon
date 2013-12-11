@@ -17,7 +17,7 @@ describe PurchasesController do
   describe "POST 'purchase'" do
     it "successfully hits the page" do
       post :create, {:purchase => {:first_name=> "foo"}}
-      expect(response).to be_redirect
+      expect(response).to be_successful
     end
   end
 

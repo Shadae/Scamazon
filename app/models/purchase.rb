@@ -5,11 +5,11 @@ class Purchase < ActiveRecord::Base
   validates :email_address_confirmation, presence: true
   validates :address1, presence: true
   validates :city, presence: true
-  validates :zip, presence: true, format: {with: /\d{5}-?d{4}?/, message: "Must be a valid zip code"}
+  validates :zip, presence: true, format: {with: /\d{5}-?\d{4}?/, message: "Must be a valid zip code"}
   validates :billing_first, presence: true
   validates :billing_last, presence: true
-  validates :credit_card_number, presence: true
-  validates :cvv, presence: true
+  validates :credit_card_number, presence: true, format: {with: /\d{4}-?\d{4}-?\d{4}-?\d{4}/}
+  validates :cvv, presence: true, format: {with: /\d{3}/}
   validates :billing_zip, presence: true, format: {with: /\d{5}-?d{4}?/, message: "Must be a valid zip code"}
   validates :billing_address1, presence: true
   validates :billing_city, presence: true
