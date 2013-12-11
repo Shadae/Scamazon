@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 1.2'
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec', require: false
+  gem 'capybara', '2.1.0'
 end
 
 group :doc do

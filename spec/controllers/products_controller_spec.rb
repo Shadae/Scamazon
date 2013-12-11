@@ -114,7 +114,11 @@ describe ProductsController do
       expect(response.body).to_not include("This Product Is No Longer Available.")
     end
 
-
+    it "has an 'add to cart' button if product is not retired" do
+      request
+      expect(response.body).to include("Cart")
+    end
+    
   end
 
 
