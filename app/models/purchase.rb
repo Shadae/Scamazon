@@ -1,3 +1,3 @@
 class Purchase < ActiveRecord::Base
-  validates :body, presence: true
+  validates :first_name, presence: true
 end

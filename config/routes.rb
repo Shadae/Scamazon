@@ -10,8 +10,6 @@ Scamazon::Application.routes.draw do
 
   #from Davida
   get 'products' => 'products#index'
-  root 'welcome#index'
-
 
   resources :users
   root 'welcome#index'

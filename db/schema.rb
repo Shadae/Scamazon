@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20131210224218) do
 
   create_table "products", force: true do |t|
@@ -23,21 +22,6 @@ ActiveRecord::Schema.define(version: 20131210224218) do
     t.integer  "price"
     t.boolean  "retired",     default: false
     t.string   "image"
-  end
-
-  create_table "reviews", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "rating"
-    t.text     "review_text"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "user_name"
-    t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "purchases", force: true do |t|
@@ -61,6 +45,21 @@ ActiveRecord::Schema.define(version: 20131210224218) do
     t.string   "state"
     t.string   "billing_state"
     t.boolean  "same_address"
+  end
+
+  create_table "reviews", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rating"
+    t.text     "review_text"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "user_name"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
