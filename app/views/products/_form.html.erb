@@ -1,4 +1,7 @@
-
+<% @product.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<br>
 
  <%= form_for(@product) do |f| %>
   <%= f.label :name %>
@@ -16,6 +19,11 @@
   <%= f.label :price %>
   <%= f.number_field :price %>
   <br>
+
+  <%= f.label :image, "Upload local file:" %><br />
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+<br>
 
   <%= f.submit 'create product'%>
     <% end %>

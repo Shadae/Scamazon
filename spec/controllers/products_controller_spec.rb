@@ -41,16 +41,10 @@ describe ProductsController do
   end
 
   describe "create new page" do
-    render_views
 
     it "is successful" do
       get :new
       expect(response).to be_successful
-    end
-
-    it "renders the new product template" do
-      get :new
-      expect(response).to render_template("new")
     end
 
     it "should create new product" do
@@ -67,6 +61,7 @@ describe ProductsController do
                                 category: "vegetable",
                                 price: 100}}}.not_to change(Product, :count).by(1)
     end
+
   
   end
 
@@ -114,7 +109,11 @@ describe ProductsController do
       expect(response.body).to_not include("This Product Is No Longer Available.")
     end
 
-
+    it "has an 'add to cart' button if product is not retired" do
+      request
+      expect(response.body).to include("Cart")
+    end
+    
   end
 
 
