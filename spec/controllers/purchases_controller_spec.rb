@@ -1,18 +1,18 @@
-require 'spec_helper'
+require 'spec_helper' 
 
-describe PurchasepagesController do
-  describe "GET 'purchase'" do
+describe PurchasesController do
+  describe "GET 'purchase/new'" do
 
     it "successfully hits the page" do
-      get :purchase
-      response.should be_successful
+      get :new
+      expect(response).to be_successful
     end
   end
 
   describe "POST 'purchase'" do
     it "successfully hits the page" do
-      post :purchase
-      response.should be_successful
+      post :create, {:purchase => {:first_name=> "foo"}}
+      expect(response).to be_redirect
     end
   end
 
