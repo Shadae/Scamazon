@@ -5,7 +5,9 @@ Scamazon::Application.routes.draw do
   root 'welcome#index'
 
   
-  resources :reviews
+  resources :reviews, except: :show
+  get "/reviews/:id" => "reviews#show"
+
 
   resources :products
 
