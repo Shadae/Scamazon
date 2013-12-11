@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20131210172236) do
-
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "user_name"
-    t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-end
-
-
-ActiveRecord::Schema.define(version: 20131210200841) do
+ActiveRecord::Schema.define(version: 20131210210931) do
 
   create_table "products", force: true do |t|
     t.string   "name"
@@ -36,14 +23,20 @@ ActiveRecord::Schema.define(version: 20131210200841) do
     t.boolean  "retired",     default: false
     t.string   "image"
   end
-end
 
-ActiveRecord::Schema.define(version: 20131210210931) do
   create_table "reviews", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rating"
     t.text     "review_text"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "user_name"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
