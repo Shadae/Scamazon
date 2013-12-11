@@ -17,5 +17,11 @@
   <%= f.number_field :price %>
   <br>
 
+  <%= f.label :display, "Upload local file:" %><br />
+  <%= f.file_field :display %>
+  <%= f.hidden_field :display_cache %>
+    </p>
+  </div>
+
   <%= f.submit 'create product'%>
     <% end %>
