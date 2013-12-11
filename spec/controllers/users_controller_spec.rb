@@ -18,7 +18,6 @@ describe UsersController do
   end
 
   describe "show page" do
-
   end
 
   it "should set user" do
