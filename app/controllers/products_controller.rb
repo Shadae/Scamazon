@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def edit
+  end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -21,6 +24,10 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def category
+
+  end
+
 private
 
   def set_product
@@ -28,7 +35,7 @@ private
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :category, :price, :image)
+    params.require(:product).permit(:name, :description, :price, :image)
   end
   
 end

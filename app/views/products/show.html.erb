@@ -11,11 +11,9 @@
   <strong>Product Description</strong>
  <p> <%= @product.description %></p>
 
-  <strong>Product Category</strong>
- <p> <%= @product.category %></p>
-
   <strong> Product Price </strong>
  <p> $<%= format("%.2f",(@product.price/100.00)) %></p>
+
 
 <% if @product.retired == false %>
  <%= submit_tag 'Add To Cart'%>
