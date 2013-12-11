@@ -1,21 +1,21 @@
-<h2> DEBUG: <%= params.inspect %> </h2>
 
- <%= form_tag "/products", method: :get do %>
-  <%= label_tag :product_name %>
-  <%= text_field_tag :product_name, params[:product_name] %>
+
+ <%= form_for(@product) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
   <br>
 
-  <%= label_tag :description %>
-  <%= text_field_tag :description, params[:description] %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
   <br>
 
-  <%= label_tag :category %>
-  <%= text_field_tag :category, params[:category] %>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
   <br>
 
-  <%= label_tag :price %>
-  <%= number_field_tag :price, params[:price] %>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
   <br>
 
-  <%= submit_tag 'create product'%>
+  <%= f.submit 'create product'%>
     <% end %>
