@@ -6,4 +6,6 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates :price, numericality: { greater_than: 0 }
   mount_uploader :image, ImageUploader
+  has_many :order_items
+  has_many :orders, through: :order_items
 end

@@ -9,16 +9,17 @@
 <body>
   <div class="menu_bar">
     <a href="/products">Products</a>
-    <a href="/users/new">Users</a>
+    <a href="/users">Users</a>
     <a href="/reviews/new">Reviews</a>
     <a href="/orders">Orders</a>
     <a href="/cart">Cart</a>
   </div>
 
   <div class='container'>
-
+    
     <%= flash[:notice] %>
-    <%= yield %>
+
+<%= yield %>
   </div>
 </body>
 </html>
