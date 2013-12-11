@@ -31,7 +31,7 @@ describe ProductsController do
   
   end
 
-  describe "POST 'index" do
+  describe "POST 'index'" do
     
     it "is successful" do
       post :index
