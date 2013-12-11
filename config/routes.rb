@@ -1,9 +1,20 @@
 Scamazon::Application.routes.draw do
 
+<<<<<<< HEAD
   resources :users
   get 'products' => 'products#index'
   root 'welcome#index'
   
+=======
+
+  get "/reviews/new" => "reviews#new" #add /new to path after the location is decided
+  # post " /reviews" =>
+  resources :reviews
+
+  get 'products' => 'products#index'
+  root 'welcome#index'
+
+>>>>>>> christina_reviews
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
