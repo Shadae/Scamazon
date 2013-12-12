@@ -1,4 +1,6 @@
-Hi <%= current_user.user_name %>,
+ <% if current_user.present? %>
+        Hi there, <%= current_user.user_name %>
+  <% end %>
 
 <h1> Welcome to SCAMAZON </h1>
 
