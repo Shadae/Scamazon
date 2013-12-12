@@ -7,4 +7,6 @@ class Product < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   has_many :order_items
   has_many :orders, through: :order_items
+  has_many :categories, through: :category_products
+  has_many :category_products
 end

@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Category do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'validations' do
+    let(:category) {Category.new(category: "fruit")}
+   
+      it "should have a category" do
+        category.category = nil
+        expect(category).to be_invalid 
+      end
+    end
+
 end

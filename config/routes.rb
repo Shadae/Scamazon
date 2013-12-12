@@ -12,6 +12,8 @@ Scamazon::Application.routes.draw do
   get 'products/category' => 'products#category'
   post 'products/category' => 'products#category'
 
+  resources 'categories'
+
   resources :users
   root 'welcome#index'
 
