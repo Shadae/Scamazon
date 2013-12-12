@@ -26,7 +26,9 @@
 <br>
 
 <% if @product.retired == false %>
+  <%= form_tag('/orders', method: :post) %>
  <%= submit_tag 'Add To Cart'%>
+
  <% end %>
 <br><br>
 <%= link_to 'Back To Products', products_path %>

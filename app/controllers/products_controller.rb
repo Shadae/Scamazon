@@ -37,10 +37,6 @@ class ProductsController < ApplicationController
   def show
   end
 
-  def category
-
-  end
-
   def update
     
     if @product.update(product_params)
