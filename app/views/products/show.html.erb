@@ -14,6 +14,13 @@
   <strong> Product Price </strong>
  <p> $<%= format("%.2f",(@product.price/100.00)) %></p>
 
+ <strong> Category </strong>
+ <% @product.categories.each do |category| %>
+ <%= category.category %>
+ <% end %>
+<br>
+ <%= link_to 'Edit Product', edit_product_path %>
+
 
 <% if @product.retired == false %>
  <%= submit_tag 'Add To Cart'%>

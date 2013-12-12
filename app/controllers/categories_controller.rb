@@ -13,14 +13,23 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    redirect_to categories_path
   end
 
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to @category, notice: "You have successfully added a category"
+      redirect_to categories_path, notice: "You have successfully added a category"
     else
       render :new
+    end
+  end
+
+  def update
+    if @category.update(category_params)
+      redirect_to @category, notice: "Your category was successfully updated!"
+    else
+      render :edit
     end
   end
 

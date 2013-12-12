@@ -28,6 +28,23 @@ class ProductsController < ApplicationController
 
   end
 
+  def update
+    
+    if @product.update(product_params)
+
+      params[:product][:categories].each do |category_id|
+        next if category_id.to_i == 0
+        category = Category.find(category_id.to_i) 
+        @product.categories << category
+      end
+
+      redirect_to @product, notice: "Your product has been successfully updated, yo."
+    else
+      render :edit
+    end
+  end
+        
+
 private
 
   def set_product
