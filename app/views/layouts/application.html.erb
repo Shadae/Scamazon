@@ -13,7 +13,12 @@
     <a href="/reviews/new">Reviews</a>
     <a href="/orders">Orders</a>
     <a href="/cart">Cart</a>
-    Hi there, <%= @current_user.user_name if present? %>
+     <% if @current_user.present? %>
+        Hi there, <%= @current_user.user_name %>
+        <button type="button"><%= link_to "Sign Out", :controller=> "sessions", :action=> "destroy" %></button>
+     <% else %>
+        <button type="button"><%= link_to "Log In", :controller => "sessions", :action => "new" %></button>
+      <% end %>
   </div>
 
   <div class='container'>
