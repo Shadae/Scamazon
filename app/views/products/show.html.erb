@@ -1,3 +1,4 @@
+
 <h1>Product Information</h1>
 <% if @product.retired %>
 <h2>This Product Is No Longer Available.</h2>
@@ -20,11 +21,12 @@
  <% end %>
 <br>
 <br>
+
  <%= link_to 'Edit Product', edit_product_path %>
 <br>
 
 <% if @product.retired == false %>
- <a href='/order<%= submit_tag 'Add To Cart'%>
+ <%= submit_tag 'Add To Cart'%>
  <% end %>
 <br><br>
 <%= link_to 'Back To Products', products_path %>

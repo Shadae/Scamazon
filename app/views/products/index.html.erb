@@ -18,10 +18,15 @@
         <td><%= link_to product.name, product_path(product.id) %></td>
         <td><%= product.description %></td>
         <td>$ <%= (product.price.to_f/100) %></td>
-        <td> </td>
+        <td> <% product.categories.each do |category| %>
+              <%= category.category %>
+              <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<% if @current_user.present? %>
 <%= link_to 'New Product', new_product_path %><br><br>
+<% end %>
