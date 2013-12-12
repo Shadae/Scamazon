@@ -1,0 +1,36 @@
+<h2>Your Cart</h2>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th class="visible-header">Item</th>
+      <th class="visible-header">Quantity</th>
+      <th></th>
+      <th></th>
+      <th class="visible-header">Price</th>
+      <th class="visible-header">Subtotal</th>
+    </tr>
+  </thead>
+
+  <% subtotal = 0 %>
+  <tbody>
+    <%@order.products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <td>Some number!</td>
+        <td>+</td> <!--this will evenutally increase quantity -->
+        <td>-</td>
+        <td><%= product.price %></td>
+        <td><%= subtotal += product.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Your total: <%= subtotal %></h3>
+
+<%= form_tag('/purchases/new') do %>
+    <%= text_field_tag :order_id, @order.id%>
+  <div><%= submit_tag 'Checkout', data: {confirm: 'Are you sure?'} %></div>
+<% end %>
