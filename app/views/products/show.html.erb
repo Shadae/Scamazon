@@ -19,9 +19,12 @@
  <%= category.category %>
  <% end %>
 <br>
+<br>
  <%= link_to 'Edit Product', edit_product_path %>
-
+<br>
 
 <% if @product.retired == false %>
  <%= submit_tag 'Add To Cart'%>
  <% end %>
+<br><br>
+<%= link_to 'Back To Products', products_path %>
