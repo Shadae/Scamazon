@@ -1,10 +1,10 @@
 <p class='purchasediv'>It's a box with your purchase information!</p>
 <br>
-<% @purchase.errors.full_messages.each do |error| %>
+<% @order.errors.full_messages.each do |error| %>
 <br>
 <%= error %>
 <% end %>
-<%= form_for @purchase do |f| %>
+<%= form_for @order do |f| %>
   <h3>Shipping Address</h3>
   <%= f.label 'First Name'%>
     <%= f.text_field :first_name%><br>

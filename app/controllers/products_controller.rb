@@ -14,6 +14,13 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+
+    params[:product][:categories].each do |category_id|
+      next if category_id.to_i == 0
+      category = Category.find(category_id)
+      @product.categories << category
+    end
+
     if @product.save
       redirect_to @product, notice: "Your product has been successfully saved!"
     else
