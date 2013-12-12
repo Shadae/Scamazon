@@ -12,7 +12,7 @@ describe UsersController do
   it "should create user" do
     post 'create', {user: {email: "email",
                            user_name: "username",
-                           password_digest: "password", 
+                           password: "password", 
                            password_confirmation: "password"} }
     expect(response).to be_redirect
   end
