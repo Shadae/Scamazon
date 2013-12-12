@@ -1,0 +1,10 @@
+<% @category.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+
+<%= form_for(@category) do |f| %>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+  <br>
+  <%= f.submit 'create category' %>
+  <% end %>

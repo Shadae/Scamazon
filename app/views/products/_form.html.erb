@@ -1,4 +1,7 @@
-
+<% @product.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<br>
 
  <%= form_for(@product) do |f| %>
   <%= f.label :name %>
@@ -9,13 +12,18 @@
   <%= f.text_field :description %>
   <br>
 
-  <%= f.label :category %>
-  <%= f.text_field :category %>
-  <br>
-
   <%= f.label :price %>
   <%= f.number_field :price %>
   <br>
+
+  Pick as many categories as you deem appropriate.
+  <%= f.select(:categories, Category.all.collect { |p| [p.category, p.id] }, { selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
+  <br>
+
+  <%= f.label :image, "Upload local file:" %><br />
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+<br>
 
   <%= f.submit 'create product'%>
     <% end %>

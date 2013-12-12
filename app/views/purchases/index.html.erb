@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th class="visible-header">ID</th>
+      <th class="visible-header">Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.id %></td>
+        <td><%= purchase.first_name %></td>
+        <td><%= purchase.last_name %></td>
+        <td><%= link_to 'Show', purchase %></td>
+        <td><%= link_to 'Destroy', purchase, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href='/purchases/new/'>new</a>

@@ -6,7 +6,6 @@ describe Product do
 
       let(:product) {Product.new(name: "Apples",
                                   description: "delicious!",
-                                  category: "fruit",
                                   price: "200")}
 
       it "should have a name" do
@@ -29,17 +28,6 @@ describe Product do
         product.description = nil
         product.save
         expect(product.errors[:description]).to include("can't be blank")
-      end
-
-      it "should have a category" do
-        product.category = nil
-        expect(product).to be_invalid
-      end
-
-      it "should cause an error if category is blank" do
-        product.category = nil
-        product.save
-        expect(product.errors[:category]).to include("can't be blank")
       end
 
       it "should have a price" do

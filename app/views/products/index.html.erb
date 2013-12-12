@@ -1,12 +1,14 @@
 <h1> Check out all the products available here at Scamazon! </h1>
 
+
+<%= button_to 'Browse by category', action: :category %>
 <table>
   <thead>
     <tr>
       <th>Product Name </th>
       <th>Product Description </th>
-      <th>Category</th>
       <th>Price</th>
+      <th>Category</th>
     </tr>
   </thead>
 
@@ -15,8 +17,8 @@
       <tr>
         <td><%= link_to product.name, product_path(product.id) %></td>
         <td><%= product.description %></td>
-        <td><%= product.category %></td>
         <td>$ <%= (product.price.to_f/100) %></td>
+        <td> </td>
       </tr>
     <% end %>
   </tbody>

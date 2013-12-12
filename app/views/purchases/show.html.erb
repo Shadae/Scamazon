@@ -1,0 +1,29 @@
+<!--for a single purchase-->
+<p>
+  <strong>Shipping Information:</strong>
+  <%= @purchase.first_name %>
+  <%= @purchase.last_name%><br>
+  <%= @purchase.address1%><br>
+  <%= @purchase.address2 %><br>
+  <%= @purchase.city %>, 
+  <%= @purchase.state %>
+  <%= @purchase.zip %><br>
+
+  <%= @purchase.email_address %>
+</p>
+<br><br>
+
+<p>
+  <strong>Billing Information:</strong>
+  <%= @purchase.billing_first %>
+  <%= @purchase.billing_last %><br>
+  <%= @purchase.billing_address1%><br>
+  <%= @purchase.billing_address2 %><br>
+  <%= @purchase.billing_city %>, 
+  <%= @purchase.billing_state %>
+  <%= @purchase.billing_zip %><br><br>
+  **** - **** - **** -
+  <%=@purchase.credit_card_number[-4, 4]%><br>
+  <%=@purchase.cvv%>
+</p>
+

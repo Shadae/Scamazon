@@ -4,11 +4,9 @@ describe ProductsController do
 
   let(:product1) { Product.create!(name: "apples", 
                                    description: "delicious",
-                                   category: "fruit",
                                    price: "100") }
   let(:product2) { Product.create!(name: "bananas", 
                                    description: "yummy",
-                                   category: "fruit",
                                    price: "200") }
 
   describe "GET 'index'" do
@@ -31,7 +29,7 @@ describe ProductsController do
   
   end
 
-  describe "POST 'index" do
+  describe "POST 'index'" do
     
     it "is successful" do
       post :index
@@ -41,22 +39,15 @@ describe ProductsController do
   end
 
   describe "create new page" do
-    render_views
 
     it "is successful" do
       get :new
       expect(response).to be_successful
     end
 
-    it "renders the new product template" do
-      get :new
-      expect(response).to render_template("new")
-    end
-
     it "should create new product" do
       post 'create', {product: {name: "carrot",
                                 description: "crunchy",
-                                category: "vegetable",
                                 price: 100}}
       expect(response).to be_redirect
     end
@@ -64,9 +55,9 @@ describe ProductsController do
   it "should create new product" do
       expect {post 'create', {product: {name: nil,
                                 description: "crunchy",
-                                category: "vegetable",
                                 price: 100}}}.not_to change(Product, :count).by(1)
     end
+
   
   end
 
@@ -92,11 +83,6 @@ describe ProductsController do
       expect(product1.description).to be_present
     end
 
-    it "shows the category of the product" do
-      request 
-      expect(product1.category).to be_present
-    end
-
     it "shows the price of the product" do
       request
       expect(product1.price).to be_present
@@ -114,7 +100,11 @@ describe ProductsController do
       expect(response.body).to_not include("This Product Is No Longer Available.")
     end
 
-
+    it "has an 'add to cart' button if product is not retired" do
+      request
+      expect(response.body).to include("Cart")
+    end
+    
   end
 
 

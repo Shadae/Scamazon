@@ -1,9 +1,19 @@
 Scamazon::Application.routes.draw do
 
+  # #this is for entering data for your purchase
+  # get 'purchases/new' => 'purchases#new'
+  # #this is where you review your page before you finalize the purchase
+  resources :purchases
+
+  #from Davida
+  get 'products/category' => 'products#category'
+  post 'products/category' => 'products#category'
+
+  resources 'categories'
 
   resources :users
   root 'welcome#index'
-
+  resources :sessions
   
   resources :reviews, except: :show
   get "/reviews/:id" => "reviews#show"
