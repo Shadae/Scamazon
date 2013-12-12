@@ -13,6 +13,8 @@
     <a href="/reviews/new">Reviews</a>
     <a href="/orders">Orders</a>
     <a href="/cart">Cart</a>
+    <button type="button"><%= link_to "Log In", :controller => "sessions", :action => "new" %></button>
+    <button type="button"><%= link_to "Sign Out", :controller=> "sessions", :action=> "destroy" %></button>
   </div>
 
   <div class='container'>
