@@ -8,13 +8,6 @@ class OrdersController < ApplicationController
 
       @order.products << product
     end
-    # @order.products.each do |product|
-    #   same_order = OrderItem.all.each do |orderitem|
-    #     if orderitem.product_id == product.id && orderitem.order_id == @order.id
-    #       OrderItem.find(orderitem.id).quantity = 1
-    #     end
-    #   end
-    # end
     @order.save
     redirect_to orders_path, notice: 'Item has been added to your cart'
   end
@@ -43,6 +36,12 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+
+  def find_order
+    # Eventually, this will need to find the user's orders
+    @order = Order.find_by(status: 'pending') || Order.new.save
+    render :cart
   end
 
   private

@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212195221) do
+
+ActiveRecord::Schema.define(version: 20131212215503) do
 
   create_table "categories", force: true do |t|
     t.string   "category"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20131212195221) do
     t.string   "state"
     t.string   "billing_state"
     t.boolean  "same_address"
+    t.integer  "order_id"
   end
 
   create_table "reviews", force: true do |t|
