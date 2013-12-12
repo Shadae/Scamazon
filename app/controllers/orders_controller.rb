@@ -8,13 +8,13 @@ class OrdersController < ApplicationController
 
       @order.products << product
     end
-    @order.products.each do |product|
-      same_order = OrderItem.all.each do |orderitem|
-        if orderitem.product_id == product.id && orderitem.order_id == @order.id
-          OrderItem.find(orderitem.id).quantity = 1
-        end
-      end
-    end
+    # @order.products.each do |product|
+    #   same_order = OrderItem.all.each do |orderitem|
+    #     if orderitem.product_id == product.id && orderitem.order_id == @order.id
+    #       OrderItem.find(orderitem.id).quantity = 1
+    #     end
+    #   end
+    # end
     @order.save
     redirect_to orders_path, notice: 'Item has been added to your cart'
   end
