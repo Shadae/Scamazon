@@ -1,10 +1,15 @@
-<p class='purchasediv'>It's a box with your purchase information!</p>
+<% @order = Order.find(params[:order_id])  %>
+<p class='purchasediv'>You are placing an order with
+<%= @order.products.count %> 
+<%= 'item'.pluralize %></p>
 <br>
-<% @order.errors.full_messages.each do |error| %>
+<p>This order will cost you AT LEAST </p>
+<%= @order.products
+<% @purchase.errors.full_messages.each do |error| %>
 <br>
 <%= error %>
 <% end %>
-<%= form_for @order do |f| %>
+<%= form_for @purchase do |f| %>
   <h3>Shipping Address</h3>
   <%= f.label 'First Name'%>
     <%= f.text_field :first_name%><br>
@@ -55,5 +60,5 @@
     <%= f.text_field :billing_zip%>
   </div>
   <br>
-  <%= f.submit "Order" %>
+  <%= f.submit "Place Order" %>
 <% end %>
