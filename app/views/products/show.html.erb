@@ -26,7 +26,9 @@
 <br>
 
 <% if @product.retired == false %>
-  <%= form_tag('/orders', method: :post) %>
+  <%= form_tag('/orders') %>
+  <%= label_tag :quantity %>
+  <%= number_field_tag :quantity %>
  <%= submit_tag 'Add To Cart'%>
 
  <% end %>
