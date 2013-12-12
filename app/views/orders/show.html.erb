@@ -1,0 +1,9 @@
+<!--for a single order-->
+<p>
+  <strong>Your Cart</strong>
+  <%= @order.products.each do |product| %>
+    <%= link_to product.name, product %>
+  <% end %>
+</p>
+
+

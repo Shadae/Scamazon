@@ -12,6 +12,15 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
   end
 
+  def start_transaction
+    @purchase = Purchase.new(purchase_params)
+    if @purchase.save
+      redirect_to purchases_path, notice: 'Transaction has been completed'
+    else
+      render :new
+    end
+  end
+
   def index
     @purchases = Purchase.all
   end
@@ -44,5 +53,7 @@ class PurchasesController < ApplicationController
       :cvv, :billing_zip, :billing_address1, :billing_address2, :billing_city,
       :state, :billing_state, :same_address, :email_address_confirmation)
   end
+
+end
 
 end
