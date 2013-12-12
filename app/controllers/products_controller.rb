@@ -7,14 +7,19 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    if @current_user
+      @product = Product.new
+    end
   end
 
   def edit
+    if @current_user.id != @product.user
+      redirect_to @product, notice: "Yo, step off! Make your own product, okay?"
+    end
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = @current_user.products.build(product_params)
 
     params[:product][:categories].each do |category_id|
       next if category_id.to_i == 0
