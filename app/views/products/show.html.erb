@@ -25,7 +25,7 @@
 <br>
 
 <% if @product.retired == false %>
- <%= submit_tag 'Add To Cart'%>
+ <a href='/order<%= submit_tag 'Add To Cart'%>
  <% end %>
 <br><br>
 <%= link_to 'Back To Products', products_path %>

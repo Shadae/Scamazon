@@ -1,9 +1,7 @@
 <table>
   <thead>
     <tr>
-      <th class="visible-header">ID</th>
-      <th class="visible-header">Name</th>
-      <th></th>
+      <th class="visible-header">Order ID</th>
       <th></th>
       <th></th>
     </tr>
@@ -13,8 +11,6 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
-        <td><%= order.first_name %></td>
-        <td><%= order.last_name %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
       </tr>

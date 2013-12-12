@@ -3,7 +3,7 @@ Scamazon::Application.routes.draw do
   # #this is for entering data for your purchase
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
-  resources :purchases
+  resources :orders
 
   #from Davida
   get 'products/category' => 'products#category'
@@ -18,6 +18,8 @@ Scamazon::Application.routes.draw do
   resources :reviews
 
   resources :products
+
+  resources :purchases
 
 
   # The priority is based upon order of creation: first created -> highest priority.
