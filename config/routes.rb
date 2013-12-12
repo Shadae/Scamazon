@@ -14,7 +14,7 @@ Scamazon::Application.routes.draw do
   resources :users
   root 'welcome#index'
   resources :sessions
-  delete 'sessions/sign_out' => 'sessions#destroy'
+  post 'sessions/sign_out' => 'sessions#destroy'
   
   resources :reviews
 
