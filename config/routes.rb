@@ -6,17 +6,21 @@ Scamazon::Application.routes.draw do
   resources :orders
 
   #from Davida
-  get 'products' => 'products#index'
+  get 'products/category' => 'products#category'
+  post 'products/category' => 'products#category'
+
+  resources 'categories'
 
   resources :users
   root 'welcome#index'
-
+  resources :sessions
   
   resources :reviews
 
   resources :products
 
   resources :purchases
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

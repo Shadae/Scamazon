@@ -4,11 +4,9 @@ describe ProductsController do
 
   let(:product1) { Product.create!(name: "apples", 
                                    description: "delicious",
-                                   category: "fruit",
                                    price: "100") }
   let(:product2) { Product.create!(name: "bananas", 
                                    description: "yummy",
-                                   category: "fruit",
                                    price: "200") }
 
   describe "GET 'index'" do
@@ -50,7 +48,6 @@ describe ProductsController do
     it "should create new product" do
       post 'create', {product: {name: "carrot",
                                 description: "crunchy",
-                                category: "vegetable",
                                 price: 100}}
       expect(response).to be_redirect
     end
@@ -58,7 +55,6 @@ describe ProductsController do
   it "should create new product" do
       expect {post 'create', {product: {name: nil,
                                 description: "crunchy",
-                                category: "vegetable",
                                 price: 100}}}.not_to change(Product, :count).by(1)
     end
 
@@ -85,11 +81,6 @@ describe ProductsController do
     it "shows the description of the product" do
       request
       expect(product1.description).to be_present
-    end
-
-    it "shows the category of the product" do
-      request 
-      expect(product1.category).to be_present
     end
 
     it "shows the price of the product" do

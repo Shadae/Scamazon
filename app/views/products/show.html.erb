@@ -11,12 +11,20 @@
   <strong>Product Description</strong>
  <p> <%= @product.description %></p>
 
-  <strong>Product Category</strong>
- <p> <%= @product.category %></p>
-
   <strong> Product Price </strong>
  <p> $<%= format("%.2f",(@product.price/100.00)) %></p>
+
+ <strong> Category </strong>
+ <% @product.categories.each do |category| %>
+ <%= category.category %>
+ <% end %>
+<br>
+<br>
+ <%= link_to 'Edit Product', edit_product_path %>
+<br>
 
 <% if @product.retired == false %>
  <a href='/order<%= submit_tag 'Add To Cart'%>
  <% end %>
+<br><br>
+<%= link_to 'Back To Products', products_path %>

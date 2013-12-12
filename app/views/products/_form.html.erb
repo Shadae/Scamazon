@@ -12,12 +12,12 @@
   <%= f.text_field :description %>
   <br>
 
-  <%= f.label :category %>
-  <%= f.text_field :category %>
-  <br>
-
   <%= f.label :price %>
   <%= f.number_field :price %>
+  <br>
+
+  Pick as many categories as you deem appropriate.
+  <%= f.select(:categories, Category.all.collect { |p| [p.category, p.id] }, { selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   <br>
 
   <%= f.label :image, "Upload local file:" %><br />
