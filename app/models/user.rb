@@ -5,4 +5,4 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }, on: :create
   validates :user_name, presence: true, uniqueness: { case_sensitive: false }
   validates :password, presence: true 
-
+end
