@@ -11,7 +11,10 @@
  *= require_self
  *= require_tree .
  */
-
+h1 {
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+  
+}
  .container {
   width: 500px;
   margin-left:auto;
