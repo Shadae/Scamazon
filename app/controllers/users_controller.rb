@@ -21,7 +21,9 @@ class UsersController < ApplicationController
     @user.email.downcase!
     @user.user_name.downcase!
 
+
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.'
     else
       render action: 'new'
