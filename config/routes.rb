@@ -21,6 +21,7 @@ Scamazon::Application.routes.draw do
   resources :reviews
 
   resources :products
+  post 'products/filter' => 'products#filter'
 
   resources :purchases
 

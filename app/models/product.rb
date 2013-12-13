@@ -11,4 +11,13 @@ class Product < ActiveRecord::Base
   has_many :category_products
   has_one :user, through: :merchant_product
   has_one :merchant_product
+
+    def self.filter(filter_term)
+    if filter_term
+      includes(:categories).where('categories.category LIKE :s', "%#{filter_term}%")
+    else
+      all
+    end
+  end
+
 end

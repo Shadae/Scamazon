@@ -3,13 +3,18 @@ class ProductsController < ApplicationController
 
 
   def index
-    @products = Product.all
+    @products = Product.filter(params[:category_filter])
   end
 
   def new
     if @current_user
       @product = Product.new
     end
+  end
+
+  def filter
+   @products = Product.filter(params[:category_filter])
+   render :index
   end
 
   def edit
