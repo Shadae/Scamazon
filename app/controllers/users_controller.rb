@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.email.downcase!
+    @user.user_name.downcase!
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
