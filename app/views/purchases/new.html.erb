@@ -4,7 +4,7 @@
 <%= 'item'.pluralize %></p>
 <br>
 <p>This order will cost you AT LEAST </p>
-<%= @order.products
+<%= @order.products.inject { |sum, product| sum + product.price } %>
 <% @purchase.errors.full_messages.each do |error| %>
 <br>
 <%= error %>
