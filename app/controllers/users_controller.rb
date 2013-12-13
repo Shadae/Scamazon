@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @user = User.all
   end
@@ -17,7 +18,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+      @user.email.downcase!
+      @user.user_name.downcase!
+        if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
       render action: 'new'
