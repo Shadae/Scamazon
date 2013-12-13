@@ -5,16 +5,18 @@ Scamazon::Application.routes.draw do
   # #this is where you review your page before you finalize the purchase
   resources :orders
 
-  #from Davida
+  get '/cart' => 'orders#find_order'
+
   get 'products/category' => 'products#category'
   post 'products/category' => 'products#category'
+  post 'purchases/new' => 'purchases#new'
 
   resources 'categories'
 
   resources :users
   root 'welcome#index'
   resources :sessions
-  delete 'sessions/sign_out' => 'sessions#destroy'
+  post 'sessions/sign_out' => 'sessions#destroy'
   
   resources :reviews, except: :show
   get "/reviews/:id" => "reviews#show"
