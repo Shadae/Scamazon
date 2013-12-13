@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def add
+    @order = Order.find_by(status: 'pending') || Order.new.save
     @order.products << Product.find(params[:product_id])
     redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
   end

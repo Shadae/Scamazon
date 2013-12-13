@@ -11,6 +11,8 @@ Scamazon::Application.routes.draw do
   post 'products/category' => 'products#category'
   post 'purchases/new' => 'purchases#new'
 
+  post 'orders/add' => 'orders#add'
+
   resources 'categories'
 
   resources :users
