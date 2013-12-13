@@ -12,11 +12,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def filter
-   @products = Product.filter(params[:category_filter])
-   render :index
-  end
-
   def edit
     if @current_user.id != @product.user
       redirect_to @product, notice: "Yo, step off! Make your own product, okay?"
