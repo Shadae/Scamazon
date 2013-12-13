@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def add
+    find_order
     @order.products << Product.find(params[:product_id])
     redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
   end
@@ -43,10 +44,14 @@ class OrdersController < ApplicationController
     end
   end
 
-  def find_order
+  def cart
     # Eventually, this will need to find the user's orders
-    @order = Order.find_by(status: 'pending') || Order.new.save
+    find_order
     render :cart
+  end
+
+  def find_order
+    @order = Order.find_by(status: 'pending') || Order.new.save
   end
 
   private

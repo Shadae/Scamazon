@@ -31,6 +31,6 @@
 <h3>Your total: <%= subtotal %></h3>
 
 <%= form_tag('/purchases/new') do %>
-    <%= text_field_tag :order_id, @order.id%>
+    <% hidden_field_tag :order_id, @order.id%>
   <div><%= submit_tag 'Checkout', data: {confirm: 'Are you sure?'} %></div>
 <% end %>
