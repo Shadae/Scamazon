@@ -5,11 +5,13 @@ Scamazon::Application.routes.draw do
   # #this is where you review your page before you finalize the purchase
   resources :orders
 
-  get '/cart' => 'orders#find_order'
+  get '/cart' => 'orders#cart'
 
   get 'products/category' => 'products#category'
   post 'products/category' => 'products#category'
   post 'purchases/new' => 'purchases#new'
+
+  post 'orders/add' => 'orders#add'
 
   resources 'categories'
 

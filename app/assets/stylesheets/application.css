@@ -11,7 +11,15 @@
  *= require_self
  *= require_tree .
  */
-
+ #header {
+  width: 350px;
+  height: 140px;
+ }
+ #box_in_header {
+  width: 450px;
+  height: 140px;
+  float: right;
+ }
  .container {
   width: 500px;
   margin-left:auto;
