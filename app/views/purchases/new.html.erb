@@ -3,8 +3,9 @@
 <%= @order.products.count %> 
 <%= 'item'.pluralize %></p>
 <br>
-<p>This order will cost you AT LEAST </p>
-<%= @order.products.inject { |sum, product| sum + product.price } %>
+<p>This order will cost you AT LEAST
+<%= @order.products.inject(0) { |sum, product| sum + product.price } %>
+plus shipping, handling, and any hidden fees. </p>
 <% @purchase.errors.full_messages.each do |error| %>
 <br>
 <%= error %>
