@@ -29,6 +29,11 @@ class OrdersController < ApplicationController
     set_order
   end
 
+  def add
+    @order.products << Product.find(params[:product_id])
+    redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
+  end
+
   def destroy
     set_order
     @order.destroy
