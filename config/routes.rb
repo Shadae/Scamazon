@@ -18,7 +18,9 @@ Scamazon::Application.routes.draw do
   resources :sessions
   post 'sessions/sign_out' => 'sessions#destroy'
   
-  resources :reviews
+  resources :reviews, except: :show
+  get "/reviews/:id" => "reviews#show"
+
 
   resources :products
   post 'products/filter' => 'products#filter'
