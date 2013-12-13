@@ -13,8 +13,9 @@
       <% if current_user.present? %>
         Hi there, <%= current_user.user_name %>
         <button type="button"><%= link_to "Sign Out", {:controller=> "sessions", :action=> "destroy" }, :method => :destroy %></button>
-     <% else %>
-        <button type="button"><%= link_to "Log In", :controller => "sessions", :action => "new" %></button>
+      <% else %>
+        <%= link_to "Sign Up", :controller => "users", :action => "new" %>
+        <%= link_to "Log In", :controller => "sessions", :action => "new" %>
       <% end %>
     </div>
   </div>
