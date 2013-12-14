@@ -16,13 +16,8 @@ class Product < ActiveRecord::Base
       # if filter_term
       #   #filter_term = [x,y,z]
       #   search = includes(:categories)
-
       if filter_term
-          # search = includes(:categories)
-          a = filter_term.flat_map do |category|
-            search = includes(:categories).where('categories.category LIKE :s', s: "%#{category}%")
-          end
-         
+          filter_term.map {|category| includes(:categories).where('categories.category LIKE :s', s: "%#{category}%") }.inject(:&)    
       else
         all
       end

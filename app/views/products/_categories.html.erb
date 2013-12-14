@@ -1,6 +1,7 @@
 debug: <%= params.inspect %>
+
 <%= form_tag(products_path, method: :get) %>
-<% Category.all.each_with_index do |category| %>
+<% Category.all.each do |category| %>
   <%= label_tag category.category %>
   <%= check_box_tag(:"category_filter[]", category.category) %><br>
 <% end %>
