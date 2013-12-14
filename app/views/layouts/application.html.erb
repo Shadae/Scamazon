@@ -7,19 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class='header'> 
+    <div id= 'logo'><%= image_tag 'scamazon.png' %>
+    <div id= 'box_in_header'>
+      <% if current_user.present? %>
+        Hi there, <%= current_user.user_name %>
+        <button type="button"><%= link_to "Sign Out", {:controller=> "sessions", :action=> "destroy" }, :method => :destroy %></button>
+      <% else %>
+        <%= link_to "Sign Up", :controller => "users", :action => "new" %>
+        <%= link_to "Log In", :controller => "sessions", :action => "new" %>
+      <% end %>
+    </div>
+  </div>
   <div class="menu_bar">
     <a href="/products">Products</a>
     <a href="/users">Users</a>
     <a href="/reviews/new">Reviews</a>
     <a href="/orders">Orders</a>
     <a href="/cart">Cart</a>
-     <% if current_user.present? %>
-        Hi there, <%= current_user.user_name %>
-        <button type="button"><%= link_to "Sign Out", {:controller=> "sessions", :action=> "destroy" }, :method => :destroy %></button>
-     <% else %>
-        <button type="button"><%= link_to "Log In", :controller => "sessions", :action => "new" %></button>
-      <% end %>
-    
   </div>
 
   <div class='container'>
