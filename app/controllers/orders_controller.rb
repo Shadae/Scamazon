@@ -31,7 +31,13 @@ class OrdersController < ApplicationController
 
   def add
     find_order
-    @order.products << Product.find(params[:product_id])
+    proddy = Product.find(params[:product_id])
+    ordy = OrderItem.where(product_id: proddy.id, order_id: @order.id)
+    if @order.products.include?(proddy)
+    else 
+      @order.products << proddy
+    end
+    OrderItem.update(ordy[0].id, :quantity => ordy[0].add(params[:quantity]))
     redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
   end
 
@@ -51,7 +57,9 @@ class OrdersController < ApplicationController
   end
 
   def find_order
-    @order = Order.find_by(status: 'pending') || Order.new.save
+    @order = Order.find_by(status: 'pending') || Order.new
+    @order.save
+    @order
   end
 
   private
