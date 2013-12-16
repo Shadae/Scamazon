@@ -11,7 +11,7 @@
     <div id= 'logo'> <%= link_to(image_tag('scamazon.png', :alt => "logo", :title => "Welcome"),"/") %>
     <div id= 'box_in_header'>
       <% if current_user.present? %>
-        Hi there, <%= current_user.user_name %>
+        Hi there, <%= current_user.user_name.titleize %>
         <%= link_to "Sign Out", sessions_path, :method => :delete %>
       <% else %>
         <%= link_to "Sign Up", :controller => "users", :action => "new" %>
