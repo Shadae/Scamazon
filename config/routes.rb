@@ -15,7 +15,8 @@ Scamazon::Application.routes.draw do
   post 'products/category'  => 'products#category'
   post 'purchases/new'      => 'purchases#new'
   post 'orders/add'         => 'orders#add'
-  post 'sessions/sign_out'  => 'sessions#destroy'
+  # post 'sessions/sign_out'  => 'sessions#destroy'
+  delete 'sessions'         => 'sessions#destroy' 
   get  "reviews/:id"        => "reviews#show"
 
   root 'welcome#index'

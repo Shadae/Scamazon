@@ -1,12 +1,12 @@
 
 <td>
   <strong>User Name:</strong>
-  <%= @user.user_name %>
+  <%= @user.user_name.titleize %>
 </td>
 
 <td>
   <strong>Email:</strong>
-  <%= @user.email %>
+  <%= @user.email.titleize %>
 </td>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
