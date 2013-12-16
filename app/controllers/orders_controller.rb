@@ -35,8 +35,17 @@ class OrdersController < ApplicationController
     unless @order.products.include?(@proddy)
       @order.products << @proddy
     end
-    add_order_quantity
-    redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
+    get_order_item
+    if check_quantity(params[:quantity])
+      add_order_quantity
+      redirect_to :back, notice: "#{params[:quantity] + " " + @proddy.name} have been added to your cart."
+    else
+      redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
+    end
+  end
+
+  def check_quantity(order_request)
+    @proddy.stock >= order_request.to_i
   end
 
   def get_product

@@ -11,7 +11,7 @@ Scamazon::Application.routes.draw do
   resources :categories
 
 
-  get  '/cart'                        => 'orders#cart'
+  get  'cart'                         => 'orders#cart'
   get  'products/category'            => 'products#category'
   post 'products/category'            => 'products#category'
   post 'purchases/new'                => 'purchases#new'
@@ -24,7 +24,7 @@ Scamazon::Application.routes.draw do
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
   get  "reviews/:id"                  => "reviews#show"
-  post '/product/:id'                 => 'products#retire', as: :retired
+  post 'products/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
 
