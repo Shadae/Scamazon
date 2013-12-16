@@ -4,6 +4,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    if @current_user.nil? 
+      redirect_to new_session_path, notice: "You must be logged in to write a review!" and return
+    end
+
     @review = Review.new(review_params)
     if @review.save
       # success
