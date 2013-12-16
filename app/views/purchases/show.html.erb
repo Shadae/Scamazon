@@ -1,29 +1,31 @@
 <!--for a single order-->
 <p>
-  <strong>Shipping Information:</strong>
-  <%= @order.first_name %>
-  <%= @order.last_name%><br>
-  <%= @order.address1%><br>
-  <%= @order.address2 %><br>
-  <%= @order.city %>, 
-  <%= @order.state %>
-  <%= @order.zip %><br>
+  <strong>Shipping Information:</strong><br>
+  <%= @purchase.first_name %>
+  <%= @purchase.last_name%><br>
+  <%= @purchase.address1%><br>
+  <%= @purchase.address2 %><br>
+  <%= @purchase.city %>, 
+  <%= @purchase.state %>
+  <%= @purchase.zip %><br>
 
-  <%= @order.email_address %>
+  <%= @purchase.email_address %>
 </p>
 <br><br>
 
 <p>
-  <strong>Billing Information:</strong>
-  <%= @order.billing_first %>
-  <%= @order.billing_last %><br>
-  <%= @order.billing_address1%><br>
-  <%= @order.billing_address2 %><br>
-  <%= @order.billing_city %>, 
-  <%= @order.billing_state %>
-  <%= @order.billing_zip %><br><br>
+  <strong>Billing Information:</strong><br>
+  <%= @purchase.billing_first %>
+  <%= @purchase.billing_last %><br>
+  <%= @purchase.billing_address1%><br>
+  <%= @purchase.billing_address2 %><br>
+  <%= @purchase.billing_city %>, 
+  <%= @purchase.billing_state %>
+  <%= @purchase.billing_zip %><br><br>
   **** - **** - **** -
-  <%=@order.credit_card_number[-4, 4]%><br>
-  <%=@order.cvv%>
+  <%=@purchase.credit_card_number[-4, 4]%><br>
+  <%=@purchase.cvv%>
 </p>
+
+<p>
 

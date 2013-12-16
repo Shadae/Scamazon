@@ -3,12 +3,10 @@ class OrderItem < ActiveRecord::Base
   belongs_to :product
 
   def add(amount)
-    bar = self.quantity.to_i + amount.to_i
-    bar
+    self.quantity.to_i + amount.to_i
   end
 
   def subtract(amount)
-    self.quantity = self.quantity - amount
-    self.save
+    self.quantity.to_i - amount.to_i
   end
 end

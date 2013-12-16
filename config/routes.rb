@@ -10,13 +10,17 @@ Scamazon::Application.routes.draw do
   resources :purchases
   resources :categories
 
-  get '/cart'               => 'orders#cart'
-  get  'products/category'  => 'products#category'
-  post 'products/category'  => 'products#category'
-  post 'purchases/new'      => 'purchases#new'
-  post 'orders/add'         => 'orders#add'
-  post 'sessions/sign_out'  => 'sessions#destroy'
-  get  "reviews/:id"        => "reviews#show"
+  get  '/cart'                        => 'orders#cart'
+  get  'products/category'            => 'products#category'
+  post 'products/category'            => 'products#category'
+  post 'purchases/new'                => 'purchases#new'
+  post 'purchases/create'             => 'purchases#create'
+  post 'purchases/confirmation'       => 'purchases#confirmation'
+  post 'orders/add'                   => 'orders#add'
+  post 'orders/add_one_product'       => 'orders#add_one_product'
+  post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
+  post 'sessions/sign_out'            => 'sessions#destroy'
+  get  "reviews/:id"                  => "reviews#show"
 
   root 'welcome#index'
 
