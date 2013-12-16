@@ -1,32 +1,5 @@
-<!--for a single order-->
-<p>
-  <strong>Your Cart</strong><br>
-  <table>
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Quantity</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+<h2>Your Order</h2>
+<br>
 
-    <tbody>
-      <% @order.products.each do |product| %>
-        <tr>
-          <td><%= link_to product.name, product %></td>
-          <% OrderItem.all.each do |orderitem| %>
-            <% if orderitem.product_id == product.id && orderitem.order_id == @order.id %>
-              <td><%= orderitem.quantity %></td>
-            <% end %>
-          <% end %>
-          <td>+</td>
-          <td>-</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= @order.status %>
-</p>
-
+<%= render 'longdescription' %>
 

@@ -1,4 +1,5 @@
 <!--for a single order-->
+<% @order = Order.find_by(purchase_id: @purchase.id) %>
 <p>
   <strong>Shipping Information:</strong><br>
   <%= @purchase.first_name %>
@@ -26,6 +27,6 @@
   <%=@purchase.credit_card_number[-4, 4]%><br>
   <%=@purchase.cvv%>
 </p>
-
-<p>
+  
+<%= render '/orders/longdescription' %>
 
