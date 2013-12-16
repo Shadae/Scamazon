@@ -10,12 +10,12 @@
   <tbody>
     <% @category.each do |category| %>
       <tr>
-        <td><%= category.category %> 
-          <%= link_to 'edit category', "/categories/#{category.id}/edit" %></td>
+        <td><%= category.category %> </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-
-<%= link_to 'New Category', new_category_path %><br><br>
+<% if current_user.present? %>
+  <%= link_to 'New Category', new_category_path %><br><br>
+<% end %>

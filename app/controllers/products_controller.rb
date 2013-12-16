@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if @current_user.id != @product.user
+    if current_user != @product.user
       redirect_to @product, notice: "Yo, step off! Make your own product, okay?"
     end
   end
@@ -51,6 +51,12 @@ class ProductsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def retire
+    set_product #it feels like this is wet, since I have this method set to go before every action. (See above.) HOWEVER if I remove it it doesn't woek and I don't know why. Try to figure this out if time.
+    @product.update(retired: true)
+    redirect_to product_path(@product)
   end
         
 

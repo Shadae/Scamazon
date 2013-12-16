@@ -9,13 +9,9 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_items
   has_many :categories, through: :category_products
   has_many :category_products
-  has_one :user, through: :merchant_product
-  has_one :merchant_product
+  belongs_to :user
 
     def self.filter(filter_term)
-      # if filter_term
-      #   #filter_term = [x,y,z]
-      #   search = includes(:categories)
       if filter_term
           filter_term.map {|category| includes(:categories).where('categories.category LIKE :s', s: "%#{category}%") }.inject(:&)    
       else
