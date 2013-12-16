@@ -25,7 +25,7 @@
  <%= link_to 'Edit Product', edit_product_path %>
 <br>
 
-<% if @product.retired == false %>
+<% unless @product.retired %>
   <%= form_tag('/orders/add') %>
   <%= label_tag :quantity %>
   <%= number_field_tag :quantity %>

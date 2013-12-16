@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212215503) do
+ActiveRecord::Schema.define(version: 20131213232903) do
 
   create_table "categories", force: true do |t|
     t.string   "category"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20131212215503) do
   end
 
   create_table "orders", force: true do |t|
-    t.string   "status"
+    t.string   "status",        default: "pending"
     t.string   "shipping_code"
     t.datetime "created_at"
     t.datetime "updated_at"
