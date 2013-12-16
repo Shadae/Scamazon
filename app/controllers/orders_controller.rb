@@ -31,14 +31,39 @@ class OrdersController < ApplicationController
 
   def add
     find_order
-    proddy = Product.find(params[:product_id])
-    ordy = OrderItem.where(product_id: proddy.id, order_id: @order.id)
-    if @order.products.include?(proddy)
-    else 
-      @order.products << proddy
+    get_product
+    unless @order.products.include?(@proddy)
+      @order.products << @proddy
     end
-    OrderItem.update(ordy[0].id, :quantity => ordy[0].add(params[:quantity]))
+    add_order_quantity
     redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
+  end
+
+  def get_product
+    @proddy = Product.find(params[:product_id])
+  end
+
+  def get_order_item
+    find_order
+    get_product
+    @this_order_item = OrderItem.where(product_id: @proddy.id, order_id: @order.id) 
+  end
+
+  def add_order_quantity
+    get_order_item
+    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].add(params[:quantity]))
+  end
+
+  def add_one_product
+    get_order_item
+    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].add(1))
+    redirect_to :back, id: @order.id
+  end
+
+  def subtract_one_product
+    get_order_item
+    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].subtract(1))
+    redirect_to :back, id: @order.id
   end
 
   def destroy
@@ -51,7 +76,6 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    # Eventually, this will need to find the user's orders
     find_order
     render :cart
   end

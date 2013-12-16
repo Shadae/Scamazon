@@ -1,7 +1,7 @@
 <% @order = Order.find(params[:order_id])  %>
 <p class='purchasediv'>You are placing an order with
 <%= @order.products.count %> 
-<%= 'item'.pluralize %></p>
+<%= 'different item'.pluralize %></p>
 <br>
 <p>This order will cost you AT LEAST
 <%= @order.products.inject(0) { |sum, product| sum + product.price } %>
@@ -59,6 +59,7 @@ plus shipping, handling, and any hidden fees. </p>
     <%= f.text_field :billing_state%>
   <%= f.label "Zip"%>
     <%= f.text_field :billing_zip%>
+  <%= hidden_field_tag :order_id, @order.id %>
   </div>
   <br>
   <%= f.submit "Place Order" %>
