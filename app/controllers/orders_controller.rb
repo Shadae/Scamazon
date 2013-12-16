@@ -66,6 +66,11 @@ class OrdersController < ApplicationController
     redirect_to :back, id: @order.id
   end
 
+  def remove_product
+    OrderItem.destroy(get_order_item)
+    redirect_to :back, id: @order.id
+  end
+
   def destroy
     set_order
     @order.destroy
