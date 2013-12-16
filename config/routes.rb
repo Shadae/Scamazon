@@ -20,7 +20,8 @@ Scamazon::Application.routes.draw do
   
   resources :reviews, except: :show
   get "/reviews/:id" => "reviews#show"
-
+  get "/reviews/:id" => "reviews#edit"
+  patch "/reviews/:update" => "reviews#update"
 
   resources :products
 
