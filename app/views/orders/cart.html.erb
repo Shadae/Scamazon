@@ -18,14 +18,14 @@
     <%@order.products.each do |product| %>
       <tr>
         <td><%= link_to product.name, product %></td>
-        <% @ordy = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
-        <td><%= @ordy.quantity %></td>
+        <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
+        <td><%= @order_item.quantity %></td>
         <td><%= form_tag('/orders/add_one_product') do %>
               <%= hidden_field_tag :order_id, @order.id%>
               <%= hidden_field_tag :product_id, product.id %>
               <%= submit_tag '+' %>
           <% end %></td>
-        <% if @ordy.quantity == 1 %>
+        <% if @order_item.quantity == 1 %>
           <td><%= form_tag('/orders/remove_product') do %>
                 <%= hidden_field_tag :order_id, @order.id%>
                 <%= hidden_field_tag :product_id, product.id %>
@@ -39,7 +39,7 @@
             <% end %></td>
         <% end %>
         <td><%= product.price %></td>
-        <td><%= subtotal += product.price * @ordy.quantity %></td>
+        <td><%= subtotal += product.price * @order_item.quantity %></td>
       </tr>
     <% end %>
   </tbody>

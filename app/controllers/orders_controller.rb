@@ -1,13 +1,20 @@
 class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
+
+    #iterates over all of the products in the order
     params[:order][:products].each do |product_id|
+
+      #pulls out the products that have been selected
       next if product_id.to_i == 0
 
+      #finds the product based on the product id and pushes 
+      #it into the products array
       product = Product.find(product_id.to_i)
-
       @order.products << product
     end
+
+    #updates the database
     @order.save
     redirect_to orders_path, notice: 'Item has been added to your cart'
   end
@@ -21,62 +28,51 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def checkorder
-    @order = Order.new
-  end
-
   def show
     set_order
   end
 
   def add
-    find_order
-    get_product
-    unless @order.products.include?(@proddy)
-      @order.products << @proddy
+
+    #this method called here sets @order, @product, and @order_item
+    set_order_item_and_product
+
+    #this checks to see if the product already exists in this order. 
+    #If it does, nothing happens. If not, it adds the product to the order.
+    unless @order.products.include?(@product)
+      @order.products << @product
     end
-    get_order_item
+
+    #This checks to see if there are enough products in stock to
+    #fulfill the order
     if check_quantity(params[:quantity])
-      add_order_quantity
-      redirect_to :back, notice: "#{params[:quantity] + " " + @proddy.name} have been added to your cart."
+      add_quantity(params[:quantity].to_i)
+      redirect_to :back, notice: "#{params[:quantity] + " " + @product.name} have been added to your cart."
     else
       redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
     end
   end
 
   def check_quantity(order_request)
-    @proddy.stock >= order_request.to_i
+    @product.stock >= order_request.to_i
   end
 
-  def get_product
-    @proddy = Product.find(params[:product_id])
-  end
-
-  def get_order_item
-    find_order
-    get_product
-    @this_order_item = OrderItem.where(product_id: @proddy.id, order_id: @order.id) 
-  end
-
-  def add_order_quantity
-    get_order_item
-    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].add(params[:quantity]))
-  end
-
+#this is the + button in the cart
   def add_one_product
-    get_order_item
-    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].add(1))
+    add_quantity(1)
     redirect_to :back, id: @order.id
   end
 
+#this is the - button in the cart
   def subtract_one_product
-    get_order_item
-    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].subtract(1))
+    add_quantity(-1)
     redirect_to :back, id: @order.id
   end
 
+#this is called when you reduce the quantity of an item to 0.
+#It destroys the associated OrderItem object.
   def remove_product
-    OrderItem.destroy(get_order_item)
+    OrderItem.destroy(set_order_item_and_product)
     redirect_to :back, id: @order.id
   end
 
@@ -90,19 +86,34 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    find_order
+    set_cart
     render :cart
-  end
-
-  def find_order
-    @order = Order.find_by(status: 'pending') || Order.new
-    @order.save
-    @order
   end
 
   private
   def set_order
     @order = Order.find(params[:id])
+  end
+
+#sets the cart by looking for an existing pending cart. If one exists,
+#it sets the order to that. If there aren't any pending orders, it creates
+#a new order.
+  def set_cart
+    @order = Order.find_by(status: 'pending') || Order.new
+    @order.save
+  end
+
+#This sets @product and @order_item
+  def set_order_item_and_product
+    set_cart
+    @product = Product.find(params[:product_id])
+    @order_item = OrderItem.where(product_id: @product.id, order_id: @order.id)[0] 
+  end
+
+#This adjusts the quantity of the order_item
+  def add_quantity(amount)
+    set_order_item_and_product
+    OrderItem.update(@order_item.id, :quantity => @order_item.add(amount))
   end
 
   def order_params
