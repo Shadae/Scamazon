@@ -25,11 +25,19 @@
               <%= hidden_field_tag :product_id, product.id %>
               <%= submit_tag '+' %>
           <% end %></td>
-        <td><%= form_tag('/orders/subtract_one_product') do %>
-              <%= hidden_field_tag :order_id, @order.id%>
-              <%= hidden_field_tag :product_id, product.id %>
-              <%= submit_tag '-', data: { confirm: 'Are you sure?'} %>
-          <% end %></td>
+        <% if @ordy.quantity == 1 %>
+          <td><%= form_tag('/orders/remove_product') do %>
+                <%= hidden_field_tag :order_id, @order.id%>
+                <%= hidden_field_tag :product_id, product.id %>
+                <%= submit_tag '-', data: { confirm: 'This will remove the product from the order! Are you sure that you want to do that?'} %>
+            <% end %></td>
+        <% else %>
+          <td><%= form_tag('/orders/subtract_one_product') do %>
+                <%= hidden_field_tag :order_id, @order.id%>
+                <%= hidden_field_tag :product_id, product.id %>
+                <%= submit_tag '-', data: { confirm: 'Are you sure?'} %>
+            <% end %></td>
+        <% end %>
         <td><%= product.price %></td>
         <td><%= subtotal += product.price * @ordy.quantity %></td>
       </tr>

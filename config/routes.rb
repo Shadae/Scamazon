@@ -20,9 +20,11 @@ Scamazon::Application.routes.draw do
   post 'orders/add'                   => 'orders#add'
   post 'orders/add_one_product'       => 'orders#add_one_product'
   post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
+  post 'orders/remove_product'        => 'orders#remove_product'
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
   get  "reviews/:id"                  => "reviews#show"
+  post '/product/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
 
