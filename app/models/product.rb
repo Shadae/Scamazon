@@ -13,10 +13,6 @@ class Product < ActiveRecord::Base
   has_one :merchant_product
 
     def self.filter(filter_term)
-      # if filter_term
-      #   #filter_term = [x,y,z]
-      #   search = includes(:categories)
-
       if filter_term
           # search = includes(:categories)
           a = filter_term.flat_map do |category|
