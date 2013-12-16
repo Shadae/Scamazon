@@ -10,16 +10,6 @@ Scamazon::Application.routes.draw do
   resources :purchases
   resources :categories
 
-# <<<<<<< HEAD
-#   get '/cart'               => 'orders#cart'
-#   get  'products/category'  => 'products#category'
-#   post 'products/category'  => 'products#category'
-#   post 'purchases/new'      => 'purchases#new'
-#   post 'orders/add'         => 'orders#add'
-#   post 'sessions/sign_out'  => 'sessions#destroy'
-#   get  'reviews/:id'        => 'reviews#show'
-#   post '/product/:id'       => 'products#retire', as: :retired
-# =======
 
   get  '/cart'                        => 'orders#cart'
   get  'products/category'            => 'products#category'
@@ -33,6 +23,7 @@ Scamazon::Application.routes.draw do
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
   get  "reviews/:id"                  => "reviews#show"
+  post '/product/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
 

@@ -7,7 +7,6 @@ class CategoriesController < ApplicationController
     else
       redirect_to categories_path, notice: "Please sign in to create a category"
     end
->>>>>>> master
   end
 
   def index
