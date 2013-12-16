@@ -18,11 +18,20 @@
     <%@order.products.each do |product| %>
       <tr>
         <td><%= link_to product.name, product %></td>
-        <td>Some number!</td>
-        <td>+</td> <!--this will evenutally increase quantity -->
-        <td>-</td>
+        <% @ordy = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
+        <td><%= @ordy.quantity %></td>
+        <td><%= form_tag('/orders/add_one_product') do %>
+              <%= hidden_field_tag :order_id, @order.id%>
+              <%= hidden_field_tag :product_id, product.id %>
+              <%= submit_tag '+' %>
+          <% end %></td>
+        <td><%= form_tag('/orders/subtract_one_product') do %>
+              <%= hidden_field_tag :order_id, @order.id%>
+              <%= hidden_field_tag :product_id, product.id %>
+              <%= submit_tag '-', data: { confirm: 'Are you sure?'} %>
+          <% end %></td>
         <td><%= product.price %></td>
-        <td><%= subtotal += product.price %></td>
+        <td><%= subtotal += product.price * @ordy.quantity %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,6 +40,6 @@
 <h3>Your total: <%= subtotal %></h3>
 
 <%= form_tag('/purchases/new') do %>
-    <%= text_field_tag :order_id, @order.id%>
-  <div><%= submit_tag 'Checkout', data: {confirm: 'Are you sure?'} %></div>
+  <%= hidden_field_tag :order_id, @order.id %>
+  <%= submit_tag 'Checkout' %>
 <% end %>

@@ -3,29 +3,33 @@ Scamazon::Application.routes.draw do
   # #this is for entering data for your purchase
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
-  resources :orders
-
-  get '/cart' => 'orders#find_order'
-
-  get 'products/category' => 'products#category'
-  post 'products/category' => 'products#category'
-  post 'purchases/new' => 'purchases#new'
-
-  resources 'categories'
-
-  resources :users
-  root 'welcome#index'
-  resources :sessions
-  post 'sessions/sign_out' => 'sessions#destroy'
-  
+  resources :orders, :users
   resources :reviews, except: :show
-  get "/reviews/:id" => "reviews#show"
-  get "/reviews/:id" => "reviews#edit"
-  patch "/reviews/:update" => "reviews#update"
-
+  resources :sessions
   resources :products
-
   resources :purchases
+  resources :categories
+
+
+  get  '/cart'                        => 'orders#cart'
+  get  'products/category'            => 'products#category'
+  post 'products/category'            => 'products#category'
+  post 'purchases/new'                => 'purchases#new'
+  post 'purchases/create'             => 'purchases#create'
+  post 'purchases/confirmation'       => 'purchases#confirmation'
+  post 'orders/add'                   => 'orders#add'
+  post 'orders/add_one_product'       => 'orders#add_one_product'
+  post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
+  # post 'sessions/sign_out'          => 'sessions#destroy'
+  delete 'sessions'                   => 'sessions#destroy' 
+  get  "reviews/:id"                  => "reviews#show"
+
+  root 'welcome#index'
+
+
+  
+
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.

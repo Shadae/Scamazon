@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
 
   def index
-    @products = Product.all
+    @products = Product.filter(params[:category_filter])
   end
 
   def new
@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if @current_user.id != @product.user
+    if current_user == @product.user
       redirect_to @product, notice: "Yo, step off! Make your own product, okay?"
     end
   end

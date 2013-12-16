@@ -30,8 +30,40 @@ class OrdersController < ApplicationController
   end
 
   def add
-    @order.products << Product.find(params[:product_id])
+    find_order
+    get_product
+    unless @order.products.include?(@proddy)
+      @order.products << @proddy
+    end
+    add_order_quantity
     redirect_to :back #might not be a symbol; might need some if loops to make sure back is defined
+  end
+
+  def get_product
+    @proddy = Product.find(params[:product_id])
+  end
+
+  def get_order_item
+    find_order
+    get_product
+    @this_order_item = OrderItem.where(product_id: @proddy.id, order_id: @order.id) 
+  end
+
+  def add_order_quantity
+    get_order_item
+    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].add(params[:quantity]))
+  end
+
+  def add_one_product
+    get_order_item
+    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].add(1))
+    redirect_to :back, id: @order.id
+  end
+
+  def subtract_one_product
+    get_order_item
+    OrderItem.update(@this_order_item[0].id, :quantity => @this_order_item[0].subtract(1))
+    redirect_to :back, id: @order.id
   end
 
   def destroy
@@ -43,10 +75,15 @@ class OrdersController < ApplicationController
     end
   end
 
-  def find_order
-    # Eventually, this will need to find the user's orders
-    @order = Order.find_by(status: 'pending') || Order.new.save
+  def cart
+    find_order
     render :cart
+  end
+
+  def find_order
+    @order = Order.find_by(status: 'pending') || Order.new
+    @order.save
+    @order
   end
 
   private

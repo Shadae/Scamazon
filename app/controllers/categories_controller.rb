@@ -2,7 +2,11 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def new
-    @category = Category.new
+    if current_user.present?
+      @category = Category.new
+    else
+      redirect_to categories_path, notice: "Please sign in to create a category"
+    end
   end
 
   def index
