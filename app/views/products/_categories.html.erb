@@ -1,4 +1,5 @@
-debug: <%= params.inspect %>
+
+
 <%= form_tag(products_path, method: :get) %>
 <% Category.all.each do |category| %>
   <%= label_tag category.category %>

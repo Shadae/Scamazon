@@ -20,17 +20,22 @@
  <%= category.category %>
  <% end %>
 <br>
+<strong>Stock Quantity </strong>
+<%= @product.stock %>
+<br>
+<% if current_user == @product.user %>
+ <%= link_to 'Edit Product', edit_product_path %><br>
+ <% elsif current_user == @product.user && @product.retired == false %>
+ <%= button_to 'Retire Product', retired_path(@product.id) %>
+ <% end %>
 <br>
 
- <%= link_to 'Edit Product', edit_product_path %>
-<br>
-
-<% unless @product.retired %>
+<% unless @product.retired || @product.stock == 0 %>
   <%= form_tag('/orders/add') %>
   <%= label_tag :quantity %>
   <%= number_field_tag :quantity %>
   <%= hidden_field_tag :product_id, @product.id %>
-  <%= submit_tag 'Add To Cart'%>
+  <%= submit_tag 'Add To Cart' %>
 <% end %>
 
 <br><br>

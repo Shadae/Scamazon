@@ -16,9 +16,12 @@
   <%= f.number_field :price %>
   <br>
 
-  Pick as many categories as you deem appropriate.
+  Pick as many categories as you deem appropriate.<br>
   <%= f.select(:categories, Category.all.collect { |p| [p.category, p.id] }, { selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   <br>
+
+  How many items do you have in stock?<br>
+  <%= f.number_field :stock %><br>
 
   <%= f.label :image, "Upload local file:" %><br />
   <%= f.file_field :image %>

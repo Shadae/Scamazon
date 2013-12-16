@@ -23,7 +23,8 @@ Scamazon::Application.routes.draw do
   post 'orders/remove_product'        => 'orders#remove_product'
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
-  get  "reviews/:id"                  => "reviews#show" 
+  get  "reviews/:id"                  => "reviews#show"
+  post '/product/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
 
