@@ -14,11 +14,9 @@ class Product < ActiveRecord::Base
 
     def self.filter(filter_term)
       if filter_term
-          # search = includes(:categories)
           a = filter_term.flat_map do |category|
             search = includes(:categories).where('categories.category LIKE :s', s: "%#{category}%")
           end
-         
       else
         all
       end
