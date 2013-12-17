@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if current_user.present?
+    else
+      redirect_to '/users/new', notice: "Please sign-up or login."
+    end 
   end
 
   def edit
