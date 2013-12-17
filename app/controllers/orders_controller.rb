@@ -136,9 +136,6 @@ class OrdersController < ApplicationController
 
   #needs to be separate for check_order_quantities
   def set_order_item(product)
-    puts "product id is #{product.id}"
-    puts "@order is #{@order}"
-    puts "@order.id is #{@order.id}" 
     @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0]
   end
 
@@ -151,11 +148,6 @@ class OrdersController < ApplicationController
 #This adjusts the quantity of the order_item
   def add_quantity(amount)
     set_order_item_and_product
-    puts ''
-    puts ''
-    puts ''
-    puts @order_item
-    puts 'WOOOO'
     OrderItem.update(@order_item.id, :quantity => @order_item.add(amount))
     @order_item.save
   end
