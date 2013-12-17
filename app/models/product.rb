@@ -11,18 +11,21 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_items
   has_many :categories, through: :category_products
   has_many :category_products
+  has_many :reviews
   belongs_to :user
 
   scope :by_category, lambda {|ids| includes(:categories).where(categories: {id: ids}) }
   scope :by_seller, lambda {|ids| where(user_id: ids) }
 
-    def self.filter(category=nil,seller=nil)
+    def self.filter(category=nil,seller=nil,search=nil)
       if category && seller
         by_category(category).by_seller(seller)
       elsif category
         by_category(category)
       elsif seller
         by_seller(seller)   
+      elsif search
+        includes(:categories).where("(categories.category) LIKE :s OR (products.name) LIKE :s OR (products.description) LIKE :s", s: "%#{search.downcase}%")
       else
         where(retired: false)
       end

@@ -5,10 +5,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
+    @product=Product.find(params[:review][:product_id])
+    @review = @product.reviews.build(review_params)
     if @review.save
       # success
-      redirect_to review_path(@review)
+      redirect_to product_path(@product), notice: "Your review has been successfully saved."
     else
       # failure
       render :new
@@ -46,7 +47,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:review_text, :text, :rating, :integer)
+    params.require(:review).permit(:review_text, :rating, :product_id)
   end
 
   def check_login

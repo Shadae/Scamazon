@@ -13,11 +13,12 @@
         <div class='show'>
        <%= image_tag(product.image_url) if product.image.present? %><br>
           <%= link_to product.name, product_path(product.id) %> <br>
-          <%= product.description %><br>
-         <%= number_to_currency(product.price) %><br>
-        <% product.categories.each do |category| %>
+          <%= number_to_currency(product.price) %><br>
+          <% product.categories.each do |category| %>
               <%= category.category %><br>
               <% end %>
+          <%= product.description %><br>
+        
                 </div>
     <% end %>
 

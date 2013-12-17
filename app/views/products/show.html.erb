@@ -1,10 +1,13 @@
+<div class="sidebar"> 
+  <%= render 'review_form' %><br>
+</div>
 
 <h1>Product Information</h1>
 <% if @product.retired %>
 <h2>This Product Is No Longer Available.</h2>
 <% end %>
 
-<%= image_tag(@product.image_url, :width => 400) if @product.image.present? %>
+<%= image_tag(@product.image_url, :width => 300) if @product.image.present? %>
 <br>
 <strong>Product Name</strong>
 <p>  <%= @product.name %></p>
@@ -23,6 +26,7 @@
 <strong>Stock Quantity </strong>
 <%= @product.stock %>
 <br>
+
 <% if current_user == @product.user %>
  <%= link_to 'Edit Product', edit_product_path %><br>
 
