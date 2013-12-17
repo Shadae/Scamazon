@@ -1,8 +1,0 @@
-
-
-<%= form_tag(products_path, method: :get) %>
-<% User.seller.each do |seller| %>
-  <%= label_tag seller.user_name %>
-  <%= check_box_tag(:"seller_ids[]", seller.id) %><br>
-<% end %>
- <%= submit_tag 'Filter by sellers' %>
