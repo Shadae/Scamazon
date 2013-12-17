@@ -1,0 +1,28 @@
+<table>
+  <thead>
+    <tr>
+      <th class="visible-header">Item</th>
+      <th class="visible-header">Quantity</th>
+      <th class="visible-header">Price</th>
+      <th class="visible-header">Subtotal</th>
+
+    </tr>
+  </thead>
+
+  <% subtotal = 0 %>
+  <tbody>
+    <%@order.products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
+        <td><%= @order_item.quantity %></td>
+        <td><%= product.price %></td>
+        <td><%= subtotal += product.price * @order_item.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Your total: <%= subtotal %></h3>
+<h3>Order status: <%= @order.status %></h3>
+<h3>Order was last updated on <%= @order.updated_at %></h3>
