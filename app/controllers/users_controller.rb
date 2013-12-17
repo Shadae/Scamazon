@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if current_user.present?
+    else
+      redirect_to '/sessions/new', notice: "Please login."
+    end 
   end
 
   def edit
