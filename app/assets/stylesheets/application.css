@@ -37,10 +37,13 @@
 
  .show {
   display: inline-block;
+  width: 100px;
+  height: 300px;
+  overflow: hidden;
  }
 
 .show img {
-  height: 100px;
+  height: 80px;
 }
  .sidebar {
   display: inline-block;
