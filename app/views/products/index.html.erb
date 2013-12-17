@@ -1,43 +1,26 @@
 <h1> Check out all the products available here at Scamazon! </h1>
 
 <div class='sidebar'>
-<h3> Categories</h3>
-<%= render 'categories' %>
+<%= render 'filters' %>
 
-<h3> Sellers </h3>
-<%= render 'sellers' %>
 
 </div>
 
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Product Name </th>
-      <th>Product Description </th>
-      <th>Price</th>
-      <th>Category</th>
-    </tr>
-  </thead>
 
-  <tbody> -->
+
+  <tbody>
     <% @products.each do |product| %>
-      <!-- <tr> -->
-        <!-- <td> -->
         <div class='show'>
        <%= image_tag(product.image_url) if product.image.present? %><br>
-          <%= link_to product.name, product_path(product.id) %> <br><!-- </td> -->
-      <!--   <td> -->
-          <%= product.description %><br><!-- </td> -->
-        <!-- <td> -->$ <%= (product.price.to_f/100) %><br><!-- </td> -->
-        <!-- <td> --> <% product.categories.each do |category| %>
+          <%= link_to product.name, product_path(product.id) %> <br>
+          <%= product.description %><br>
+         <%= number_to_currency(product.price) %><br>
+        <% product.categories.each do |category| %>
               <%= category.category %><br>
               <% end %>
                 </div>
-        <!-- </td>
-      </tr> -->
     <% end %>
-<!--   </tbody>
-</table> -->
+
 
 <% if @current_user.present? %>
 <%= link_to 'New Product', new_product_path %><br><br>
