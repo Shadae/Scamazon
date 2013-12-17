@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
   def check_login
     if @current_user.nil?
       # this feature does not allow users to create a review unless logged in.
-      redirect_to new_session_path, notice: "You must be logged in!" and return
+      redirect_to new_session_path, notice: "You must login!" and return
     end
   end
 end
