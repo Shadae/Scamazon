@@ -2,7 +2,9 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     if @purchase.save
-      redirect_to purchase_path(@purchase), notice: 'Transaction has been completed'
+      order = Order.find_by(status: 'pending')
+      Order.update(order.id, :purchase_id => @purchase.id, :status => 'paid')
+      redirect_to purchase_path(@purchase), notice: 'Transaction has been completed', id: order.id 
     else
       render :show
     end

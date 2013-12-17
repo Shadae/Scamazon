@@ -51,6 +51,7 @@ class OrdersController < ApplicationController
     else
       redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
     end
+    @order.save
   end
 
   def check_quantity(order_request)
@@ -101,6 +102,7 @@ class OrdersController < ApplicationController
   def set_cart
     @order = Order.find_by(status: 'pending') || Order.new
     @order.save
+    @order
   end
 
 #This sets @product and @order_item
@@ -114,10 +116,11 @@ class OrdersController < ApplicationController
   def add_quantity(amount)
     set_order_item_and_product
     OrderItem.update(@order_item.id, :quantity => @order_item.add(amount))
+    @order.save
   end
 
   def order_params
-    params.require(:order).permit(:status, :shipping_code, :products => {})
+    params.require(:order).permit(:status, :shipping_code, :purchase_id, :products => {})
   end
 
 end
