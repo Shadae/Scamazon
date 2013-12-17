@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
 
   def index
-    @products = Product.filter(params[:category_filter])
+    @products = Product.filter(params[:category_ids],params[:seller_ids])
   end
 
   def new
