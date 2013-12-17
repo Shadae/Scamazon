@@ -17,6 +17,13 @@
         <%= link_to "Sign Up", :controller => "users", :action => "new" %>
         <%= link_to "Log In", :controller => "sessions", :action => "new" %>
       <% end %>
+
+         <%= form_tag(products_path, method: :get) do %>
+              <%= label_tag("Search for products:") %>
+              <%= text_field_tag :search_product, params[:search_product] %>
+              <%= submit_tag "Search", :name => nil %>
+            <% end %>
+
     </div>
   </div>
   <div class="menu_bar">
