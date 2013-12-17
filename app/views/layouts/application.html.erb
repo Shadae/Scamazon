@@ -20,6 +20,13 @@
         <div class='cart_icon'>
     <div id= 'cart_icon'> <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %>
   </div>
+
+
+         <%= form_tag(products_path, method: :get) do %>
+              <%= label_tag("Search for products:") %>
+              <%= text_field_tag :search_product, params[:search_product] %>
+              <%= submit_tag "Search", :name => nil %>
+            <% end %>
     </div>
   </div>
   <div class="menu_bar">
