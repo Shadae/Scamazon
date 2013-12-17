@@ -19,4 +19,6 @@
 <% current_user.products.each do |product| %>
 <%= link_to product.name, product_path(product.id) %>
 <% end %>
+
+
 <%= link_to 'Edit', edit_user_path(current_user) %>
