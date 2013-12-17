@@ -1,13 +1,22 @@
 
-<td>
-  <strong>User Name:</strong>
-  <%= @user.user_name.titleize %>
-</td>
 
 <td>
-  <strong>Email:</strong>
-  <%= @user.email.titleize %>
-</td>
+  <strong> 
+    Welcome!
+   <br> User Name:
+  </strong>
+    <%= current_user.user_name.titleize %>
+</td> <br>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', new_user_path %>
+<td>
+  <strong>
+    Email:
+  </strong>
+    <%= current_user.email.titleize %>
+</td><br>
+
+<h3>Products: </h3><br>
+<% current_user.products.each do |product| %>
+<%= link_to product.name, product_path(product.id) %>
+<% end %>
+<%= link_to 'Edit', edit_user_path(current_user) %>
