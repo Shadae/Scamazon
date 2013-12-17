@@ -25,7 +25,7 @@
 <br>
 <% if current_user == @product.user %>
  <%= link_to 'Edit Product', edit_product_path %><br>
- <% elsif current_user == @product.user && @product.retired == false %>
+
  <%= button_to 'Retire Product', retired_path(@product.id) %>
  <% end %>
 <br>

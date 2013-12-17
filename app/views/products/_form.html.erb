@@ -19,6 +19,7 @@
   Pick as many categories as you deem appropriate.<br>
   <%= f.select(:categories, Category.all.collect { |p| [p.category, p.id] }, { selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   <br>
+  <%= link_to 'Make New Category', new_category_path %><br>
 
   How many items do you have in stock?<br>
   <%= f.number_field :stock %><br>

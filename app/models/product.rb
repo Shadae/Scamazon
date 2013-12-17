@@ -22,12 +22,13 @@ class Product < ActiveRecord::Base
       elsif category
         by_category(category)
       elsif seller
-        by_seller(seller)  
-          # filter_term.map {|search_term| includes(:categories,:users).where('categories.category LIKE :s AND users.user_name LIKE :s', s: "%#{search_term}%") }.inject(:&)    
+        by_seller(seller)   
       else
-        all
+        where(retired: false)
       end
     end
+      # this is the original, clunky code that does the same thing, but made it so some scammer could game the system. Which is true to the philosophy of Scamazon, to be fair.
+      # filter_term.map {|search_term| includes(:categories,:users).where('categories.category LIKE :s AND users.user_name LIKE :s', s: "%#{search_term}%") }.inject(:&)   
 
 
 end
