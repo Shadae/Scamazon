@@ -113,7 +113,7 @@ class OrdersController < ApplicationController
     if none_are_over
       render '/purchases/new', order_id: @order.id
     else
-      render :cart, notice: 'We do not have enough products to fulfill that order'
+      redirect_to '/cart', notice: 'We do not have enough products to fulfill that order'
     end
   end
 
