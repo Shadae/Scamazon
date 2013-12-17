@@ -1,5 +1,9 @@
 <h2>Your Cart</h2>
 <br>
+<% @order.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<br>
 
 <table>
   <thead>
@@ -25,6 +29,7 @@
               <%= hidden_field_tag :product_id, product.id %>
               <%= submit_tag '+' %>
           <% end %></td>
+
         <% if @order_item.quantity == 1 %>
           <td><%= form_tag('/orders/remove_product') do %>
                 <%= hidden_field_tag :order_id, @order.id%>
@@ -47,7 +52,7 @@
 
 <h3>Your total: <%= subtotal %></h3>
 
-<%= form_tag('/purchases/new') do %>
+<%= form_tag('/orders/check_order_quantities') do %>
   <%= hidden_field_tag :order_id, @order.id %>
   <%= submit_tag 'Checkout' %>
 <% end %>

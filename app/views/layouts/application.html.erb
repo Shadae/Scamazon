@@ -17,6 +17,9 @@
         <%= link_to "Sign Up", :controller => "users", :action => "new" %>
         <%= link_to "Log In", :controller => "sessions", :action => "new" %>
       <% end %>
+        <div class='cart_icon'>
+    <div id= 'cart_icon'> <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %>
+  </div>
     </div>
   </div>
   <div class="menu_bar">
@@ -24,12 +27,12 @@
     <a href="/users/1">Profile</a>
     <a href="/reviews/new">Reviews</a>
     <a href="/orders">Orders</a>
-    <a href="/cart">Cart</a>
   </div>
 
   <div class='container'>
     
     <%= flash[:notice] %>
+    <%= params.inspect %>
 
 <%= yield %>
   </div>
