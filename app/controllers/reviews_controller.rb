@@ -1,13 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action :check_login
   def new
     @review = Review.new
   end
 
   def create
-    if @current_user.nil? 
-      redirect_to new_session_path, notice: "You must be logged in to write a review!" and return
-    end
-
     @review = Review.new(review_params)
     if @review.save
       # success
@@ -50,5 +47,12 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:review_text, :text, :rating, :integer)
+  end
+
+  def check_login
+    if @current_user.nil?
+      # this feature does not allow users to create a review unless logged in.
+      redirect_to new_session_path, notice: "You must be logged in!" and return
+    end
   end
 end
