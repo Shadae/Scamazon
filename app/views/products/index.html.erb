@@ -1,13 +1,15 @@
 <h1> Check out all the products available here at Scamazon! </h1>
 
 <div class='sidebar'>
-
 <h3> Categories</h3>
 <%= render 'categories' %>
 
+<h3> Sellers </h3>
+<%= render 'sellers' %>
+
 </div>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Product Name </th>
@@ -17,20 +19,25 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody> -->
     <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.name, product_path(product.id) %></td>
-        <td><%= product.description %></td>
-        <td>$ <%= (product.price.to_f/100) %></td>
-        <td> <% product.categories.each do |category| %>
-              <%= category.category %>
+      <!-- <tr> -->
+        <!-- <td> -->
+        <div class='show'>
+       <%= image_tag(product.image_url) if product.image.present? %><br>
+          <%= link_to product.name, product_path(product.id) %> <br><!-- </td> -->
+      <!--   <td> -->
+          <%= product.description %><br><!-- </td> -->
+        <!-- <td> -->$ <%= (product.price.to_f/100) %><br><!-- </td> -->
+        <!-- <td> --> <% product.categories.each do |category| %>
+              <%= category.category %><br>
               <% end %>
-        </td>
-      </tr>
+                </div>
+        <!-- </td>
+      </tr> -->
     <% end %>
-  </tbody>
-</table>
+<!--   </tbody>
+</table> -->
 
 <% if @current_user.present? %>
 <%= link_to 'New Product', new_product_path %><br><br>

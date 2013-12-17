@@ -5,4 +5,12 @@ class User < ActiveRecord::Base
   validates :email, confirmation: true, format: { with: /.+@(\w+\.)+\w+/, message: "Must enter a valid email address."}
   validates :user_name, presence: true, uniqueness: { case_sensitive: false }
   validates :password, presence: true 
+
+
+  def self.seller
+    Product.all.map {|product| product.user_id }.map {|user_id| User.find(user_id)}.uniq
+    # We want to find users that have at least one product.
+    #
+  end
+
 end

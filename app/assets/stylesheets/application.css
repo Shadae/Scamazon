@@ -21,11 +21,10 @@
   float: right;
  }
  .container {
-  width: 500px;
   margin-left:auto;
   margin-right:auto;
   margin-top: 50px;
-  vertical-align: auto;
+  
   line-height: 30px;
   text-align: center;
 
@@ -34,4 +33,17 @@
  .container th, td {
   border: 1px solid;
   padding: 10px;
+ }
+
+ .show {
+  display: inline-block;
+ }
+
+.show img {
+  height: 100px;
+}
+ .sidebar {
+  display: inline-block;
+  border:5px solid black;
+  float: left;
  }
