@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def show
     if current_user.present?
     else
-      redirect_to '/users/new', notice: "Please sign-up or login."
+      redirect_to '/sessions/new', notice: "Please login."
     end 
   end
 
