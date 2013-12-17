@@ -2,7 +2,8 @@ class OrdersController < ApplicationController
   before_action :find_pending_order, only: [:add, :cart, :fulfillment, :check_order_quantities, :set_order_item, :add_one_product, :subtract_one_product]
 
   def create
-    @order = @current_user.orders.build(order_params)
+    @order = Order.new(order_params)
+    @order.user_id = @current_user.id
 
     #iterates over all of the products in the order
     params[:order][:products].each do |product_id|
@@ -128,6 +129,7 @@ class OrdersController < ApplicationController
       @order = pending_order
     else
       @order = Order.new
+      @order.user_id = @current_user.id
       @order.save
     end
   end
@@ -154,7 +156,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status, :shipping_code, :purchase_id, :products => {})
+    params.require(:order).permit(:status, :user_id, :shipping_code, :purchase_id, :products => {})
   end
 
 end
