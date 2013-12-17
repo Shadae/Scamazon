@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :cart, :check_order_quantities, :set_order_item, :add_one_product, :subtract_one_product]
+  before_action :find_pending_order, only: [:add, :cart, :fulfillment, :check_order_quantities, :set_order_item, :add_one_product, :subtract_one_product]
 
   def create
     @order = @current_user.orders.build(order_params)
@@ -34,10 +34,11 @@ class OrdersController < ApplicationController
     set_order
   end
 
-  def add
-
+  def fulfillment
     
+  end
 
+  def add
     #this method called here sets @order, @product, and @order_item
     set_order_item_and_product
 
@@ -130,7 +131,7 @@ class OrdersController < ApplicationController
       @order.save
     end
   end
-#sets the cart by looking for an existing pending cart. If one exists,
+#sets the cart by looking for an existing pendi ng cart. If one exists,
 #it sets the order to that. If there aren't any pending orders, it creates
 #a new order.
 
