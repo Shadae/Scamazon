@@ -2,9 +2,10 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     if @purchase.save
-      order = Order.find_by(status: 'pending')
-      Order.update(order.id, :purchase_id => @purchase.id, :status => 'paid')
-      redirect_to purchase_path(@purchase), notice: 'Transaction has been completed', id: order.id 
+      @order = Order.find_by(status: 'pending')
+      Order.update(@order.id, :purchase_id => @purchase.id, :status => 'paid')
+      reduce_stock
+      redirect_to purchase_path(@purchase), notice: 'Transaction has been completed', id: @order.id 
     else
       render :show
     end
@@ -38,6 +39,13 @@ class PurchasesController < ApplicationController
   private
   def set_purchase
     @purchase = Purchase.find(params[:id])
+  end
+
+  def reduce_stock
+    @order.products.each do |product|
+      quantity = OrderItem.where(product_id: product.id, order_id: @order.id)[0].quantity
+      Product.update(product.id, :stock => product.stock - quantity)
+    end
   end
 
   def purchase_params

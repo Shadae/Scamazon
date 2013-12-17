@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :products
+  has_many :orders
   validates :email, presence: true, uniqueness: { case_sensitive: false }, on: :create
   validates :email, confirmation: true, format: { with: /.+@(\w+\.)+\w+/, message: "Must enter a valid email address."}
   validates :user_name, presence: true, uniqueness: { case_sensitive: false }

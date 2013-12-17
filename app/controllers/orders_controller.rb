@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :find_pending_order, only: [:add, :cart, :check_order_quantities, :set_order_item, :add_one_product, :subtract_one_product]
+
   def create
-    @order = Order.new(order_params)
+    @order = @current_user.orders.build(order_params)
 
     #iterates over all of the products in the order
     params[:order][:products].each do |product_id|
@@ -34,6 +36,8 @@ class OrdersController < ApplicationController
 
   def add
 
+    
+
     #this method called here sets @order, @product, and @order_item
     set_order_item_and_product
 
@@ -61,7 +65,7 @@ class OrdersController < ApplicationController
 #this is the + button in the cart
   def add_one_product
     add_quantity(1)
-    redirect_to :back, id: @order.id
+    redirect_to :back
   end
 
 #this is the - button in the cart
@@ -87,8 +91,30 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    set_cart
-    render :cart
+    if pendingorder = Order.find_by(status: 'pending')
+      @order = pendingorder
+      @order.save
+      @order
+      render :cart
+    else
+      redirect_to :back, notice: 'Your cart is empty'
+    end
+  end
+
+  def check_order_quantities
+
+    none_are_over = true  
+    @order.products.each do |product|
+      set_order_item(product)
+      if product.stock < @order_item.quantity
+        none_are_over = false
+      end
+    end
+    if none_are_over
+      render '/purchases/new', order_id: @order.id
+    else
+      redirect_to '/cart', notice: 'We do not have enough products to fulfill that order'
+    end
   end
 
   private
@@ -96,27 +122,34 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def find_pending_order
+    if pending_order = Order.find_by(status: 'pending')
+      @order = pending_order
+    else
+      @order = Order.new
+      @order.save
+    end
+  end
 #sets the cart by looking for an existing pending cart. If one exists,
 #it sets the order to that. If there aren't any pending orders, it creates
 #a new order.
-  def set_cart
-    @order = Order.find_by(status: 'pending') || Order.new
-    @order.save
-    @order
+
+  #needs to be separate for check_order_quantities
+  def set_order_item(product)
+    @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0]
   end
 
 #This sets @product and @order_item
   def set_order_item_and_product
-    set_cart
     @product = Product.find(params[:product_id])
-    @order_item = OrderItem.where(product_id: @product.id, order_id: @order.id)[0] 
+    set_order_item(@product) 
   end
 
 #This adjusts the quantity of the order_item
   def add_quantity(amount)
     set_order_item_and_product
     OrderItem.update(@order_item.id, :quantity => @order_item.add(amount))
-    @order.save
+    @order_item.save
   end
 
   def order_params

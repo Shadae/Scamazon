@@ -1,3 +1,8 @@
+<% @purchase = Purchase.new %>
+<% @purchase.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<br>
 <% @order = Order.find(params[:order_id])  %>
 <p class='purchasediv'>You are placing an order with
 <%= @order.products.count %> 
