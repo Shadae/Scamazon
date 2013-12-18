@@ -1,3 +1,13 @@
+<div class="sidebar"> 
+  <strong>Product Reviews:</strong>
+  <% @product.reviews.each do |r| %>
+    <p>
+      <%= r.rating %>
+      <%= r.review_text %>
+    </p>
+  <% end %>
+
+</div>
 
 <h1>Product Information</h1>
 <% if @product.retired %>
@@ -24,6 +34,7 @@
 <strong>Stock Quantity </strong>
 <%= @product.stock %>
 <br>
+
 <% if current_user == @product.user %>
  <%= link_to 'Edit Product', edit_product_path %><br>
 

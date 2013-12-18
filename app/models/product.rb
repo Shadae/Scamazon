@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_items
   has_many :categories, through: :category_products
   has_many :category_products
+  has_many :reviews
   belongs_to :user
 
   scope :by_category, lambda {|ids| includes(:categories).where(categories: {id: ids}) }
