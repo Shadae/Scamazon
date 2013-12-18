@@ -3,8 +3,8 @@
   <strong>Product Reviews:</strong>
   <% @product.reviews.each do |r| %>
     <p>
-      <%= r.rating %>
-      <%= r.review_text %>
+      <strong>Rating: </strong><%= r.rating %><br>
+      <strong>Review: </strong><%= r.review_text %>
     </p>
   <% end %>
 
