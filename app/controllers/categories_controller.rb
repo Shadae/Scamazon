@@ -10,30 +10,33 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @category = Category.all
+    redirect_to root_path
   end
 
   def edit
+    redirect_to root_path
   end
 
   def show
-    redirect_to categories_path
+    redirect_to root_path
   end
 
   def create
     @category = Category.new(category_params)
     if @category.save
-      if params[:category][:product_id]
-        redirect_to edit_product_path(params[:category][:product_id]), notice: "You have successfully added a category"
+      if params[:category][:product_id].present?
+        @product=Product.find(params[:category][:product_id])
+        redirect_to edit_product_path(params[:category][:product_id]), notice: "You have successfully added a category."
       else
         redirect_to new_product_path, notice: "You have successfully added a category"
       end
     else
-      render :new
+      redirect_to :back, notice: 'Sorry, your category did not save.'
     end
   end
 
   def update
+    #does this just need to go away?
     if @category.update(category_params)
       redirect_to @category, notice: "Your category was successfully updated!"
     else
