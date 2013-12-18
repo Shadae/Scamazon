@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20131218232347) do
     t.integer  "rating"
     t.text     "review_text"
     t.integer  "product_id"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
