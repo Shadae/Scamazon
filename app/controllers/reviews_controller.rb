@@ -6,10 +6,14 @@ class ReviewsController < ApplicationController
 
   def create
     @product=Product.find(params[:review][:product_id])
-    @review = @product.reviews.build(review_params)
+    @review = Review.new(review_params)
+    @review.save
+    Review.update(@review.id, :product_id => params[:review][:product_id])
+    @review.product_id = params[:product_id]
+
     if @review.save
       # success
-      redirect_to product_path(@product), notice: "Your review has been successfully saved."
+      redirect_to review_path(@review)
     else
       # failure
       render :new
@@ -38,6 +42,10 @@ class ReviewsController < ApplicationController
     @review.destroy
 
     redirect_to new_review_path, notice: "Review has been successfully deleted."
+  end
+
+  def index
+    @review = Review.all
   end
 
 
