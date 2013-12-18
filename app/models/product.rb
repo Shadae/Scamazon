@@ -18,6 +18,7 @@ class Product < ActiveRecord::Base
   scope :by_seller, lambda {|ids| where(user_id: ids) }
 
     def self.filter(category=nil,seller=nil,search=nil)
+      @filter = [category,seller,search].flatten
       if category && seller
         by_category(category).by_seller(seller)
       elsif category
