@@ -26,9 +26,6 @@ class OrdersController < ApplicationController
     set_order
   end
 
-  def fulfillment 
-  end
-
   def add
     if @order.add(params[:quantity].to_i, params[:product_id].to_i)
       redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name.pluralize(params[:quantity])} have been added to your cart."
@@ -71,6 +68,12 @@ class OrdersController < ApplicationController
     else
       redirect_to '/cart', notice: 'We do not have enough products to fulfill that order'
     end
+  end
+
+  def fulfillment 
+  end
+
+  def paid
   end
 
   private

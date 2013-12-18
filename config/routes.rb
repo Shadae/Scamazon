@@ -13,6 +13,7 @@ Scamazon::Application.routes.draw do
 
   get  'cart'                         => 'orders#cart'
   get  'fulfillment'                  => 'orders#fulfillment'
+  get  'paid'                         => 'orders#paid'
   get  'products/category'            => 'products#category'
   post 'products/category'            => 'products#category'
   post 'purchases/new'                => 'purchases#new'

@@ -3,7 +3,7 @@
 <% @order.errors.full_messages.each do |error| %>
   <%= error %><br>
 <% end %>
-
+<a href='paid'>Your Paid Orders</a>
 <% merchant_orders = Order.get_merchant_orders(@current_user) %>
 
 <p>Total Revenue: </p>
@@ -21,22 +21,11 @@
 <p>Total Fulfillments: </p>
 <%= merchant_orders.length %></p>
 
-<p>Revenue From Paid Orders: </p>
-<% if merchant_orders.delete_if{ |order| order.status != 'paid'}.length == 0 %>
-  <p> None! </p>
-<% else %>
-  <% sum = 0 %>
-  <% merchant_orders.each do |order| %>
-    <% order.products.each do |product| %>
-      <% if product.user_id == @current_user.id %>
-        <% order_item = order.set_order_item_and_product(product.id)[1] %>
-        <% sum += product.price * order_item.quantity %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <%= sum %>
+<% merchant_orders.each do |order| %>
+  <% @order = order %>
+  <br>
+  <h4><%= 'Order Id: ' + order.id.to_s %></h4>
+  <% @products_array = order.get_merchant_orders(@current_user) %>
+  <%= render 'fulfillmentorders' %>
 <% end %>
-<br>
-
-<% merchant_orders = Order.get_merchant_orders(@current_user) %>
 

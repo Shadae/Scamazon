@@ -1,0 +1,17 @@
+<p>Revenue From Paid Orders: </p>
+<% merchant_orders = Order.get_merchant_orders(@current_user).delete_if{ |order| order.status != 'paid'} %>
+<% if merchant_orders.length == 0 %>
+  <p> None! </p>
+<% else %>
+  <% sum = 0 %>
+  <% merchant_orders.each do |order| %>
+    <% order.products.each do |product| %>
+      <% if product.user_id == @current_user.id %>
+        <% order_item = order.set_order_item_and_product(product.id)[1] %>
+        <% sum += product.price * order_item.quantity %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= sum %>
+<% end %>
+<br>
