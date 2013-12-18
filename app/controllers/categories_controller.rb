@@ -23,7 +23,11 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path, notice: "You have successfully added a category"
+      if params[:product_id]
+        redirect_to product_path(params[:product_id]), notice: "You have successfully added a category"
+      else
+        redirect_to new_product_path, notice: "You have successfully added a category"
+      end
     else
       render :new
     end
