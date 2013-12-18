@@ -5,7 +5,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @product=Product.find(params[:review][:product_id])
     @review = Review.new(review_params)
+    @review.save
+    Review.update(@review.id, :product_id => params[:review][:product_id])
+    @review.product_id = params[:product_id]
+
     if @review.save
       # success
       redirect_to review_path(@review)
@@ -39,6 +44,10 @@ class ReviewsController < ApplicationController
     redirect_to new_review_path, notice: "Review has been successfully deleted."
   end
 
+  def index
+    @review = Review.all
+  end
+
 
   private
   def set_review
@@ -46,13 +55,13 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:review_text, :text, :rating, :integer)
+    params.require(:review).permit(:review_text, :rating, :product_id)
   end
 
   def check_login
     if @current_user.nil?
       # this feature does not allow users to create a review unless logged in.
-      redirect_to new_session_path, notice: "You must be logged in!" and return
+      redirect_to new_session_path, notice: "You must login!" and return
     end
   end
 end

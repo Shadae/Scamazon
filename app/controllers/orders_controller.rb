@@ -79,10 +79,28 @@ class OrdersController < ApplicationController
   end
 
   def find_pending_order
-    @order = Order.find_pending_order
+    if pending_order = find_order.where(status: 'pending')[0]
+      @order = pending_order
+    else
+        @order = Order.new
+      if @current_user
+        @order.user_id = @current_user.id
+      else
+        @order[:session_id] = session.id
+      end
+      @order.save
+    end
+  end
+
+  def find_order
+    if @current_user
+      Order.where(user_id: @current_user.id)
+    else
+      Order.where(session_id: session.id)
+    end
   end
 
   def order_params
-    params.require(:order).permit(:status, :user_id, :shipping_code, :purchase_id, :products => {})
+    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :products => {})
   end
 end

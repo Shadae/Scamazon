@@ -43,14 +43,4 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.find_pending_order
-    if pending_order = Order.find_by(status: 'pending')
-      @order = pending_order
-    else
-      @order = Order.new
-      @order.user_id = @current_user.id
-      @order.save
-    end
-    return @order
-  end
 end
