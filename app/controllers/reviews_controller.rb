@@ -27,11 +27,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @product = Product.find(params[:review][:product_id])
     @review = Review.find(params[:id])
+    
     if @review.update(review_params)
-      redirect_to :action => 'show', :id => @review, notice: "Your review has been successfully updated."
+      redirect_to product_path(@product.id), notice: "Your review has been successfully updated."
     else
-      render :action => 'edit'
+      redirect_to :back, notice: "Your review didn't save."
     end
   end
 
