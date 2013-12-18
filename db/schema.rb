@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20131218002348) do
     t.datetime "updated_at"
     t.integer  "purchase_id"
     t.integer  "user_id"
-    t.string   "sessions_id"
     t.string   "session_id"
   end
 

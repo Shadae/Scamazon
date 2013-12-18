@@ -1,20 +1,42 @@
-<h2>Your Fulfillment</h2>
+<h2>Your Fulfillments </h2>
 <br>
 <% @order.errors.full_messages.each do |error| %>
   <%= error %><br>
 <% end %>
 
+<% merchant_orders = Order.get_merchant_orders(@current_user) %>
+
 <p>Total Revenue: </p>
-<%= Product.all.inject(0) { |sum, product| sum += product.price  } %>
+<% sum = 0 %>
+<% merchant_orders.each do |order| %>
+  <% order.products.each do |product| %>
+    <% if product.user_id == @current_user.id %>
+      <% order_item = order.set_order_item_and_product(product.id)[1] %>
+      <% sum += product.price * order_item.quantity %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= sum %>
 <br>
+<p>Total Fulfillments: </p>
+<%= merchant_orders.length %></p>
 
 <p>Revenue From Paid Orders: </p>
-<% if Order.where(:status => 'paid').nil? %>
+<% if merchant_orders.delete_if{ |order| order.status != 'paid'}.length == 0 %>
   <p> None! </p>
 <% else %>
   <% sum = 0 %>
-  <% Order.where(:status => 'paid').each do |order| %>
-    <% order.products.each { |product| sum += product.price  } %>
+  <% merchant_orders.each do |order| %>
+    <% order.products.each do |product| %>
+      <% if product.user_id == @current_user.id %>
+        <% order_item = order.set_order_item_and_product(product.id)[1] %>
+        <% sum += product.price * order_item.quantity %>
+      <% end %>
+    <% end %>
   <% end %>
   <%= sum %>
 <% end %>
+<br>
+
+<% merchant_orders = Order.get_merchant_orders(@current_user) %>
+

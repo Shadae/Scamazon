@@ -43,4 +43,16 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def self.get_merchant_orders(user)
+    merchant_orders = []
+    Order.all.each do |order|
+      order.products.each do |product|
+        if product.user_id == user.id
+          merchant_orders << order
+        end
+      end
+    end
+    merchant_orders.uniq!
+  end
+
 end
