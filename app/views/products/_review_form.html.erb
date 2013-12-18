@@ -14,6 +14,7 @@
   <%= f.label :review_text, "Review:" %>
   <%= f.text_area :review_text %>
   <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <br>
   <%= f.submit "Submit" %>
 
