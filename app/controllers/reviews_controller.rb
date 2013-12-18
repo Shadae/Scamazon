@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
       redirect_to product_path(@product)
     else
       # failure
-      render :new
+      redirect_to :back, notice: 'Please enter a rating and optionally a review.'
     end
   end
 

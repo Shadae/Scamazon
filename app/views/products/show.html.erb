@@ -1,5 +1,7 @@
 <div class="sidebar">
-  <%= render 'review_form' %>
+  <% if @current_user.id != @product.user_id %>
+    <%= render 'review_form' %>
+  <% end %>
   <strong>Product Reviews:</strong>
   <% @product.reviews.each do |r| %>
     <p>
