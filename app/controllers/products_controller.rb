@@ -35,7 +35,16 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @review = Review.new
+    # look for a review that belongs to the current user AND the current product
+    # @product.id @current_user
+    @review = Review.find_by(product_id: @product.id, user_id: @current_user.id)
+
+    # if you find one
+      # @review
+    # else (you don't find one)
+    if @review.nil?
+      @review = Review.new
+    end
   end
 
   def update

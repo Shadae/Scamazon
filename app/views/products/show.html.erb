@@ -1,8 +1,12 @@
 <div class="sidebar">
-  <%= render 'review_form' %>
+  <% if current_user != @product.user %>
+    <%= render 'review_form' %>
+  <% end %>
+
   <strong>Product Reviews:</strong>
   <% @product.reviews.each do |r| %>
-    <p>
+    <p class="review">
+      <strong>User: </strong><%= r.user.try(:user_name) %><br>
       <strong>Rating: </strong><%= r.rating %><br>
       <strong>Review: </strong><%= r.review_text %>
     </p>
