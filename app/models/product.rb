@@ -17,20 +17,21 @@ class Product < ActiveRecord::Base
   scope :by_category, lambda {|ids| includes(:categories).where(categories: {id: ids}) }
   scope :by_seller, lambda {|ids| where(user_id: ids) }
 
-    def self.filter(category=nil,seller=nil,search=nil)
-      @filter = [category,seller,search].flatten
-      if category && seller
-        by_category(category).by_seller(seller)
-      elsif category
-        by_category(category)
-      elsif seller
-        by_seller(seller)   
-      elsif search
-        includes(:categories).where("(categories.category) LIKE :s OR (products.name) LIKE :s OR (products.description) LIKE :s", s: "%#{search.downcase}%")
-      else
-        where(retired: false)
-      end
+  def self.filter(category=nil,seller=nil,search=nil)
+    @filter = [category,seller,search].flatten
+    if category && seller
+      by_category(category).by_seller(seller)
+    elsif category
+      by_category(category)
+    elsif seller
+      by_seller(seller)   
+    elsif search
+      includes(:categories).where("(categories.category) LIKE :s OR (products.name) LIKE :s OR (products.description) LIKE :s", s: "%#{search.downcase}%")
+    else
+      where(retired: false)
     end
+  end
+
 
     
       # this is the original, clunky code that does the same thing, but made it so some scammer could game the system. Which is true to the philosophy of Scamazon, to be fair.
