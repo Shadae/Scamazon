@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218002348) do
+ActiveRecord::Schema.define(version: 20131218233738) do
 
   create_table "categories", force: true do |t|
     t.string   "category"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 20131218002348) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "purchase_id"
-    t.integer  "user_id"
     t.string   "session_id"
   end
 
@@ -86,6 +85,7 @@ ActiveRecord::Schema.define(version: 20131218002348) do
     t.string   "billing_state"
     t.boolean  "same_address"
     t.integer  "order_id"
+    t.integer  "expiration_date"
   end
 
   create_table "reviews", force: true do |t|
