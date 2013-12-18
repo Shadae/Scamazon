@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class='header'> 
-    <div id= 'logo'> <%= link_to(image_tag('scamazon.png', :alt => "logo", :title => "Welcome"),"/") %>
+  <%= link_to(image_tag('scamazon.png', :alt => "logo", :title => "Welcome"),"/") %>
     <div id= 'box_in_header'>
       <% if current_user.present? %>
         Hi there, <%= current_user.user_name.titleize %>
@@ -28,6 +28,7 @@
             <% end %>
     </div>
   </div>
+</div>
   <div class="menu_bar">
     <a href="/products">Products</a>
     <a href="/users/1">Profile</a>
@@ -35,13 +36,13 @@
     <a href="/orders">Orders</a>
   </div>
 
-  <div class='container'>
+
 
     
     <%= flash[:notice] %>
 
 
 <%= yield %>
-  </div>
+
 </body>
 </html>

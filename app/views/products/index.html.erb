@@ -5,7 +5,7 @@
 
 </div>
 
-
+<div class='product_page'>
 
   <tbody>
     <% @products.each do |product| %>
@@ -25,3 +25,4 @@
 <% if @current_user.present? %>
 <%= link_to 'New Product', new_product_path %><br><br>
 <% end %>
+</div>
