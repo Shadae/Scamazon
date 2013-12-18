@@ -19,4 +19,10 @@
 <% current_user.products.each do |product| %>
 <%= link_to product.name, product_path(product.id) %>
 <% end %>
+
+<h3>Orders: </h3><br>
+<% current_user.orders.each do |order| %>
+<%= link_to order.purchase_id, order_path(order.id) %>
+<% end %>
+
 <%= link_to 'Edit', edit_user_path(current_user) %>

@@ -1,5 +1,8 @@
 <h2>Your Cart</h2>
 <br>
+<% @order.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
 
 <table>
   <thead>
@@ -17,7 +20,8 @@
   <tbody>
     <%@order.products.each do |product| %>
       <tr>
-        <td><%= link_to product.name, product %></td>
+        <td><%= image_tag(product.image_url, width: 30, height: 30) if product.image.present? %>
+          <%= link_to product.name, product %></td>
         <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
         <td><%= @order_item.quantity %></td>
         <td><%= form_tag('/orders/add_one_product') do %>
@@ -25,6 +29,7 @@
               <%= hidden_field_tag :product_id, product.id %>
               <%= submit_tag '+' %>
           <% end %></td>
+
         <% if @order_item.quantity == 1 %>
           <td><%= form_tag('/orders/remove_product') do %>
                 <%= hidden_field_tag :order_id, @order.id%>
@@ -47,7 +52,7 @@
 
 <h3>Your total: <%= subtotal %></h3>
 
-<%= form_tag('/purchases/new') do %>
+<%= form_tag('/orders/check_order_quantities') do %>
   <%= hidden_field_tag :order_id, @order.id %>
   <%= submit_tag 'Checkout' %>
 <% end %>

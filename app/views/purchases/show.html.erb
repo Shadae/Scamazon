@@ -1,3 +1,7 @@
+<% @purchase.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<br>
 <!--for a single order-->
 <% @order = Order.find_by(purchase_id: @purchase.id) %>
 <p>
