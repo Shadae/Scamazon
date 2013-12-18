@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product]
+  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product]
 
   def create
     @order = Order.new(order_params)
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
   def add
     if @order.add(params[:quantity].to_i, params[:product_id].to_i)
-      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name} have been added to your cart."
+      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name.pluralize(params[:quantity])} have been added to your cart."
     else
       redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
     end

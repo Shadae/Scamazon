@@ -7,13 +7,10 @@ class ReviewsController < ApplicationController
   def create
     @product=Product.find(params[:review][:product_id])
     @review = Review.new(review_params)
-    @review.save
-    Review.update(@review.id, :product_id => params[:review][:product_id])
-    @review.product_id = params[:product_id]
 
     if @review.save
       # success
-      redirect_to review_path(@review)
+      redirect_to product_path(@product)
     else
       # failure
       render :new

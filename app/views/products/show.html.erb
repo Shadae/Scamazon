@@ -3,12 +3,13 @@
   <strong>Product Reviews:</strong>
   <% @product.reviews.each do |r| %>
     <p>
-      <%= r.rating %>
-      <%= r.review_text %>
+      <strong>Rating: </strong><%= r.rating %><br>
+      <strong>Review: </strong><%= r.review_text %>
     </p>
   <% end %>
 
 </div>
+<div class='container'>
 
 <h1>Product Information</h1>
 <% if @product.retired %>
@@ -16,7 +17,7 @@
 <% end %>
 
 
-<%= image_tag(@product.image_url, :width => 300) if @product.image.present? %>
+<%= image_tag(@product.image_url, :width => 200) if @product.image.present? %>
 <br>
 <strong>Product Name</strong>
 <p>  <%= @product.name %></p>
@@ -25,7 +26,7 @@
  <p> <%= @product.description %></p>
 
   <strong> Product Price </strong>
- <p> <%= number_to_currency(@product.price) %></p>
+ <p> <%= @product.price %></p>
 
  <strong> Category </strong>
  <% @product.categories.each do |category| %>
@@ -53,3 +54,4 @@
 
 <br><br>
 <%= link_to 'Back To Products', products_path %>
+</div>

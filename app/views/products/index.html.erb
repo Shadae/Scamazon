@@ -5,14 +5,14 @@
 
 </div>
 
-
+<div class='product_page'>
 
   <tbody>
     <% @products.each do |product| %>
         <div class='show'>
        <%= image_tag(product.image_url) if product.image.present? %><br>
           <%= link_to product.name, product_path(product.id) %> <br>
-          <%= number_to_currency(product.price) %><br>
+          <%= product.price %><br>
           <% product.categories.each do |category| %>
               <%= category.category %><br>
               <% end %>
@@ -25,3 +25,4 @@
 <% if @current_user.present? %>
 <%= link_to 'New Product', new_product_path %><br><br>
 <% end %>
+</div>
