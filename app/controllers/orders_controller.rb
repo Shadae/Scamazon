@@ -125,14 +125,20 @@ class OrdersController < ApplicationController
   end
 
   def find_pending_order
-    if pending_order = Order.find_by(status: 'pending')
+    if pending_order = find_order.where(status: 'pending')[0]
       @order = pending_order
     else
-      @order = Order.new
-      @order.user_id = @current_user.id
+        @order = Order.new
+      if @current_user
+        @order.user_id = @current_user.id
+      else
+        @order[:session_id] = session.id
+      end
       @order.save
     end
   end
+
+
 #sets the cart by looking for an existing pendi ng cart. If one exists,
 #it sets the order to that. If there aren't any pending orders, it creates
 #a new order.
@@ -155,8 +161,16 @@ class OrdersController < ApplicationController
     @order_item.save
   end
 
+  def find_order
+    if @current_user
+      Order.where(user_id: @current_user.id)
+    else
+      Order.where(session_id: session.id)
+    end
+  end
+
   def order_params
-    params.require(:order).permit(:status, :user_id, :shipping_code, :purchase_id, :products => {})
+    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :products => {})
   end
 
 end
