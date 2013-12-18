@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   def self.seller
     Product.all.map {|product| product.user_id }.map {|user_id| User.find(user_id)}.uniq
     # We want to find users that have at least one product.
-    #
   end
 
 end
