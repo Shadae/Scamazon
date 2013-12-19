@@ -1,5 +1,6 @@
 Scamazon::Application.routes.draw do
 
+ 
   # #this is for entering data for your purchase
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
@@ -33,7 +34,9 @@ Scamazon::Application.routes.draw do
   post 'products/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
-
+  get "/faq"                          => 'static_pages#faq'
+  get "/about_us"                     => 'static_pages#about_us'
+  get "/return_policy"                => 'static_pages#return_policy'
 
   
 
