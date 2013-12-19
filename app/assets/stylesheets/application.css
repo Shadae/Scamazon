@@ -168,11 +168,10 @@ ul  {
   height: 80px;
 }
 
-.sidebar {
+.reviewbar {
   display: inline-block;
-  border:1px solid black;
-  float: left;
-  padding: 20px;
+  /*border:1px solid black;*/
+  
  }
 
  .menu_bar {

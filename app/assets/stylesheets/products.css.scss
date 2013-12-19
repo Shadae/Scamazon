@@ -1,3 +1,45 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.wrapper {  
+  width: 650px;  
+  margin: auto;  
+  padding: 25px 0px;  
+}  
+
+header {  
+  margin-bottom: 20px;  
+}  
+hgroup {
+  display: inline-block;
+}
+
+figure {  
+  display: inline-block;  
+}  
+figure img {  
+  max-width: 400px;
+  border-color: black;
+  border-width: 4px;
+  border-style: solid;
+  box-shadow: 12px 10px 7px black;   
+}  
+section {    
+  line-height: 150%;  
+  display: inline-block;  
+  width: 300px;  
+  color: #333;  
+}  
+
+h1, h4 {    
+  font-weight: normal;  
+  margin: 0;   
+}  
+h1 {   
+  font-size: 24pt;  
+}  
+h4 {  
+  font-size: 16pt;  
+  color: #aaa;   
+}  
