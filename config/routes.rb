@@ -26,7 +26,7 @@ Scamazon::Application.routes.draw do
   post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
   post 'orders/remove_product'        => 'orders#remove_product'
   post 'orders/check_order_quantities'=> 'orders#check_order_quantities'
-  post 'orders/shipping'              => 'orders#shipping'
+  post 'orders/mark_as_shipped'       => 'orders#mark_as_shipped'
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
   get  "reviews/:id"                  => "reviews#show"
