@@ -1,3 +1,9 @@
-<h3>Rating: <%= review.rating %>,
-Review: <%= review.review_text %>
-</h3>
+<p class="review">
+  <strong>User: </strong><%= review.user.try(:user_name) %><br>
+  <strong>Rating: </strong><%= review.rating %><br>
+  <strong>Review: </strong><%= review.review_text %>
+
+  <% if current_user == review.user %>
+    <%= link_to 'Delete', review_path(review), method: :delete %>
+  <% end %>
+</p>

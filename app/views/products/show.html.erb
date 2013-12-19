@@ -1,6 +1,6 @@
 <div class="sidebar">
   <% if current_user.id != @product.user_id %>
-    <%= render 'review_form' %>
+    <%= render '/reviews/form' %>
   <% end %>
 
   <strong>Product Reviews</strong><br>

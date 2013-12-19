@@ -5,7 +5,7 @@ Scamazon::Application.routes.draw do
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
   resources :orders, :users
-  resources :reviews, except: :show
+  resources :reviews, except: [:show, :index, :edit, :new]
   resources :sessions
   resources :products
   resources :purchases
@@ -30,7 +30,6 @@ Scamazon::Application.routes.draw do
   post 'orders/mark_as_shipped'       => 'orders#mark_as_shipped'
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
-  get  "reviews/:id"                  => "reviews#show"
   post 'products/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
