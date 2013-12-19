@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
   before_action :check_login
-  def new
-    @review = Review.new
-  end
 
   def create
     @product = Product.find(params[:review][:product_id])
@@ -16,14 +13,6 @@ class ReviewsController < ApplicationController
       # failure
       redirect_to :back, notice: 'Please enter a rating and optionally a review.'
     end
-  end
-
-  def edit
-    @review = Review.find(params[:id])
-  end
-
-  def show
-   @review = Review.find(params[:id])
   end
 
   def update
