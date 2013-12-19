@@ -18,6 +18,8 @@
 
  body {
   font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
  }
 
  h2 {
@@ -38,9 +40,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    float: left;
     font-size: 1.040em;
-    text-align: right;
+   
   }
 
 li { display:inline-block;
@@ -52,7 +53,7 @@ ul  {
   }
 
  li a {
-    display: block;
+    display: inline-block;
     line-height: 2em;
     padding: 0 1.2em;
     color: white;
@@ -110,19 +111,19 @@ ul  {
  #box_in_header {
   width: 200px;
   height: 140px;
-  float: right;
+  display: inline-block;
+
  }
 
  .search_bar{
-  float: right;
-  width: 20%;
-  display: inline-block;
+ 
+
  }
+
  .container {
   margin-left:auto;
   margin-right:auto;
-  margin-top: 50px;
-  
+  margin-top: 50px; 
   line-height: 30px;
   text-align: center;
  }
@@ -145,9 +146,29 @@ ul  {
 .show img {
   height: 80px;
 }
+
 .sidebar {
   display: inline-block;
   border:1px solid black;
   float: left;
   padding: 20px;
  }
+
+ .menu_bar {
+  height: 35px;
+  width: 100%;
+  background-color: orange;
+}
+
+.menu_bar a {
+  display: block;
+  width: 60px;
+  height: 100%
+  
+}
+
+.menu_bar a:hover,a:active
+{
+  background-color:#ED9121
+}
+
