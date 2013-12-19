@@ -4,6 +4,8 @@
   <%= error %><br>
 <% end %>
 <a href='paid'>Your Paid Orders</a>
+<a href='shipped'>Your Shipped Orders</a>
+<a href='pending'>Your Pending Orders</a>
 
   <% if merchant_orders = Order.get_merchant_orders(@current_user) %>
     <p>Total Revenue: </p>
@@ -24,7 +26,8 @@
     <% merchant_orders.each do |order| %>
       <% @order = order %>
       <br>
-      <h4><%= 'Order Id: ' + order.id.to_s %></h4>
+      <h4><%= 'Order Id: ' %>
+      <%= link_to order.id, order %></h4>
       <% @products_array = order.get_merchant_products(@current_user) %>
       <%= render 'fulfillmentorders' %>
     <% end %>

@@ -53,6 +53,10 @@ class Order < ActiveRecord::Base
     merchant_products
   end
 
+  def self.mark_as_shipped(id)
+    a = Order.find(id).update(status: 'shipped')
+  end
+
   def self.get_merchant_orders(user)
     merchant_orders = []
     Order.all.each do |order|

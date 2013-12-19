@@ -1,6 +1,6 @@
-<p>Revenue From Paid Orders: </p>
+<p>Revenue From Pending Orders: </p>
 <% if merchant_orders = Order.get_merchant_orders(@current_user) %>
-  <% merchant_orders = Order.get_merchant_orders(@current_user).delete_if{ |order| order.status != 'paid'} %>
+  <% merchant_orders = Order.get_merchant_orders(@current_user).delete_if{ |order| order.status != 'pending'} %>
   <%  if merchant_orders.length == 0 %>
     <p> None! </p>
   <% else %>
@@ -15,7 +15,7 @@
     <% end %>
     <%= sum %>
   <% end %>
-  <p>Total Paid Fulfillments: </p>
+  <p>Total Pending Fulfillments: </p>
     <%= merchant_orders.length %></p>
 
     <% merchant_orders.each do |order| %>
@@ -28,5 +28,5 @@
     <% end %>
 
 <% else %>
-  <p>You have no paid orders!</p>
+  <p>You have no pending orders!</p>
 <% end %>

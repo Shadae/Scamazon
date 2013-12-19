@@ -76,6 +76,17 @@ class OrdersController < ApplicationController
   def paid
   end
 
+  def shipped
+  end
+
+  def pending
+  end
+
+  def shipping
+    Order.mark_as_shipped(params[:order_id])
+    redirect_to :back
+  end
+
   private
   def set_order
     @order = Order.find(params[:id])
@@ -104,6 +115,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :products => {})
+    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :order_id, :products => {})
   end
 end

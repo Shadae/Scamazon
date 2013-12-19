@@ -13,7 +13,9 @@ Scamazon::Application.routes.draw do
 
   get  'cart'                         => 'orders#cart'
   get  'fulfillment'                  => 'orders#fulfillment'
+  get  'shipped'                      => 'orders#shipped'
   get  'paid'                         => 'orders#paid'
+  get  'pending'                      => 'orders#pending'
   get  'products/category'            => 'products#category'
   post 'products/category'            => 'products#category'
   post 'purchases/new'                => 'purchases#new'
@@ -24,6 +26,7 @@ Scamazon::Application.routes.draw do
   post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
   post 'orders/remove_product'        => 'orders#remove_product'
   post 'orders/check_order_quantities'=> 'orders#check_order_quantities'
+  post 'orders/shipped'               => 'orders#shipped'
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
   get  "reviews/:id"                  => "reviews#show"
