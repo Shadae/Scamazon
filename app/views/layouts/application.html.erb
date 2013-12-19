@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
   <div class='header'> 
     <%= link_to(image_tag('scamazon.png', :alt => "logo", :title => "Welcome"),"/") %>
     <div id= 'box_in_header'>
@@ -37,16 +38,15 @@
       </div>
     </li>
   </div>
- 
-
-
-
     
-    <%= flash[:notice] %>
+  <%= flash[:notice] %>
 
 debug: <%= session.id.inspect %>
 
 <%= yield %>
+
+<d
+
 
 </body>
 </html>
