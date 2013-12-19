@@ -1,3 +1,24 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h5{
+  text-align: left;
+  font-size: large;
+}
+
+.container_form {
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th, td {
+  border-bottom: 1px solid #c6c9cc;
+}
+tr:last-child td {
+  border: 0;
+}
