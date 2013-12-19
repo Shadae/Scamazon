@@ -3,6 +3,7 @@
 <% end %>
 <br>
 <!--for a single order-->
+
 <% @order = Order.find_by(purchase_id: @purchase.id) %>
 <p>
   <strong>Shipping Information:</strong><br>

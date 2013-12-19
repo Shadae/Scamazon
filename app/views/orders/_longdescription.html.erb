@@ -28,14 +28,14 @@
         <td><%= @order_item.quantity %></td>
         <td><%= number_to_currency(product.price/100) %></td>
         <% subtotal += product.price * @order_item.quantity %>
-        <td><%= number_to_currency(subtotal/100) %></td>
+        <td><%= price_format(subtotal) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <% unless your_products.length == 0 %>
-  <h3>Your total: <%= number_to_currency(subtotal/100) %></h3>
+  <h3>Your total: <%= price_format(subtotal) %></h3>
   <h3>Order status: <%= @order.status %></h3>
 
   <% if @order.status != 'pending' %>
