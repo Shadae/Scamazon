@@ -20,11 +20,12 @@
         <%= link_to "Log In", :controller => "sessions", :action => "new" %>
       <% end %>
     <!-- <div class='cart_icon'> -->
-    <div id= 'cart_icon'> <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %>
+      <div id= 'cart_icon'> <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %>
+      </div>
     </div>
   </div>
-</div>
-  <ul class="menu_bar">
+<div class='menu_bar'>
+  <ul>
     <li><a href="/products">Products</a></li>
     <li><a href="/users/1">Profile</a></li>
     <li><div id="search bar"></li>
@@ -36,12 +37,11 @@
       </div>
     </li>
   </div>
+
     
   <%= flash[:notice] %>
 
 <%= yield %>
-
-<d
 
 
 </body>
