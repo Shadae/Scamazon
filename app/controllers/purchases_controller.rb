@@ -44,7 +44,7 @@ class PurchasesController < ApplicationController
   def reduce_stock
     @order.products.each do |product|
       quantity = OrderItem.where(product_id: product.id, order_id: @order.id)[0].quantity
-      Product.update(product.id, :stock =>  product.stock - quantity)
+      Product.find(product.id).update(stock: (product.stock - quantity))
     end
   end
 
