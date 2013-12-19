@@ -1,10 +1,31 @@
 
  
- <% if current_user.present? %>
-        Hi there, <%= current_user.user_name %>
+<% if current_user.present? %> 
+  <h2> Welcome to <span class="logo_font">Scamazon</span>
+   <%= current_user.user_name %> ! </h2>
+  <% else %>
+  <h2> Welcome to <span class="logo_font">Scamazon</span> ! </h2>
   <% end %>
-<h2> Welcome to SCAMAZON </h2>
 
-<h4> Wanna buy something? We totes won't steal your credit card information. </h4>
+<h4> Wanna buy something? (We totes won't steal your credit card information.) </h4>
+
+<h3> Check out our featured products </h3>
+<p id="img_cont">
+  <a href="#"><img src="http://lorempixel.com/400/400/technics/1" /></a>
+  <a href="#"><img src="http://lorempixel.com/400/400/technics/2" /></a>
+  <a href="#"><img src="http://lorempixel.com/400/400/technics/3" /></a>
+  
+</p>
+<h3> You may be interested in... </h3>
+<p id="img_cont_b">
+  <a href="#"><img src="http://lorempixel.com/300/300/technics/4" /></a>
+  <a href="#"><img src="http://lorempixel.com/300/300/technics/5" /></a>
+  <a href="#"><img src="http://lorempixel.com/300/300/technics/6" /></a>
+  <a href="#"><img src="http://lorempixel.com/300/300/technics/7" /></a>
+  
+</p>
+
+
+
 
   
