@@ -1,8 +1,0 @@
-<%= params.inspect %>
-<h3>Rating:</h3>
-<%= @review.rating %><br>
-<h3>Review:</h3>
-<%= @review.review_text %><br>
-
-<%= link_to 'Edit', edit_review_path(@review) %>
-<%= link_to 'Delete', review_path(@review), method: :delete %>
