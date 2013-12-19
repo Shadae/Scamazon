@@ -39,7 +39,9 @@ class ProductsController < ApplicationController
   def show
     # look for a review that belongs to the current user AND the current product
     # @product.id @current_user
-    @review = Review.find_by(product_id: @product.id, user_id: @current_user.id)
+    if @current_user
+      @review = Review.find_by(product_id: @product.id, user_id: @current_user.id)
+    end
 
     # if you find one
       # @review

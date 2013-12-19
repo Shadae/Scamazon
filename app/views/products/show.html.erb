@@ -61,18 +61,18 @@
   </section>
 </div>
 
-<div class="reviewbar">
-  <% if current_user.id != @product.user_id %>
-    <%= render '/reviews/form' %>
-  <% end %>
-
+<div class='submit_review'>
+    <% if current_user && current_user.id != @product.user_id %>
+    On a scale of "great" to "really great", how do you find this product?
+      <%= render '/reviews/form' %>
+    <% end %>
+</div>
+<div class = 'review'>
   <strong>Product Reviews</strong><br>
   <strong>Average Rating:</strong>
     <%= @product.review_avg %>
 
   <% @product.reviews.each do |r| %>
-
-    <p class="review">
       <strong>User: </strong><%= r.user.try(:user_name) %><br>
       <strong>Rating: </strong><%= r.rating %><br>
       <strong>Review: </strong><%= r.review_text %>
