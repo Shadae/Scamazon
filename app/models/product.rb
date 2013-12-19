@@ -5,8 +5,10 @@ class Product < ActiveRecord::Base
   validates :price, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :stock, presence: true
-  validates :stock, numericality: { greater_than: 0 }
+  validates :stock, numericality: { greater_than: -1 }
+
   mount_uploader :image, ImageUploader
+  
   has_many :order_items
   has_many :orders, through: :order_items
   has_many :categories, through: :category_products
