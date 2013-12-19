@@ -1,4 +1,63 @@
-<div class="sidebar">
+<div class='product'>
+
+  <figure>  
+   <!--  <%= image_tag(@product.image_url, :width => 200) if @product.image.present? %> -->
+    <img src="http://lorempixel.com/500/500/technics/7">  
+  </figure>  
+
+  <header>
+    <hgroup>
+      <h1><%= @product.name %> <h1>
+      <h1><%= number_to_currency(@product.price/100) %></h1>
+      <h4><%= @product.description %></h4>
+    </hgroup>
+  <header>
+
+  <section>
+    <details>
+      <h7>Product Information</h7>
+      <% if @product.retired %>
+      <h2>This Product Is No Longer Available.</h2>
+      <% end %>
+      <summary>Product Details</summary> 
+          <ul>
+          <li>Category:
+              <% @product.categories.each do |category| %>
+              <%= category.category %>
+              <% end %></li>
+          <li>Stock Quantity 
+              <%= @product.stock %></li>
+          </ul>
+        </p>
+      </summary>
+    </details>
+
+    <p>
+      <% if current_user == @product.user %>
+      <%= link_to 'Edit Product', edit_product_path %><br>
+
+      <%= button_to 'Retire Product', retired_path(@product.id) %>
+      <% end %>
+    <br> 
+    </p>
+
+    <p>
+      <% unless @product.retired || @product.stock == 0 %>
+        <%= form_tag('/orders/add') do %>
+          <%= label_tag :quantity %>
+          <%= number_field_tag :quantity %>
+          <%= hidden_field_tag :product_id, @product.id %>
+          <%= submit_tag 'Add To Cart' %>
+        <% end %>
+      <% end %>
+    </p>
+
+    <br><br>
+    <%= link_to 'Back To Products', products_path %>
+  </section>
+</div>
+
+<div class="reviewbar">
   <% if current_user.id != @product.user_id %>
     <%= render '/reviews/form' %>
   <% end %>
@@ -20,51 +79,4 @@
     </p>
   <% end %>
 
-</div>
-<div class='container'>
-
-<h1>Product Information</h1>
-<% if @product.retired %>
-<h2>This Product Is No Longer Available.</h2>
-<% end %>
-
-
-<%= image_tag(@product.image_url, :width => 200) if @product.image.present? %>
-
-<br>
-<strong>Product Name</strong>
-<p>  <%= @product.name %></p>
-
-  <strong>Product Description</strong>
- <p> <%= @product.description %></p>
-
-  <strong> Product Price </strong>
- <p> <%= number_to_currency(@product.price/100) %></p>
-
- <strong> Category </strong>
- <% @product.categories.each do |category| %>
- <%= category.category %>
- <% end %>
-<br>
-<strong>Stock Quantity </strong>
-<%= @product.stock %>
-<br>
-
-<% if current_user == @product.user %>
- <%= link_to 'Edit Product', edit_product_path %><br>
-
- <%= button_to 'Retire Product', retired_path(@product.id) %>
- <% end %>
-<br>
-
-<% unless @product.retired || @product.stock == 0 %>
-  <%= form_tag('/orders/add') %>
-  <%= label_tag :quantity %>
-  <%= number_field_tag :quantity %>
-  <%= hidden_field_tag :product_id, @product.id %>
-  <%= submit_tag 'Add To Cart' %>
-<% end %>
-
-<br><br>
-<%= link_to 'Back To Products', products_path %>
 </div>
