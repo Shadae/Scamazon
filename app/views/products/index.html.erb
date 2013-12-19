@@ -7,6 +7,22 @@
 <div class='product_page'>
 
   <br>
+  <% if params[:seller_ids] %>
+    Sellers:
+    <% params[:seller_ids].each do |seller_id| %>
+      <% user = User.find(seller_id.to_i) %>
+      <%= link_to user.user_name, user_path(user.id) %>
+    <% end %>
+    <br>
+  <% end %>
+  <% if params[:category_ids] %>
+    Categories:
+    <% params[:category_ids].each do |category_id| %>
+      <% category = Category.find(category_id.to_i) %>
+      <%= category.category %>
+    <% end %>
+  <% end %>
+  <br>
   <br>
 
   <tbody>

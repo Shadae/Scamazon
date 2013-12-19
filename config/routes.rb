@@ -36,6 +36,7 @@ Scamazon::Application.routes.draw do
   get "/faq"                          => 'static_pages#faq'
   get "/about_us"                     => 'static_pages#about_us'
   get "/return_policy"                => 'static_pages#return_policy'
+     
 
   
 
