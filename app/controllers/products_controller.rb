@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :retire]
 
-
   def index
     @products = Product.filter(params[:category_ids],params[:seller_ids],params[:search_product])
   end

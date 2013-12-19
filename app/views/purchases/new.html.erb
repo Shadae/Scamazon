@@ -14,7 +14,7 @@
   <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
   <% sum += product.price * @order_item.quantity %>
 <% end %>
-<%= sum %>
+<%= number_to_currency(sum/100) %>
 plus shipping, handling, and any hidden fees. </p>
 <% @purchase.errors.full_messages.each do |error| %>
 <br>
@@ -33,7 +33,7 @@ plus shipping, handling, and any hidden fees. </p>
   <%= f.label "City"%>
     <%= f.text_field :city%>
   <%= f.label "State"%>
-    <%= f.text_field :state%>
+    <%= f.select :state, us_states%>
   <%= f.label "Zip"%>
     <%= f.text_field :zip%><br>
   <%= f.label "Email Address"%>  
@@ -68,7 +68,7 @@ plus shipping, handling, and any hidden fees. </p>
   <%= f.label "City"%>
     <%= f.text_field :billing_city%>
   <%= f.label "State"%>
-    <%= f.text_field :billing_state%>
+    <%= f.select :billing_state, us_states%>
   <%= f.label "Zip"%>
     <%= f.text_field :billing_zip%>
   <%= hidden_field_tag :order_id, @order.id %>

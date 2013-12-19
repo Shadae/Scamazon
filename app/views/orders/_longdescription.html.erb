@@ -26,15 +26,16 @@
         <td><%= link_to product.name, product %></td>
         <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
         <td><%= @order_item.quantity %></td>
-        <td><%= product.price %></td>
-        <td><%= subtotal += product.price * @order_item.quantity %></td>
+        <td><%= number_to_currency(product.price/100) %></td>
+        <% subtotal += product.price * @order_item.quantity %>
+        <td><%= number_to_currency(subtotal/100) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <% unless your_products.length == 0 %>
-  <h3>Your total: <%= subtotal %></h3>
+  <h3>Your total: <%= number_to_currency(subtotal/100) %></h3>
   <h3>Order status: <%= @order.status %></h3>
 
   <% if @order.status != 'pending' %>

@@ -3,7 +3,10 @@
     <%= render 'review_form' %>
   <% end %>
 
-  <strong>Product Reviews:</strong>
+  <strong>Product Reviews</strong><br>
+  <strong>Average Rating:</strong>
+    <%= @product.review_avg %>
+
   <% @product.reviews.each do |r| %>
 
     <p class="review">
