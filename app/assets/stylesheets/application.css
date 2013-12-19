@@ -28,16 +28,9 @@
 
  body {
   margin:0;
-  padding:0;
+  padding: 10px 0 50px 0;
   height:100%;
   font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
-  padding: 0;
-  margin: 0;
- }
-
-#body {
-  padding:10px;
-  padding-bottom:50px;  
 }
 
  h2 {
@@ -58,8 +51,6 @@
  }
 
  ul, li {
-    margin: 0;
-    padding: 0;
     list-style: none;
     font-size: 1.040em;
    
@@ -68,13 +59,7 @@
 li { display:inline-block;
 }
 
-
-ul  {
-    width: 1000px;
-  }
-
  li a {
-    display: inline-block;
     line-height: 2em;
     padding: 0 1.2em;
     color: white;
@@ -136,11 +121,6 @@ ul  {
 
  }
 
- .search_bar{
- 
-
- }
-
  .container {
   margin-left:auto;
   margin-right:auto;
@@ -175,21 +155,19 @@ ul  {
   padding: 20px;
  }
 
- .menu_bar {
+.menu_bar {
   height: 35px;
   width: 100%;
   background-color: orange;
 }
 
 .menu_bar a {
-  display: block;
+  display: inline-block;
   width: 60px;
   height: 100%
-  
 }
 
-.menu_bar a:hover,a:active
-{
+.menu_bar a:hover,a:active {
   background-color:#ED9121
 }
 

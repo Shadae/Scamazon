@@ -29,13 +29,12 @@
     <li><a href="/products">Products</a></li>
     <li><a href="/users/1">Profile</a></li>
     <li><a href="/reviews/new">Reviews</a></li>
-    <li><div id="search bar"></li>
+    <li>
       <%= form_tag(products_path, method: :get) do %>
       <%= label_tag("Search for products:") %>
       <%= text_field_tag :search_product, params[:search_product] %>
       <%= submit_tag "Search", :name => nil %>
       <% end %>
-      </div>
     </li>
   </div>
 
