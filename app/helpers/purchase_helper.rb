@@ -1,4 +1,9 @@
 module PurchaseHelper
+
+  def same_address(input)
+    input || false
+  end
+
   def us_states
     [
       ['AK', 'AK'],
@@ -53,5 +58,5 @@ module PurchaseHelper
       ['WV', 'WV'],
       ['WY', 'WY']
     ]
-end
+  end
 end

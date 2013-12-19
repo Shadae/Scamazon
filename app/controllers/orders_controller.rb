@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    redirect_to root_path
   end
 
   def show
