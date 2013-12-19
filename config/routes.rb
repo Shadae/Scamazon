@@ -1,5 +1,6 @@
 Scamazon::Application.routes.draw do
 
+ 
   # #this is for entering data for your purchase
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
@@ -26,14 +27,16 @@ Scamazon::Application.routes.draw do
   post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
   post 'orders/remove_product'        => 'orders#remove_product'
   post 'orders/check_order_quantities'=> 'orders#check_order_quantities'
-  post 'orders/shipping'              => 'orders#shipping'
+  post 'orders/mark_as_shipped'       => 'orders#mark_as_shipped'
   # post 'sessions/sign_out'          => 'sessions#destroy'
   delete 'sessions'                   => 'sessions#destroy' 
   get  "reviews/:id"                  => "reviews#show"
   post 'products/:id'                 => 'products#retire', as: :retired
 
   root 'welcome#index'
-
+  get "/faq"                          => 'static_pages#faq'
+  get "/about_us"                     => 'static_pages#about_us'
+  get "/return_policy"                => 'static_pages#return_policy'
 
   
 

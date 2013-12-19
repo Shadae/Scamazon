@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
   def pending
   end
 
-  def shipping
+  def mark_as_shipped
     Order.mark_as_shipped(params[:order_id])
     redirect_to :back
   end

@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
   <div class='header'> 
     <%= link_to(image_tag('scamazon.png', :alt => "logo", :title => "Welcome"),"/") %>
     <div id= 'box_in_header'>
@@ -28,20 +29,24 @@
     <li><a href="/products">Products</a></li>
     <li><a href="/users/1">Profile</a></li>
     <li><a href="/reviews/new">Reviews</a></li>
-    <li><a href="/orders">Orders</a></li>
-     <li> <%= form_tag(products_path, method: :get, class: 'search_bar') do %>
+    <li><div id="search bar"></li>
+      <%= form_tag(products_path, method: :get) do %>
       <%= label_tag("Search for products:") %>
       <%= text_field_tag :search_product, params[:search_product] %>
       <%= submit_tag "Search", :name => nil %>
-      <% end %></li>
-    </ul>
-</div>
+      <% end %>
+      </div>
+    </li>
+  </div>
 
     
-    <%= flash[:notice] %>
+  <%= flash[:notice] %>
 
 
 <%= yield %>
+
+<d
+
 
 </body>
 </html>
