@@ -35,20 +35,24 @@
 
   <h5>Orders: </h5>
   <table>
-    <tr>
-      <th scope="col">Order ID</th>
-      <th scope="col"> </th>
-      <th scope="col">Order Status</th>
-      <th scope="col">Ordered At</th>
-    </tr>
-    <tr>
-      <% current_user.orders.each do |order| %>
-      <td><%= link_to order.id, order_path(order.id) %></td>
-      <td></td>
-      <td><%= order.status %></td>
-      <td><%= order.created_at %></td>
-      <% end %>
-    </tr> 
+    <thead>
+      <tr>
+        <th scope="col" class="foo">Order ID</th>
+        <th scope="col">Order Status</th>
+        <th scope="col">Ordered At</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <% current_user.orders.each do |order| %>
+        <tr>
+        <td class="foo"><%= link_to order.id, order_path(order.id) %></td>
+        <td><%= order.status %></td>
+        <td><%= order.created_at.strftime("%d %b. %Y") %></td>
+        </tr>
+        <% end %>
+      
+    </tbody>
   </table>
 </div>
 

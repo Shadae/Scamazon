@@ -192,5 +192,21 @@ ul  {
   background-color:#ED9121
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+}
+th, td {
+  border-bottom: 1px solid #c6c9cc;
+}
+tr:last-child td {
+  border: 0;
+}
+
+.foo {
+  padding: 20px;
+}
+
 
 
