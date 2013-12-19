@@ -30,7 +30,7 @@ section {
   display: block;  
   width: 300px;  
   color: #333;
-  margin: 50px;
+  margin: 10px 0 0 50px;
 }  
 
 
@@ -46,3 +46,7 @@ section {
   font-size: 16pt;  
   color: #aaa;   
 }  
+
+.reviewbar {
+  margin: 0 50px;
+}

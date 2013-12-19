@@ -14,12 +14,13 @@
   <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
   <% sum += product.price * @order_item.quantity %>
 <% end %>
-<%= number_to_currency(sum/100) %>
+<%= price_format(sum) %>
 plus shipping, handling, and any hidden fees. </p>
 <% @purchase.errors.full_messages.each do |error| %>
 <br>
 <%= error %>
 <% end %>
+
 <%= form_for @purchase do |f| %>
   <h3>Shipping Address</h3>
   <%= f.label 'First Name'%>
@@ -73,8 +74,9 @@ plus shipping, handling, and any hidden fees. </p>
     <%= f.select :billing_state, us_states%>
   <%= f.label "Zip"%>
     <%= f.text_field :billing_zip%>
-  <%= hidden_field_tag :order_id, @order.id %>
   </div>
+  <%= hidden_field_tag :order_id, @order.id %>
+  <%= hidden_field_tag :user_id, @current_user.id %>
   <br>
   <%= f.submit "Place Order" %>
 <% end %>

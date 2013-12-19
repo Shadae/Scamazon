@@ -1,5 +1,6 @@
 class Purchase < ActiveRecord::Base
   belongs_to :order
+  belongs_to :user
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email_address, confirmation: true, format: { with: /\w+@\w+\.\w+/, message: "must be a valid email address"}

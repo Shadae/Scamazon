@@ -1,4 +1,6 @@
+
  <%= link_to 'Back To Products', products_path %>  
+  <div class='product'>
 
   <figure>  
   <%= image_tag(@product.image_url, :width => 200) if @product.image.present? %> 
