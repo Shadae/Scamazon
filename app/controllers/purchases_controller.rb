@@ -52,7 +52,7 @@ class PurchasesController < ApplicationController
     params.require(:purchase).permit(:first_name, :last_name, :email_address, 
       :address1, :address2, :city, :zip, :billing_first, :billing_last, :credit_card_number,
       :cvv, :billing_zip, :billing_address1, :billing_address2, :billing_city,
-      :state, :billing_state, :same_address, :email_address_confirmation, :order_id)
+      :state, :billing_state, :same_address, :email_address_confirmation, :order_id, :expiration_date)
   end
 
 end

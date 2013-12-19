@@ -19,6 +19,32 @@
         <td><%= product.price %></td>
         <td><%= subtotal += product.price * @order_item.quantity %></td>
       </tr>
+      <strong>Order status: <%=@order.status%></strong><br>
+      <% if @order.status != 'pending' %>
+        <% @purchase = Purchase.find(@order.purchase_id) %>
+        <strong>Order was placed on <%= @purchase.updated_at %></strong>
+
+
+        <p>Shipping Name:  
+          <%= @purchase.first_name + ' ' + @purchase.last_name%></p>
+
+        <p>Email Address: 
+          <%= @purchase.email_address %></p>
+
+        <p>Shipping Address: <br>
+          <%= @purchase.address1%> 
+          <%= @purchase.address2 %><br>
+          <%= @purchase.city %>, 
+          <%= @purchase.state %> 
+          <%= @purchase.zip %></p>
+
+        <p>Billing Information: <br> 
+          **** - **** - **** -
+          <%=@purchase.credit_card_number[-4, 4]%><br>
+          CVV: <%=@purchase.cvv%><br>
+          Expires: <%=@purchase.expiration_date[0]%><%=@purchase.expiration_date[1]%>/<%=@purchase.expiration_date[2]%><%=@purchase.expiration_date[3]%></p>
+
+      <% end %>
     <% end %>
   </tbody>
 </table>

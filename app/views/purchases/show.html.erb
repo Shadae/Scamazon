@@ -30,6 +30,7 @@
   **** - **** - **** -
   <%=@purchase.credit_card_number[-4, 4]%><br>
   <%=@purchase.cvv%>
+  <%=@purchase.expiration_date%>
 </p>
   
 <%= render '/orders/longdescription' %>
