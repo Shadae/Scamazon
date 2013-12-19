@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 
     if @review.save
       # success
-      redirect_to product_path(@product)
+      redirect_to product_path(@product), notice: "You have successfully created a review."
     else
       # failure
       render :new
@@ -38,10 +38,12 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+
     @review = Review.find(params[:id])
+    @product = @review.product
     @review.destroy
 
-    redirect_to new_review_path, notice: "Review has been successfully deleted."
+    redirect_to product_path(@product), notice: "Review has been successfully deleted."
   end
 
   def index
