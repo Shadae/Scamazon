@@ -115,6 +115,9 @@ li { display:inline-block;
  }
 
  #box_in_header {
+  position:absolute;
+  right: 5px;
+  top: 5px;
   width: 200px;
   height: 140px;
   display: inline-block;
@@ -122,16 +125,7 @@ li { display:inline-block;
  }
 
  .container {
-  margin-left:auto;
-  margin-right:auto;
-  margin-top: 50px; 
-  line-height: 30px;
-  text-align: center;
- }
-
- .container th, td {
-  border: 1px solid;
-  padding: 10px;
+  margin-top: 75px;
  }
 
  .show {
@@ -156,7 +150,6 @@ li { display:inline-block;
  }
 
 .menu_bar {
-  height: 35px;
   width: 100%;
   background-color: orange;
 }
@@ -168,6 +161,14 @@ li { display:inline-block;
 }
 
 .menu_bar a:hover,a:active {
-  background-color:#ED9121
+  background-color:#ED9121;
+  height: 100%;
+}
+
+.search {
+  position:absolute;
+  padding-top: 6px;
+  right: 5px;
+
 }
 
