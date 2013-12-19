@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product]
+  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product]
 
   def create
     @order = Order.new(order_params)
@@ -26,12 +26,9 @@ class OrdersController < ApplicationController
     set_order
   end
 
-  def fulfillment 
-  end
-
   def add
     if @order.add(params[:quantity].to_i, params[:product_id].to_i)
-      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name} have been added to your cart."
+      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name.pluralize(params[:quantity])} have been added to your cart."
     else
       redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
     end
@@ -73,6 +70,23 @@ class OrdersController < ApplicationController
     end
   end
 
+  def fulfillment 
+  end
+
+  def paid
+  end
+
+  def shipped
+  end
+
+  def pending
+  end
+
+  def mark_as_shipped
+    Order.mark_as_shipped(params[:order_id])
+    redirect_to :back
+  end
+
   private
   def set_order
     @order = Order.find(params[:id])
@@ -101,6 +115,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :products => {})
+    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :order_id, :products => {})
   end
 end

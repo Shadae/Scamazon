@@ -15,6 +15,10 @@
     <%= current_user.email.titleize %>
 </td><br>
 
+<h3>Fulfillments: </h3><br>
+<%= link_to 'My Fulfillments', fulfillment_path %>
+
+
 <h3>Products: </h3><br>
 <% current_user.products.each do |product| %>
 <%= link_to product.name, product_path(product.id) %>

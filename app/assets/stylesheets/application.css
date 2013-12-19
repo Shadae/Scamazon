@@ -11,14 +11,133 @@
  *= require_self
  *= require_tree .
  */
+
+
  #header {
   width: 350px;
   height: 140px;
  }
+
+ #footer {
+   position: absolute;
+   bottom: 0;
+   width:  100%;
+   height: 50px;   
+   background: orange;
+}
+
+ body {
+  margin:0;
+  padding:0;
+  height:100%;
+  font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+ }
+
+#body {
+  padding:10px;
+  padding-bottom:50px;  
+}
+
+ h2 {
+  text-align: center; 
+  font-size: 50px;
+ }
+
+ h3 {
+  text-align: center;
+  font-size: 35px;
+  text-shadow:-3px -2px 3px orange;
+ }
+
+ h4 {
+  text-align: center;
+  font-size: 20px;
+  margin: -50px;
+ }
+
+ ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+    font-size: 1.040em;
+    text-align: right;
+  }
+
+li { display:inline-block;
+}
+
+
+ul  {
+    width: 1000px;
+  }
+
+ li a {
+    display: block;
+    line-height: 2em;
+    padding: 0 1.2em;
+    color: white;
+    text-decoration: none;   
+  }
+
+/*first line of pictures on welcome page*/
+ #img_cont {
+  display: table;
+  width: 100%;
+  margin: 10px auto;
+ }
+
+ #img_cont a {
+  display: table-cell;
+  text-align: center;
+  width: 5%;
+ }
+
+ #img_cont img {
+  width: 100%;
+  max-width: 400px;
+  border-color: black;
+  border-width: 4px;
+  border-style: solid;
+  box-shadow: 12px 10px 7px black; 
+ }
+/*second line (line b) of pictures on welcome page*/
+ #img_cont_b {
+  display: table;
+  width: 90%;
+  margin: 20px auto;
+ }
+
+ #img_cont_b a {
+  display: table-cell;
+  text-align: center;
+  width: 5%;
+ }
+
+ #img_cont_b img {
+  width: 100%;
+  max-width: 300px;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  box-shadow: 9px 7px 5px black; 
+ }
+
+ .logo_font {
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", Times, serif;
+  font-size: 50px;
+ }
+
  #box_in_header {
-  width: 450px;
+  width: 200px;
   height: 140px;
   float: right;
+ }
+
+ .search_bar{
+  float: right;
+  width: 20%;
+  display: inline-block;
  }
  .container {
   margin-left:auto;
@@ -27,7 +146,6 @@
   
   line-height: 30px;
   text-align: center;
-
  }
 
  .container th, td {
@@ -42,13 +160,13 @@
   overflow: hidden;
   border: 1px solid black;
   margin: 10px;
-  padding: 10px;
+  *padding: 10px;
  }
 
 .show img {
   height: 80px;
 }
- .sidebar {
+.sidebar {
   display: inline-block;
   border:1px solid black;
   float: left;

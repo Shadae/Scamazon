@@ -1,14 +1,9 @@
-<h2>Your Fulfillments </h2>
-<br>
-<% @order.errors.full_messages.each do |error| %>
-  <%= error %><br>
-<% end %>
-<a href='paid'>Your Paid Orders</a>
-<a href='shipped'>Your Shipped Orders</a>
-<a href='pending'>Your Pending Orders</a>
-
-  <% if merchant_orders = Order.get_merchant_orders(@current_user) %>
-    <p>Total Revenue: </p>
+<p>Revenue From Paid Orders: </p>
+<% if merchant_orders = Order.get_merchant_orders(@current_user) %>
+  <% merchant_orders = Order.get_merchant_orders(@current_user).delete_if{ |order| order.status != 'paid'} %>
+  <%  if merchant_orders.length == 0 %>
+    <p> None! </p>
+  <% else %>
     <% sum = 0 %>
     <% merchant_orders.each do |order| %>
       <% order.products.each do |product| %>
@@ -19,8 +14,8 @@
       <% end %>
     <% end %>
     <%= sum %>
-    <br>
-    <p>Total Fulfillments: </p>
+  <% end %>
+  <p>Total Paid Fulfillments: </p>
     <%= merchant_orders.length %></p>
 
     <% merchant_orders.each do |order| %>
@@ -31,5 +26,7 @@
       <% @products_array = order.get_merchant_products(@current_user) %>
       <%= render 'fulfillmentorders' %>
     <% end %>
-<% end %>
 
+<% else %>
+  <p>You have no paid orders!</p>
+<% end %>

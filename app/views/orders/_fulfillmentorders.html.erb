@@ -1,0 +1,57 @@
+<table>
+  <thead>
+    <tr>
+      <th class="visible-header">Item</th>
+      <th class="visible-header">Quantity</th>
+      <th class="visible-header">Price</th>
+      <th class="visible-header">Subtotal</th>
+      <th>
+
+    </tr>
+  </thead>
+
+  <% subtotal = 0 %>
+  <tbody>
+    <% @products_array.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
+        <td><%= @order_item.quantity %></td>
+        <td><%= product.price %></td>
+        <td><%= subtotal += product.price * @order_item.quantity %></td>
+      </tr>
+      <strong>Order status: <%=@order.status%></strong><br>
+      <% if @order.status != 'pending' %>
+        <% @purchase = Purchase.find(@order.purchase_id) %>
+        <strong>Order was placed on <%= @purchase.updated_at %></strong>
+        <% if @order.status == 'paid' %>
+          <br>  
+          <%= form_tag('/orders/mark_as_shipped') %>
+          <%= hidden_field_tag :order_id, @order.id %>
+          <%= submit_tag 'Mark as Shipped' %>
+        <% end %>
+
+
+        <p>Shipping Name:  
+          <%= @purchase.first_name + ' ' + @purchase.last_name%></p>
+
+        <p>Email Address: 
+          <%= @purchase.email_address %></p>
+
+        <p>Shipping Address: <br>
+          <%= @purchase.address1%> 
+          <%= @purchase.address2 %><br>
+          <%= @purchase.city %>, 
+          <%= @purchase.state %> 
+          <%= @purchase.zip %></p>
+
+        <p>Billing Information: <br> 
+          **** - **** - **** -
+          <%=@purchase.credit_card_number[-4, 4]%><br>
+          CVV: <%=@purchase.cvv%><br>
+          Expires: <%=@purchase.expiration_date[0]%><%=@purchase.expiration_date[1]%>/<%=@purchase.expiration_date[2]%><%=@purchase.expiration_date[3]%></p>
+
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

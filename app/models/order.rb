@@ -43,4 +43,31 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def get_merchant_products(user)
+    merchant_products = []
+    self.products.each do |product|
+      if product.user_id == user.id
+        merchant_products << product
+      end
+    end
+    merchant_products
+  end
+
+  def self.mark_as_shipped(id)
+    a = Order.find(id).update(status: 'shipped')
+  end
+
+  def self.get_merchant_orders(user)
+    merchant_orders = []
+    Order.all.each do |order|
+      order.products.each do |product|
+        if product.user_id == user.id
+          merchant_orders << order
+        end
+      end
+    end
+    merchant_orders = merchant_orders.uniq
+    merchant_orders
+  end
+
 end

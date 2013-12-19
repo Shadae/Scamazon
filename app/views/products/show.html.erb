@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <% if current_user != @product.user %>
+  <% if current_user.id != @product.user_id %>
     <%= render 'review_form' %>
   <% end %>
 
@@ -8,6 +8,7 @@
     <%= @product.review_avg %>
 
   <% @product.reviews.each do |r| %>
+
     <p class="review">
       <strong>User: </strong><%= r.user.try(:user_name) %><br>
       <strong>Rating: </strong><%= r.rating %><br>
@@ -20,6 +21,7 @@
   <% end %>
 
 </div>
+<div class='container'>
 
 <h1>Product Information</h1>
 <% if @product.retired %>
@@ -27,7 +29,7 @@
 <% end %>
 
 
-<%= image_tag(@product.image_url, :width => 300) if @product.image.present? %>
+<%= image_tag(@product.image_url, :width => 200) if @product.image.present? %>
 <br>
 <strong>Product Name</strong>
 <p>  <%= @product.name %></p>
@@ -36,7 +38,7 @@
  <p> <%= @product.description %></p>
 
   <strong> Product Price </strong>
- <p> <%= number_to_currency(@product.price) %></p>
+ <p> <%= number_to_currency(@product.price/100) %></p>
 
  <strong> Category </strong>
  <% @product.categories.each do |category| %>
@@ -64,3 +66,4 @@
 
 <br><br>
 <%= link_to 'Back To Products', products_path %>
+</div>

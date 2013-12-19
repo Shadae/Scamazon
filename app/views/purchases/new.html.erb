@@ -9,7 +9,12 @@
 <%= 'different item'.pluralize %></p>
 <br>
 <p>This order will cost you AT LEAST
-<%= @order.products.inject(0) { |sum, product| sum + product.price } %>
+  <% sum = 0 %>
+<% @order.products.each do |product| %>
+  <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
+  <% sum += product.price * @order_item.quantity %>
+<% end %>
+<%= sum %>
 plus shipping, handling, and any hidden fees. </p>
 <% @purchase.errors.full_messages.each do |error| %>
 <br>
@@ -53,6 +58,8 @@ plus shipping, handling, and any hidden fees. </p>
     <%= f.text_field :credit_card_number%><br>
   <%= f.label "CVV" %>
     <%= f.text_field :cvv%><br>
+  <%= f.label "Expiration Date" %>
+    <%= f.text_field :expiration_date%><br>
   <div class="billingdeets">
   <%= f.label "Address"%>
     <%= f.text_field :billing_address1%><br>  
