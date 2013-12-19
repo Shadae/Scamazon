@@ -21,7 +21,9 @@ plus shipping, handling, and any hidden fees. </p>
 <%= error %>
 <% end %>
 
-<% a = Purchase.where(user_id: @current_user.id) %>
+<% if @current_user %>
+  <% a = Purchase.where(user_id: @current_user.id) %>
+<% end %>
 <% default = Purchase.new(first_name: nil, last_name: nil, address1: nil, address2: nil, city: nil, state: 'WA', zip: nil, email_address: nil, email_address_confirmation: nil, billing_first: nil, billing_last: nil, credit_card_number: nil, 
   cvv: nil, expiration_date: nil, billing_address1: nil, billing_address2: nil, billing_city: nil, billing_state: 'WA', billing_zip: nil)%>
 <% unless a.nil? %>
@@ -80,7 +82,9 @@ plus shipping, handling, and any hidden fees. </p>
     <%= f.text_field :billing_zip, value: default.billing_zip%>
   </div>
   <%= hidden_field_tag :order_id, @order.id %>
-  <%= hidden_field_tag :user_id, @current_user.id %>
+  <% if @current_user %>
+    <%= hidden_field_tag :user_id, @current_user.id %>
+  <% end %>
   <br>
   <%= f.submit "Place Order" %>
 <% end %>
