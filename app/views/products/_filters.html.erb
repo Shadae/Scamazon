@@ -5,7 +5,8 @@
   <%= label_tag category.category %>
   <%= check_box_tag(:"category_ids[]", category.id) %><br>
   <% end %>
-
+  <br>
+<hr color='orange'>
 <h3> Sellers </h3>
 
 <% User.seller.each do |seller| %>

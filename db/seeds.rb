@@ -17,7 +17,7 @@ users = User.create([
 categories = Category.create([{category: 'housewares'}, {category: 'linens'}, {category: 'entertaining'},{category: 'kitchen'}])
 
 products = Product.create([
-  {name: 'Noomi Napkin', description: 'Noomi Napkin. Cotton napkin trellises intricate and ethnic in festive green and red pattern.', price: 399, stock: 2, user_id: 1}, 
+  {name: 'Noomi Napkin', description: 'Cotton napkin trellises intricate and ethnic in festive green and red pattern.', price: 399, stock: 2, user_id: 1}, 
   {name: 'Big Red Wine Glass', description: 'Classic wine shape is crafted with pulled stem and fire-polished rim.', price: 695, stock: 5, user_id: 2}, 
   {name: 'Birdy Napkin Ring', description: 'Silvery bird tweets a friendly welcome for any kind of gathering.', price: 495, stock: 7, user_id: 4}, 
   {name: '5-Piece Roscoe Bowl Set', description: 'Soft shapes register somewhere between round and triangular in this versatile nesting set of bowls, matte-glazed in a chic range of tonal greys.', price: 2995, stock: 10, user_id: 4}, 

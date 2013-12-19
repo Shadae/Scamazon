@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :retire]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :retire, :unretire]
 
   def index
     @products = Product.filter(params[:category_ids],params[:seller_ids],params[:search_product])
@@ -69,7 +69,11 @@ class ProductsController < ApplicationController
     @product.update(retired: true)
     redirect_to product_path(@product)
   end
-        
+
+   def unretire
+    @product.update(retired: false)
+    redirect_to product_path(@product)
+  end
 
 private
 
