@@ -10,6 +10,10 @@
       <strong>User: </strong><%= r.user.try(:user_name) %><br>
       <strong>Rating: </strong><%= r.rating %><br>
       <strong>Review: </strong><%= r.review_text %>
+
+      <% if current_user == r.user %>
+        <%= link_to 'Delete', review_path(r), method: :delete %>
+      <% end %>
     </p>
   <% end %>
 
