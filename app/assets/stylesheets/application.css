@@ -124,8 +124,12 @@ li { display:inline-block;
 
  }
 
+ .container h1{
+  text-align: center;
+ }
+
  .container {
-  margin-top: 75px;
+  margin-top: 20px;
  }
 
  .show {
@@ -133,9 +137,10 @@ li { display:inline-block;
   width: 150px;
   height: 300px;
   overflow: hidden;
-  border: 1px solid black;
+  border: 1px solid orange;
+  border-radius: 10px;
   margin: 10px;
-  *padding: 10px;
+  padding: 10px;
  }
 
 .show img {
@@ -170,6 +175,25 @@ li { display:inline-block;
   right: 5px;
 
 }
+
+.sidebar {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  display: inline-block;
+  border:2px solid orange;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.product_index {
+  margin-left: 200px;
+}
+
+.notice {
+  text-align: center;
+}
+
 
 
 

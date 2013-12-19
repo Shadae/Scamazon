@@ -4,14 +4,13 @@
 <%= render 'filters' %>
 </div>
 
-<div class='product_page'>
-
+<div class='product_index'>
   <br>
   <% if params[:seller_ids] %>
     Sellers:
     <% params[:seller_ids].each do |seller_id| %>
       <% user = User.find(seller_id.to_i) %>
-      <%= link_to user.user_name, user_path(user.id) %>
+      <%= user.user_name %>
     <% end %>
     <br>
   <% end %>
@@ -24,6 +23,7 @@
   <% end %>
   <br>
   <br>
+
 
   <tbody>
     <% @products.each do |product| %>
