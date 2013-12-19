@@ -1,23 +1,25 @@
+
+ <%= link_to 'Back To Products', products_path %>  
   <div class='product'>
 
   <figure>  
-   <!--  <%= image_tag(@product.image_url, :width => 200) if @product.image.present? %> -->
-    <img src="http://lorempixel.com/500/500/technics/7">  
+  <%= image_tag(@product.image_url, :width => 200) if @product.image.present? %> 
   </figure>  
 
-  <header>
+<div class='product'>
     <hgroup>
       <h1><%= @product.name %> <h1>
+        <br>
       <h1><%= number_to_currency(@product.price/100) %></h1>
+      <br>
       <h4><%= @product.description %></h4>
     </hgroup>
-  <header>
-
+    <br><br>
   <section>
     <details>
       <h7>Product Information</h7>
       <% if @product.retired %>
-      <h2>This Product Is No Longer Available.</h2>
+      <h3>This Product Is No Longer Available.</h3>
       <% end %>
       <summary>Product Details</summary> 
           <ul>
@@ -35,8 +37,11 @@
     <p>
       <% if current_user == @product.user %>
       <%= link_to 'Edit Product', edit_product_path %><br>
-
-      <%= button_to 'Retire Product', retired_path(@product.id) %>
+          <% if @product.retired == false %>
+            <%= button_to 'Retire Product', retired_path(@product.id) %>
+          <% else %>
+            <%= button_to 'Unretire Product', unretired_path(@product.id) %>
+          <% end %>
       <% end %>
     <br> 
     </p>
@@ -53,22 +58,21 @@
     </p>
 
     <br><br>
-    <%= link_to 'Back To Products', products_path %>
   </section>
 </div>
 
-<div class="reviewbar">
-  <% if current_user.id != @product.user_id %>
-    <%= render '/reviews/form' %>
-  <% end %>
-
+<div class='submit_review'>
+    <% if current_user && current_user.id != @product.user_id %>
+    On a scale of "great" to "really great", how do you find this product?
+      <%= render '/reviews/form' %>
+    <% end %>
+</div>
+<div class = 'review'>
   <strong>Product Reviews</strong><br>
   <strong>Average Rating:</strong>
     <%= @product.review_avg %>
 
   <% @product.reviews.each do |r| %>
-
-    <p class="review">
       <strong>User: </strong><%= r.user.try(:user_name) %><br>
       <strong>Rating: </strong><%= r.rating %><br>
       <strong>Review: </strong><%= r.review_text %>

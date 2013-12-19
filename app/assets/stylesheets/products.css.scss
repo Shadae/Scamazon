@@ -8,38 +8,47 @@
   padding: 25px 0px;  
 }  
 
-header {  
-  margin-bottom: 20px;  
-}  
 hgroup {
   display: inline-block;
+  width: 500px;
+  margin-left: 300px;
 }
 
-figure {  
-  display: inline-block;  
-}  
 figure img {  
   max-width: 400px;
   border-color: black;
   border-width: 4px;
   border-style: solid;
-  box-shadow: 12px 10px 7px black;   
-}  
-section {    
-  line-height: 150%;  
-  display: inline-block;  
-  width: 300px;  
-  color: #333;  
+  box-shadow: 12px 10px 7px black;
+  display: inline-block;
+  position: absolute;
+  left: 10px; 
 }  
 
-h1, h4 {    
+section {    
+  line-height: 150%;  
+  display: block;  
+  width: 300px;  
+  color: #333;
+  margin: 10px 0 0 50px;
+}  
+
+
+.product h1, h4 {    
   font-weight: normal;  
   margin: 0;   
 }  
-h1 {   
+.product h1 {   
   font-size: 24pt;  
 }  
-h4 {  
+
+.product h4 {  
   font-size: 16pt;  
   color: #aaa;   
 }  
+
+.submit_review {
+  margin: 0 50px;
+  width: 200px;
+  display: block-inline;
+}
