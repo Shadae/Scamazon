@@ -2,8 +2,8 @@
 
 <td>
   <strong> 
-    Welcome!
-   <br> User Name:
+    <h4>Welcome to your User Page!</h4>
+    <br>User Name:
   </strong>
   <%= current_user.user_name.titleize %>
 </td> <br>
@@ -15,18 +15,27 @@
     <%= current_user.email.titleize %>
 </td><br>
 
-<h3>Fulfillments: </h3><br>
-<%= link_to 'My Fulfillments', fulfillment_path %>
-
-
-<h3>Products: </h3><br>
-<% current_user.products.each do |product| %>
-<%= link_to product.name, product_path(product.id) %>
-<% end %>
-
-<h3>Orders: </h3><br>
-<% current_user.orders.each do |order| %>
-<%= link_to order.purchase_id, order_path(order.id) %>
-<% end %>
-
 <%= link_to 'Edit', edit_user_path(current_user) %>
+
+
+<td>
+  <h5>Fulfillments: </h5>
+  <%= link_to 'My Fulfillments', fulfillment_path %>
+  </td>
+
+
+<td>
+  <h5>Products: </h5>
+  <% current_user.products.each do |product| %>
+  <%= link_to product.name, product_path(product.id) %>
+  <% end %>
+  </td>
+
+<td>
+  <h5>Orders: </h5>
+  <% current_user.orders.each do |order| %>
+  <%= link_to order.purchase_id, order_path(order.id) %>
+  <% end %>
+  </td>
+
+
