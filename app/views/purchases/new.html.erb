@@ -21,59 +21,63 @@ plus shipping, handling, and any hidden fees. </p>
 <%= error %>
 <% end %>
 
+<% a = Purchase.where(user_id: @current_user.id) %>
+<% default = Purchase.new(first_name: nil, last_name: nil, address1: nil, address2: nil, city: nil, state: 'WA', zip: nil, email_address: nil, email_address_confirmation: nil, billing_first: nil, billing_last: nil, credit_card_number: nil, 
+  cvv: nil, expiration_date: nil, billing_address1: nil, billing_address2: nil, billing_city: nil, billing_state: 'WA', billing_zip: nil)%>
+<% unless a.nil? %>
+  <% default = a.last %>
+<% end %>
+
 <%= form_for @purchase do |f| %>
   <h3>Shipping Address</h3>
   <%= f.label 'First Name'%>
-    <%= f.text_field :first_name%><br>
+    <%= f.text_field :first_name, value: default.first_name%><br>
   <%= f.label "Last Name"%>
-    <%= f.text_field :last_name%><br>
+    <%= f.text_field :last_name, value: default.last_name%><br>
   <%= f.label "Address"%>
-    <%= f.text_field :address1 %><br>  
+    <%= f.text_field :address1, value: default.address1 %><br>  
   <%= f.label "Address (line 2)"%>
-    <%= f.text_field :address2%><br>
+    <%= f.text_field :address2, value: default.address2%><br>
   <%= f.label "City"%>
-    <%= f.text_field :city%>
+    <%= f.text_field :city, value: default.city%>
   <%= f.label "State"%>
-    <%= f.select :state, us_states%>
+    <%= f.select :state, us_states, value: default.state%>
   <%= f.label "Zip"%>
-    <%= f.text_field :zip%><br>
+    <%= f.text_field :zip, value: default.zip%><br>
   <%= f.label "Email Address"%>  
-    <%= f.text_field :email_address%><br>
+    <%= f.text_field :email_address, value: default.email_address%><br>
   <%= f.label "Confirm Email Address"%>
-    <%= f.text_field :email_address_confirmation%><br>
+    <%= f.text_field :email_address_confirmation, value: default.email_address%><br>
   <br>
   <h3>Billing Information</h3>
   <br>
-  <% samebilling = false %>
-
   <%= f.label 'Same as Shipping Address' %>
   <%= f.check_box :same_address, :onclick => " $('.billingdeets')[this.checked ? 'hide' : 'show'](); $('.billingdeets')[this.checked ? 'hide' : 'show'](); $('samebilling')[this.checked ? 'true' : 'false']();"%><br>
-<%= samebilling %>
 </div>
   <br>
   <div class="billingdeets">
   <%= f.label 'First Name' %>
-    <%= f.text_field :billing_first%><br>
+    <%= f.text_field :billing_first, value: default.billing_first%><br>
   <%= f.label "Last Name" %>
-    <%= f.text_field :billing_last%><br>
+    <%= f.text_field :billing_last, value: default.billing_last%><br>
   </div>
   <%= f.label "Credit Card Number" %>
-    <%= f.text_field :credit_card_number%><br>
+    <%= f.text_field :credit_card_number, value: default.credit_card_number%><br>
   <%= f.label "CVV" %>
-    <%= f.text_field :cvv%><br>
+    <%= f.text_field :cvv, value: default.cvv%><br>
   <%= f.label "Expiration Date" %>
-    <%= f.text_field :expiration_date%><br>
+    <%= f.text_field :expiration_date, value: default.expiration_date%><br>
   <div class="billingdeets">
   <%= f.label "Address"%>
-    <%= f.text_field :billing_address1%><br>  
+    <%= f.text_field :billing_address1, value: default.billing_address1%><br>  
   <%= f.label "Address (line 2)"%>
-    <%= f.text_field :billing_address2%><br>
+    <%= f.text_field :billing_address2, value: default.billing_address2%><br>
   <%= f.label "City"%>
-    <%= f.text_field :billing_city%>
+    <%= f.text_field :billing_city, value: default.billing_city%>
   <%= f.label "State"%>
-    <%= f.select :billing_state, us_states%>
+    <%= f.select :billing_state, us_states, value: default.billing_state%>
   <%= f.label "Zip"%>
-    <%= f.text_field :billing_zip%>
+    <%= f.text_field :billing_zip, value: default.billing_zip%>
   </div>
   <%= hidden_field_tag :order_id, @order.id %>
   <%= hidden_field_tag :user_id, @current_user.id %>
