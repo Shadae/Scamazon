@@ -10,8 +10,18 @@
   </thead>
 
   <% subtotal = 0 %>
+  <% your_products = [] %>
+  <% if @order.user_id == @current_user.id %>
+    <% @order.products.each { |product| your_products << product } %>
+  <% else %>
+    <% @order.products.each do |product| %>
+      <% if product.user_id == @current_user.id %>
+        <% your_products << product %>
+      <% end %>
+    <% end %>
+  <% end %>
   <tbody>
-    <%@order.products.each do |product| %>
+    <% your_products.each do |product| %>
       <tr>
         <td><%= link_to product.name, product %></td>
         <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
@@ -23,32 +33,34 @@
   </tbody>
 </table>
 
-<h3>Your total: <%= subtotal %></h3>
-<h3>Order status: <%= @order.status %></h3>
+<% unless your_products.length == 0 %>
+  <h3>Your total: <%= subtotal %></h3>
+  <h3>Order status: <%= @order.status %></h3>
 
-<% if @order.status != 'pending' %>
-  <% @purchase = Purchase.find(@order.purchase_id) %>
-  <h3>Order was placed on <%= @purchase.updated_at %></h3>
+  <% if @order.status != 'pending' %>
+    <% @purchase = Purchase.find(@order.purchase_id) %>
+    <h3>Order was placed on <%= @purchase.updated_at %></h3>
 
 
-  <p>Shipping Name:  
-    <%= @purchase.first_name + ' ' + @purchase.last_name%></p>
+    <p>Shipping Name:  
+      <%= @purchase.first_name + ' ' + @purchase.last_name%></p>
 
-  <p>Email Address: 
-    <%= @purchase.email_address %></p>
+    <p>Email Address: 
+      <%= @purchase.email_address %></p>
 
-  <p>Shipping Address: <br>
-    <%= @purchase.address1%> 
-    <%= @purchase.address2 %><br>
-    <%= @purchase.city %>, 
-    <%= @purchase.state %> 
-    <%= @purchase.zip %></p>
+    <p>Shipping Address: <br>
+      <%= @purchase.address1%> 
+      <%= @purchase.address2 %><br>
+      <%= @purchase.city %>, 
+      <%= @purchase.state %> 
+      <%= @purchase.zip %></p>
 
-  <p>Billing Information: <br> 
-    **** - **** - **** -
-    <%=@purchase.credit_card_number[-4, 4]%><br>
-    CVV: <%=@purchase.cvv%><br>
-    Expires: <%=@purchase.expiration_date[0]%><%=@purchase.expiration_date[1]%>/<%=@purchase.expiration_date[2]%><%=@purchase.expiration_date[3]%></p>
+    <p>Billing Information: <br> 
+      **** - **** - **** -
+      <%=@purchase.credit_card_number[-4, 4]%><br>
+      CVV: <%=@purchase.cvv%><br>
+      Expires: <%=@purchase.expiration_date[0]%><%=@purchase.expiration_date[1]%>/<%=@purchase.expiration_date[2]%><%=@purchase.expiration_date[3]%></p>
+  <% end %>
 
 <% end %>
 

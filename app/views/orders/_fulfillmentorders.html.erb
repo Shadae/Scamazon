@@ -26,7 +26,7 @@
         <strong>Order was placed on <%= @purchase.updated_at %></strong>
         <% if @order.status == 'paid' %>
           <br>  
-          <%= form_tag('/orders/shipping') %>
+          <%= form_tag('/orders/mark_as_shipped') %>
           <%= hidden_field_tag :order_id, @order.id %>
           <%= submit_tag 'Mark as Shipped' %>
         <% end %>
