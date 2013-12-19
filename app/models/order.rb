@@ -43,7 +43,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def get_merchant_orders(user)
+  def get_merchant_products(user)
     merchant_products = []
     self.products.each do |product|
       if product.user_id == user.id
@@ -62,7 +62,8 @@ class Order < ActiveRecord::Base
         end
       end
     end
-    merchant_orders.uniq!
+    merchant_orders = merchant_orders.uniq
+    merchant_orders
   end
 
 end
