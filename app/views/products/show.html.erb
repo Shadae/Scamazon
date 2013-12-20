@@ -10,7 +10,7 @@
     <hgroup>
       <h1><%= @product.name %> <h1>
         <br>
-      <h1><%= number_to_currency(@product.price/100) %></h1>
+      <h1><%= price_format(@product.price) %></h1>
       <br>
       <h4><%= @product.description %></h4>
     </hgroup>
