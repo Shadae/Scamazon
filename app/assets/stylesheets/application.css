@@ -219,5 +219,14 @@ tr:last-child td {
   padding: 20px;
 }
 
+div#konami {
+  display: none;
+  position: absolute;
+  margin-left: 27%;
+  margin-top: -280px;
+  font-size: 180px;
+  color: red;
+}
+
 
 
