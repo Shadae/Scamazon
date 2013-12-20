@@ -32,6 +32,7 @@ Scamazon::Application.routes.draw do
   delete 'sessions'                   => 'sessions#destroy' 
   post 'products/:id'                 => 'products#retire', as: :retired
   post 'products/retire/:id'          => 'products#unretire', as: :unretired
+  get 'profile'                       => 'users#show'
 
   root 'welcome#index'
   get "/faq"                          => 'static_pages#faq'

@@ -19,12 +19,22 @@
  }
 
  #footer {
-   position: absolute;
    bottom: 0;
    width:  100%;
-   height: 50px;   
+   height: 35px;   
    background: orange;
-}
+  }
+
+ #box_in_footer {
+  margin: 0;
+  margin-right: 35px;
+  float: right;
+  bottom: 5px;
+  width: 550px;
+  height: 30px;
+  display: inline-block;
+
+ }
 
  body {
   margin:0;
