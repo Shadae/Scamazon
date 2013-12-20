@@ -115,7 +115,7 @@ li { display:inline-block;
  }
 
  #box_in_header {
-  position:absolute;
+  position: absolute;
   right: 5px;
   top: 5px;
   width: 200px;
