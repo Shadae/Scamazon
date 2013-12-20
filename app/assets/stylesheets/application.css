@@ -141,6 +141,7 @@ li { display:inline-block;
 
  .container {
   margin-top: 20px;
+  margin-bottom: 100px;
  }
 
  .show {

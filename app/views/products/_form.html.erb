@@ -9,6 +9,10 @@
   <%= f.text_field :name %>
   <br>
 
+  <%= f.label :description %><br>
+  <%= f.text_area :description, size: "20x8" %>
+  <br>
+
   <%= f.label :price %>
   <%= f.number_field :price %>
   <br>
@@ -18,13 +22,7 @@
   <br>
 
   How many items do you have in stock?<br>
-  <%= f.number_field :stock %>
-  </div>
-  <div class='product_new'>
-
-  <%= f.label :description %><br>
-  <%= f.text_area :description, size: "20x8" %>
-  <br>
+  <%= f.number_field :stock %> 
 
 
   <%= f.label :image, "Upload local file:" %><br />
