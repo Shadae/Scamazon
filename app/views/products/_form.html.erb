@@ -4,32 +4,41 @@
 <% end %>
 <br>
 
+<div class="space">
  <%= form_for(@product) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <br>
+</div>
 
+<div class="space">
   <%= f.label :description %><br>
   <%= f.text_area :description, size: "20x8" %>
   <br>
+</div>
 
+<div class="space">
   <%= f.label :price %>
   <%= f.number_field :price %>
   <br>
+</div>
 
+<div class="space">
   Pick as many categories as you deem appropriate.<br>
   <%= f.select(:categories, Category.all.collect { |p| [p.category, p.id] }, { selected: @product.categories.collect{ |i| i.id }}, {:multiple => true}) %>
   <br>
+</div>  
 
+<div class="space">
   How many items do you have in stock?<br>
   <%= f.number_field :stock %> 
+</div>
 
-
+<div class="space">
   <%= f.label :image, "Upload local file:" %><br />
   <%= f.file_field :image %>
   <%= f.hidden_field :image_cache %>
-<br>
-<br>
+</div>
 
   <%= f.submit 'submit'%>
     <% end %>
