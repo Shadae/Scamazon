@@ -138,9 +138,14 @@ li { display:inline-block;
   text-align: center;
  }
 
- .container {
+ .container{
   margin-top: 20px;
   margin-bottom: 100px;
+  margin-left:100px;
+ }
+
+ .text_container{
+
  }
 
  .show {

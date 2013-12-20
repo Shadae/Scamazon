@@ -55,9 +55,9 @@ plus shipping, handling, and any hidden fees. </p>
   <br>
   <%= f.label 'Same as Shipping Address' %>
   <%= f.check_box :same_address, :onclick => " $('.billingdeets')[this.checked ? 'hide' : 'show'](); $('.billingdeets')[this.checked ? 'hide' : 'show'](); $('samebilling')[this.checked ? 'true' : 'false']();"%><br>
-</div>
+
   <br>
-  <div class="billingdeets">
+  <div class='"billingdeets"'>
   <%= f.label 'First Name' %>
     <%= f.text_field :billing_first, value: default.billing_first%><br>
   <%= f.label "Last Name" %>
@@ -88,3 +88,4 @@ plus shipping, handling, and any hidden fees. </p>
   <br>
   <%= f.submit "Place Order" %>
 <% end %>
+</div>
