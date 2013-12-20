@@ -16,6 +16,7 @@ test:
 
 production:
   adapter: postgresql
-  database: scamazon
-  pool: 5
-  timeout: 5000
+  encoding: unicode
+  database: scamazon_production
+  username: 
+  password: 

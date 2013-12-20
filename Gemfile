@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+
+# Use sqlite3 as the database for Active Record
+gem 'pg'
 gem 'carrierwave'
 
 # Use SCSS for stylesheets
@@ -27,6 +30,7 @@ gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14'
+  gem 'sqlite3'
   gem 'guard-rspec', require: false
 end
 
