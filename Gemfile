@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 gem 'carrierwave'
+gem 'fog'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -29,8 +29,14 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14'
+  gem 'sqlite3'
   gem 'guard-rspec', require: false
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor', '0.0.2'
 end
 
 group :doc do

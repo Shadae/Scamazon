@@ -49,8 +49,10 @@ class OrdersController < ApplicationController
 #this is called when you reduce the quantity of an item to 0.
 #It destroys the associated OrderItem object.
   def remove_product
-    OrderItem.destroy(@order.set_order_item_and_product(params[:product_id]))
-    redirect_to :back, id: @order.id
+    order_item_to_delete = OrderItem.find_by(product_id: params[:product_id],
+                                             order_id:   params[:order_id])
+    order_item_to_delete.destroy
+    redirect_to '/cart'
   end
 
   def destroy

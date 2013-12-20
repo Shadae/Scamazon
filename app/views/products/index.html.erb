@@ -17,7 +17,7 @@
   <% if params[:category_ids] %>
     Categories:
     <% params[:category_ids].each do |category_id| %>
-      <% category = Category.find(category_id.to_i) %>
+      <% category = Category.find(category_id.to_i) %><br>
       <%= category.category %>
     <% end %>
   <% end %>
@@ -39,7 +39,7 @@
                 </div>
     <% end %>
 
-
+<br><br>
 <% if @current_user.present? %>
 <%= link_to 'New Product', new_product_path %><br><br>
 <% end %>
