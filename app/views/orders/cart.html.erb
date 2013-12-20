@@ -52,8 +52,9 @@
 </table>
 
 <h3>Your total: <%= price_format(subtotal) %></h3>
-
+<div class = 'checkout'>
 <%= form_tag('/orders/check_order_quantities') do %>
   <%= hidden_field_tag :order_id, @order.id %>
   <%= submit_tag 'Checkout' %>
 <% end %>
+</div>

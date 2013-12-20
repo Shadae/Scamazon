@@ -80,6 +80,10 @@ section {
   display: block-inline;
   border: 2px solid black;
   width: 200px;
-  margin-top: -200px;
+  margin: -200px 0 0 10px;
   padding: 10px;
+}
+
+div.space {
+  margin: 20px auto;
 }
