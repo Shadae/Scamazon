@@ -22,12 +22,12 @@ plus shipping, handling, and any hidden fees. </p>
 <% end %>
 
 <% if @current_user %>
-  <% a = Purchase.where(user_id: @current_user.id) %>
+  <% a = Purchase.where(user_id: @current_user.id).last %>
 <% end %>
 <% default = Purchase.new(first_name: nil, last_name: nil, address1: nil, address2: nil, city: nil, state: 'WA', zip: nil, email_address: nil, email_address_confirmation: nil, billing_first: nil, billing_last: nil, credit_card_number: nil, 
   cvv: nil, expiration_date: nil, billing_address1: nil, billing_address2: nil, billing_city: nil, billing_state: 'WA', billing_zip: nil)%>
 <% unless a.nil? %>
-  <% default = a.last %>
+  <% default = a %>
 <% end %>
 
 <%= form_for @purchase do |f| %>
