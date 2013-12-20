@@ -19,6 +19,18 @@ class Product < ActiveRecord::Base
   scope :by_category, lambda {|ids| includes(:categories).where(categories: {id: ids}) }
   scope :by_seller, lambda {|ids| where(user_id: ids) }
 
+  # this is maybe a way to make it work as the union. will examine later.
+  # def self.kerri_by_category(ids)
+  #   queuries = []
+  #   ids.each do |id|
+  #     queuries << "(categories.category) LIKE #{id}"
+  #   end
+
+  #   query_string = queuries.join(" AND ")
+
+  #   includes(:categories).where(query_string)
+  # end
+
   def self.filter(category=nil,seller=nil,search=nil)
     @filter = [category,seller,search].flatten
     if category && seller
