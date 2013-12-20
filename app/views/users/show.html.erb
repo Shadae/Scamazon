@@ -27,6 +27,8 @@
 
 <td>
   <h5>Products: </h5>
+  <%= link_to 'Create a new product!', new_product_path %><br><br>
+
   <% current_user.products.each do |product| %>
   <%= link_to product.name, product_path(product.id) %>
   <% end %>
