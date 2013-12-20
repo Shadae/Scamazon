@@ -42,7 +42,6 @@ class ProductsController < ApplicationController
     if @current_user
       @review = Review.find_by(product_id: @product.id, user_id: @current_user.id)
     end
-
     # if you find one
       # @review
     # else (you don't find one)

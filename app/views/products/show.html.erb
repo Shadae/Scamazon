@@ -26,7 +26,7 @@
           <li>Category:
               <% @product.categories.each do |category| %>
               <%= category.category %>
-              <% end %></li>
+              <% end %></li><br>
           <li>Stock Quantity 
               <%= @product.stock %></li>
           </ul>
@@ -62,25 +62,29 @@
 </div>
 
 <div class='submit_review'>
+  <strong>Average Rating:</strong><br>
+      <%= @product.review_avg %>
+      <br>
+      <br>
     <% if current_user && current_user.id != @product.user_id %>
     On a scale of "great" to "really great", how do you find this product?
       <%= render '/reviews/form' %>
     <% end %>
 </div>
-<div class = 'review'>
-  <strong>Product Reviews</strong><br>
-  <strong>Average Rating:</strong>
-    <%= @product.review_avg %>
 
+<div class = 'review'>
+    
+    <strong>Product Reviews</strong><br>
   <% @product.reviews.each do |r| %>
+    <div class='review_show'>
       <strong>User: </strong><%= r.user.try(:user_name) %><br>
       <strong>Rating: </strong><%= r.rating %><br>
-      <strong>Review: </strong><%= r.review_text %>
-
+      <strong>Review: </strong><%= r.review_text %><br>
       <% if current_user == r.user %>
         <%= link_to 'Delete', review_path(r), method: :delete %>
+    </div> 
       <% end %>
-    </p>
+      <!-- We know the </div> tag should go here but it looks way more awesome stuck in the loop. SO WE'RE LEAVING IT. -->
   <% end %>
 
 </div>

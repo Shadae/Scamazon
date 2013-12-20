@@ -33,7 +33,6 @@ section {
   margin: 10px 0 0 50px;
 }  
 
-
 .product h1, h4 {    
   font-weight: normal;  
   margin: 0;   
@@ -51,4 +50,18 @@ section {
   margin: 0 50px;
   width: 200px;
   display: block-inline;
+}
+
+.review {
+  padding: 10px;
+  margin-left: 20px;
+  display: block-inline;
+}
+
+.review_show {
+  margin: 10px;
+  padding: 10px;
+  border: 3px solid orange;
+  width: 200px;
+  border-radius: 10px;
 }

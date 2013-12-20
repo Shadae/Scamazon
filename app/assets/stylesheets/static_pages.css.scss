@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*FAQ Page*/
+
 div#faq {
   
 }
@@ -9,9 +11,17 @@ div#faq {
 h1#title {
   text-align: center;
 }
+h1.ha {
+  width: 600px;
+  font-size: 25px;
+  margin: 0px auto;
+}
 
 p.crazy-faq {
   width: 642px;
   margin: 0px auto;
   text-align: center;
 }
+
+/*About Us Page*/ 
+
