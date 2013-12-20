@@ -55,6 +55,9 @@ GEM
     excon (0.31.0)
     execjs (2.0.2)
     ffi (1.9.3)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     fog (1.19.0)
       builder
       excon (~> 0.31.0)
@@ -193,6 +196,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   debugger
+  figaro
   fog
   guard-rspec
   jbuilder (~> 1.2)
