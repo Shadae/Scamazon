@@ -1,11 +1,14 @@
 
+<div class='category_form'>
+  Can't find an appropriate category? Make one here.
 
-<%= form_for(@category) do |f| %>
-  <%= f.text_field :category %>
-  <br>
- 
-  <%= f.hidden_field :product_id, value: @product.id %>
-  <br>
-  <%= f.submit "Submit" %>
+  <%= form_for(@category) do |f| %>
+    <%= f.text_field :category %>
+    <br>
+   
+    <%= f.hidden_field :product_id, value: @product.id %>
+    <br>
+    <%= f.submit "Make Category" %>
 
   <% end %>
+</div>

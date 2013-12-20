@@ -19,6 +19,7 @@
  }
 
  #footer {
+  position: fixed;
    bottom: 0;
    width:  100%;
    height: 35px;   
@@ -196,9 +197,6 @@ li { display:inline-block;
   margin: 10px;
 }
 
-.product_index {
-  margin-left: 200px;
-}
 
 .notice {
   text-align: center;
