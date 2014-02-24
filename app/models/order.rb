@@ -1,10 +1,8 @@
 class Order < ActiveRecord::Base
-  has_many :order_items
-  has_many :products, through: :order_items
+  has_many   :order_items
+  has_many   :products, through: :order_items
   belongs_to :user
   belongs_to :purchase
-
-
 
   def set_order_item_and_product(product_id)
     @product = Product.find(product_id)

@@ -24,7 +24,6 @@
     <% your_products.each do |product| %>
       <tr>
         <td><%= link_to product.name, product %></td>
-        <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
         <td><%= @order_item.quantity %></td>
         <td><%= number_to_currency(product.price/100) %></td>
         <% subtotal += product.price * @order_item.quantity %>
