@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :retire, :unretire]
+  before_action :set_product, except: [:create, :new]
 
   def index
     @products = Product.filter(params[:category_ids],params[:seller_ids],params[:search_product])
@@ -76,7 +76,7 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
-private
+private    
 
   def set_product
     @product=Product.find(params[:id])

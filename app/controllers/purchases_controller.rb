@@ -28,18 +28,6 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
   end
 
-  def check_billing
-    if params[:purchase][:same_address]
-       params[:purchase][:billing_first]    = params[:purchase][:first_name]
-       params[:purchase][:billing_last]     = params[:purchase][:last_name]
-       params[:purchase][:billing_address1] = params[:purchase][:address1]
-       params[:purchase][:billing_address2] = params[:purchase][:address2]
-       params[:purchase][:billing_city]     = params[:purchase][:city]
-       params[:purchase][:billing_state]    = params[:purchase][:state]
-       params[:purchase][:billing_zip]      = params[:purchase][:zip]
-    end
-  end
-
   def show
     set_purchase
   end
@@ -54,6 +42,7 @@ class PurchasesController < ApplicationController
   end
 
   private
+
   def set_purchase
     @purchase = Purchase.find(params[:id])
   end

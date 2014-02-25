@@ -1,19 +1,11 @@
 require 'spec_helper'
 
 describe ReviewsController do
-  describe "GET 'new'" do
+  describe "POST 'create'" do
 
     it "is successful" do
-      get :new
-      response.should be_successful
-    end
-  end
-
-  describe "POST 'new'" do
-
-    it "is successful" do
-      post :new
-      response.should be_successful
+      post :create
+      expect(response).to be_successful
     end
 
     it "renders the new review template" do
