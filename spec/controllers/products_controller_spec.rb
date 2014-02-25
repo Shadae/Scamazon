@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe ProductsController do
 
-  let(:product1) { Product.create!(name: "apples", 
+  let!(:product1) { Product.create(name: "apples",
                                    description: "delicious",
-                                   price: "100") }
-  let(:product2) { Product.create!(name: "bananas", 
+                                   price: "100",
+                                   stock: 20) }
+  let!(:product2) { Product.create(name: "bananas", 
                                    description: "yummy",
-                                   price: "200") }
+                                   price: "200",
+                                   stock: 4) }
 
   describe "GET 'index'" do
 
@@ -48,14 +50,16 @@ describe ProductsController do
     it "should create new product" do
       post 'create', {product: {name: "carrot",
                                 description: "crunchy",
-                                price: 100}}
+                                price: 100,
+                                stock: 4}}
       expect(response).to be_redirect
     end
 
   it "should create new product" do
       expect {post 'create', {product: {name: nil,
                                 description: "crunchy",
-                                price: 100}}}.not_to change(Product, :count).by(1)
+                                price: 100,
+                                stock, 4}}}.not_to change(Product, :count).by(1)
     end
 
   
