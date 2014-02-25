@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 1.2'
 
 group :test do
   gem 'simplecov', require: false
+  gem 'factory_girl_rails'
 end
 
 group :development, :test do

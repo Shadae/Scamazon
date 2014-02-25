@@ -60,6 +60,11 @@ GEM
     erubis (2.7.0)
     excon (0.31.0)
     execjs (2.0.2)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.0)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
     ffi (1.9.3)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -208,6 +213,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   debugger
+  factory_girl_rails
   figaro
   fog
   guard-rspec

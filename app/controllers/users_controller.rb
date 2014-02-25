@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user, except: [:show, :edit, :update, :destroy]
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def new

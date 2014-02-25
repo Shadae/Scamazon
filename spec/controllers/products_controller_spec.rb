@@ -5,40 +5,11 @@ describe ProductsController do
   let!(:product1) { Product.create(name: "apples",
                                    description: "delicious",
                                    price: "100",
-                                   stock: 20) }
-  let!(:product2) { Product.create(name: "bananas", 
+                                   stock: 7) }
+  let(:product2) { Product.create!(name: "bananas", 
                                    description: "yummy",
                                    price: "200",
                                    stock: 4) }
-
-  describe "GET 'index'" do
-
-    it "is successful" do
-      get :index
-      expect(response).to be_successful
-    end
-
-    it "renders the index template" do
-      get :index
-      expect(response).to render_template("index")
-    end
-
-    it "loads all the products" do
-
-        get :index
-        expect(assigns(:products)).to match_array([product1, product2])
-    end
-  
-  end
-
-  describe "POST 'index'" do
-    
-    it "is successful" do
-      post :index
-      expect(response).to be_successful
-    end
-  
-  end
 
   describe "create new page" do
 
@@ -46,26 +17,7 @@ describe ProductsController do
       get :new
       expect(response).to be_successful
     end
-
-    it "should create new product" do
-      post 'create', {product: {name: "carrot",
-                                description: "crunchy",
-                                price: 100,
-                                stock: 4}}
-      expect(response).to be_redirect
-    end
-
-  it "should create new product" do
-      expect {post 'create', {product: {name: nil,
-                                description: "crunchy",
-                                price: 100,
-                                stock, 4}}}.not_to change(Product, :count).by(1)
-    end
-
-  
   end
-
-
 
   describe "show page" do
     render_views 
@@ -108,10 +60,5 @@ describe ProductsController do
       request
       expect(response.body).to include("Cart")
     end
-    
   end
-
-
-
-  
 end
