@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user_id = @current_user.id
     params[:order][:products].each do |product_id|
-      next if product_id.to_i == 0
-      product = Product.find(product_id.to_i)
+      next if product_id == 0
+      product = Product.find(product_id)
       @order.products << product
     end
     @order.save
