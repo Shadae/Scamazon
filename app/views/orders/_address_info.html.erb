@@ -1,0 +1,46 @@
+<table>
+  <tr>
+    <th> Your shipping information:</th>
+    <th> Your billing information:</th>
+  </tr>
+  <tr>
+    <td>
+      <%= @address_info.first_name %> <%= @address_info.last_name %>
+    </td>
+    <td>
+      <%= @address_info.billing_first %> <%= @address_info.billing_last %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= @address_info.address1 %>
+    </td>
+    <td>
+      <%= @address_info.billing_address1 %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= @address_info.address2 %>
+    </td>
+    <td>
+      <%= @address_info.billing_address2 %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= @address_info.city %>
+    </td>
+    <td>
+      <%= @address_info.billing_city %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= @address_info.zip %>
+    </td>
+    <td>
+      <%= @address_info.billing_zip %>
+    </td>
+  </tr>
+</table>

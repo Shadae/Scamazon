@@ -1,69 +1,25 @@
 Please review your order carefully before hitting the submit button!<br>
+<%= render 'address_info' %>
 
-<% @shipping_estimate.each do |shipping_response| %>
+<% @shipping_info.each do |shipping_response| %>
   Product: <%= shipping_response[0].name %> 
           <%= price_format(shipping_response[0].price) %> <br>
     Shipping Estimate:<br>
-  <% shipping_response[1].each do |estimate| %>
-    Type of shipping: 
-    <%= estimate[0] %> 
-    Price: $<%= price_format(estimate[1]) %>  Delivery Range: 
-    <%= Date.parse(estimate[2]).strftime('%A, %b %d') unless estimate[2].nil? %>
-    <br>
+  <%= shipping_response[1][0][0] %>
+    Price: <%= price_format(shipping_response[1][0][1]) %>  Delivery Range:
+    <% if shipping_response[1][0][2] %>
+      <%= (Date.parse(shipping_response[1][0][2]).strftime('%A, %b %d')) %>
+    <% else %>
+       Not available
     <% end %>
+      <br>
+    <%= shipping_response[2][0][0] %>
+    Price: <%= price_format(shipping_response[2][0][1]) %>  Delivery Range: 
+    <% if shipping_response[1][0][2] %>
+      <%= (Date.parse(shipping_response[1][0][2]).strftime('%A, %b %d')) %>
+    <% else %>
+       Not available
+    <% end %>
+    <br>
   <% end %>
-
-<table>
-  <tr>
-    <th> Your shipping information:</th>
-    <th> Your billing information:</th>
-  </tr>
-  <tr>
-    <td>
-      <%= @address_info.first_name %>
-    </td>
-    <td>
-      <%= @address_info.billing_first %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= @address_info.last_name %>
-    </td>
-    <td>
-      <%= @address_info.billing_last %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= @address_info.address1 %>
-    </td>
-    <td>
-      <%= @address_info.billing_address1 %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= @address_info.address2 %>
-    </td>
-    <td>
-      <%= @address_info.billing_address2 %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= @address_info.city %>
-    </td>
-    <td>
-      <%= @address_info.billing_city %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= @address_info.zip %>
-    </td>
-    <td>
-      <%= @address_info.billing_zip %>
-    </td>
-  </tr>
-</table>
+  <br><br>

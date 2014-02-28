@@ -87,7 +87,8 @@ class OrdersController < ApplicationController
 
   def review_order
     @address_info = Purchase.find(params[:purchase_id])
-    @shipping_estimate = Order.get_shipping_estimate(Order.find(params[:id]), params[:purchase_id])
+    @shipping_info = Order.get_shipping_estimate(Order.find(params[:id]),
+                                                params[:purchase_id])
   end
 
   def mark_as_shipped
