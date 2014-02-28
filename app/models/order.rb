@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
   def check_order_quantities
     none_over = true  
     self.products.each do |product|
-      set_order_item(product.id)
+      @order_item = set_order_item(product.id)
       if product.stock < @order_item.quantity
         none_over = false
       end
@@ -58,6 +58,16 @@ class Order < ActiveRecord::Base
     end
     merchant_orders = merchant_orders.uniq
     merchant_orders
+  end
+
+  def self.get_shipping_estimate(order)
+    @response = []
+    order.products.each do |product|
+      options = { origin: {country:  'US', state:  'CA', city:  'Beverly Hills', zip:  '90210'}, destination: {country: 'US', state: 'WA', city:  'Seattle', zip:  '98122' }, package: { weight: 100, dimensions: [5, 7, 6] } } 
+      @response << HTTParty.post('http://localhost:4000/request.json', body: options.to_json, headers: {'Content-Type' => 'application/json'})
+    end      
+    @response
+    # HTTParty.post('http://shipalot.herokuapp.com/request.json', body: options.to_json, headers: {'Content-Type' => 'application/json'})
   end
 
   private

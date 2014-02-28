@@ -32,6 +32,13 @@ class Product < ActiveRecord::Base
   #   includes(:categories).where(query_string)
   # end
 
+  def change_package_info_to_floats_and_int
+    self.update(weight: self.weight.to_i, 
+                height: self.height.to_f,
+                length: self.length.to_f,
+                depth: self.length.to_f)
+  end
+
   def self.filter(category=nil,seller=nil,search=nil)
     @filter = [category,seller,search].flatten
     if category && seller

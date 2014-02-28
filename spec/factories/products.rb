@@ -6,14 +6,12 @@ FactoryGirl.define do
     retired false
     stock 100
     user
-    weight 4.4
+    weight 4
     length 1
     depth 4
     height 2
   end 
-end
 
-FactoryGirl.define do
   factory :product1, class: Product do
     name 'product1'
     description 'description'
@@ -21,7 +19,7 @@ FactoryGirl.define do
     retired false
     stock 100
     user
-    weight 4.4
+    weight 4
     length 1
     depth 4
     height 2

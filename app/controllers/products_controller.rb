@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: [:create, :new]
+  before_action :set_product, except: [:create, :new, :index]
 
   def index
     @products = Product.filter(params[:category_ids],
@@ -34,6 +34,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to @product, notice: "Your product has been successfully saved!"
     else
+      @category = Category.new
       render :new
     end
   end
@@ -85,7 +86,16 @@ private
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :image, :stock, :categories=>{})
+    params.require(:product).permit(:name,
+                                    :description,
+                                    :price,
+                                    :image,
+                                    :stock,
+                                    :weight,
+                                    :height,
+                                    :depth,
+                                    :length,
+                                    :categories=>{})
   end
   
 end

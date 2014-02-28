@@ -12,32 +12,33 @@ Scamazon::Application.routes.draw do
   resources :categories
 
 
-  get  'cart'                         => 'orders#cart'
-  get  'fulfillment'                  => 'orders#fulfillment'
-  get  'shipped'                      => 'orders#shipped'
-  get  'paid'                         => 'orders#paid'
-  get  'pending'                      => 'orders#pending'
-  get  'products/category'            => 'products#category'
-  post 'products/category'            => 'products#category'
-  post 'purchases/new'                => 'purchases#new'
-  post 'purchases/create'             => 'purchases#create'
-  post 'purchases/confirmation'       => 'purchases#confirmation'
-  post 'orders/add'                   => 'orders#add'
-  post 'orders/add_one_product'       => 'orders#add_one_product'
-  post 'orders/subtract_one_product'  => 'orders#subtract_one_product'
-  post 'orders/remove_product'        => 'orders#remove_product'
-  post 'orders/check_order_quantities'=> 'orders#check_order_quantities'
-  post 'orders/mark_as_shipped'       => 'orders#mark_as_shipped'
-  # post 'sessions/sign_out'          => 'sessions#destroy'
-  delete 'sessions'                   => 'sessions#destroy' 
-  post 'products/:id'                 => 'products#retire', as: :retired
-  post 'products/retire/:id'          => 'products#unretire', as: :unretired
-  get 'profile'                       => 'users#show'
+  get  'cart',                            to: 'orders#cart'
+  get  'fulfillment',                     to: 'orders#fulfillment'
+  get  'shipped',                         to: 'orders#shipped'
+  get  'paid',                            to: 'orders#paid'
+  get  'pending',                         to: 'orders#pending'
+  get  'products/category',               to: 'products#category'
+  post 'products/category',               to: 'products#category'
+  post 'purchases/new',                   to: 'purchases#new'
+  post 'purchases/create',                to: 'purchases#create'
+  post 'purchases/confirmation',          to: 'purchases#confirmation'
+  post 'orders/add',                      to: 'orders#add'
+  post 'orders/add_one_product',          to: 'orders#add_one_product'
+  post 'orders/subtract_one_product',     to: 'orders#subtract_one_product'
+  post 'orders/remove_product',           to: 'orders#remove_product'
+  post 'orders/check_order_quantities',   to: 'orders#check_order_quantities'
+  post 'orders/mark_as_shipped',          to: 'orders#mark_as_shipped'
+  # post 'sessions/sign_out',             to: 'sessions#destroy'
+  delete 'sessions',                      to: 'sessions#destroy' 
+  post 'products/:id',                    to: 'products#retire', as: :retired
+  post 'products/retire/:id',             to: 'products#unretire', as: :unretired
+  get 'profile',                          to: 'users#show'
+  get '/orders/:pur_id/:id',              to: 'orders#review_order', as: :review_order
 
   root 'welcome#index'
-  get "/faq"                          => 'static_pages#faq'
-  get "/about_us"                     => 'static_pages#about_us'
-  get "/return_policy"                => 'static_pages#return_policy'
+  get "/faq",                             to: 'static_pages#faq'
+  get "/about_us",                        to: 'static_pages#about_us'
+  get "/return_policy",                   to: 'static_pages#return_policy'
      
 
   

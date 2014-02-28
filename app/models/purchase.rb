@@ -18,7 +18,7 @@ class Purchase < ActiveRecord::Base
   validates :billing_city, presence: true
   validates :state, presence: true
   validates :billing_state, presence: true
-  validates :expiration_date, presence: true, format: {with: /[1-12]\/[1-31]/}
+  validates :expiration_date, presence: true
 
   def check_billing
     if self.same_address?

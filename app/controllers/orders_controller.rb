@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product]
+  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product, :review]
 
   def create
     @order = Order.new(order_params)
@@ -66,6 +66,7 @@ class OrdersController < ApplicationController
 
   def check_order_quantities
     if @order.check_order_quantities
+      @purchase = Purchase.new 
       render '/purchases/new', order_id: @order.id
     else
       redirect_to '/cart', notice: 'We do not have enough products to fulfill that order'
@@ -82,6 +83,11 @@ class OrdersController < ApplicationController
   end
 
   def pending
+  end
+
+  def review_order
+    @shipping_estimate = Order.get_shipping_estimate(Order.find(params[:id]))
+    @user = current_user if @current_user
   end
 
   def mark_as_shipped

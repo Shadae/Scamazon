@@ -11,7 +11,7 @@
 
   <% subtotal = 0 %>
   <% your_products = [] %>
-  <% if @order.user_id == @current_user.id %>
+  <% if @order.user_id = session[:order_id] || @order.user_id == @current_user.id %>
     <% @order.products.each { |product| your_products << product } %>
   <% else %>
     <% @order.products.each do |product| %>

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Product do
 
   describe "validations" do 
-
     let(:product) { create(:product) }
     let(:product1) { create(:product1) }
 
@@ -78,5 +77,14 @@ describe Product do
       product.save
       expect(product).to be_invalid
     end
+  end
+
+  describe 'methods' do
+
+    # describe 'change_package_info_to_floats' do
+    #   let(:product) { create(:product) }
+      
+    #   expect(product.weight).to eq 5
+    # end
   end
 end

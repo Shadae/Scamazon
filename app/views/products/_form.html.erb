@@ -35,11 +35,33 @@
 </div>
 
 <div class="space">
+  What's the weight of the product?<br>
+  <%= f.number_field :weight %> 
+</div>
+
+<div class="space">
+  What's the height of the product?<br>
+  <%= f.number_field :height %> 
+</div>
+
+<div class="space">
+  What's the lenth of the product?<br>
+  <%= f.number_field :length %> 
+</div>
+
+<div class="space">
+  What's the depth of the product?<br>
+  <%= f.number_field :depth %> 
+</div>
+
+
+<div class="space">
   <%= f.label :image, "Upload local file:" %><br />
   <%= f.file_field :image %>
   <%= f.hidden_field :image_cache %>
 </div>
-
+<div class='space'>
   <%= f.submit 'submit'%>
     <% end %>
+</div>
   </div>

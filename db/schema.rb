@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140226180451) do
     t.string   "image"
     t.integer  "stock"
     t.integer  "user_id"
-    t.float    "weight"
+    t.integer  "weight"
     t.integer  "height"
     t.integer  "length"
     t.integer  "depth"
