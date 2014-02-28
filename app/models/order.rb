@@ -60,17 +60,23 @@ class Order < ActiveRecord::Base
     merchant_orders
   end
 
-  def self.get_shipping_estimate(order)
+  def self.get_shipping_estimate(order,purchase_id)
     @response = []
-    order.products.each do |product|
-      options = { origin: {country:  'US', state:  'CA', city:  'Beverly Hills', zip:  '90210'}, destination: {country: 'US', state: 'WA', city:  'Seattle', zip:  '98122' }, package: { weight: 100, dimensions: [5, 7, 6] } } 
-      @response << HTTParty.post('http://localhost:4000/request.json', body: options.to_json, headers: {'Content-Type' => 'application/json'})
+    @address = set_address(purchase_id)
+    order.products.order('name ASC').each do |product|
+      options = { origin: {country:  'US', state:  'WA', city:  'Seattle', zip:  '98101'}, destination: {country: 'US', state: @address.state, city:  @address.city, zip:  @address.zip }, package: { weight: product.weight, dimensions: [product.height, product.length, product.depth] } } 
+      @response << [product, HTTParty.post('http://localhost:4000/request.json', body: options.to_json, headers: {'Content-Type' => 'application/json'})]
     end      
     @response
     # HTTParty.post('http://shipalot.herokuapp.com/request.json', body: options.to_json, headers: {'Content-Type' => 'application/json'})
   end
 
   private
+
+  def self.set_address(purchase_id)
+    Purchase.find(purchase_id)
+  end
+
 
   def set_product(id)
     Product.find(id)

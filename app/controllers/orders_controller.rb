@@ -86,8 +86,8 @@ class OrdersController < ApplicationController
   end
 
   def review_order
-    @shipping_estimate = Order.get_shipping_estimate(Order.find(params[:id]))
-    @user = current_user if @current_user
+    @address_info = Purchase.find(params[:purchase_id])
+    @shipping_estimate = Order.get_shipping_estimate(Order.find(params[:id]), params[:purchase_id])
   end
 
   def mark_as_shipped

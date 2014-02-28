@@ -33,7 +33,7 @@ Scamazon::Application.routes.draw do
   post 'products/:id',                    to: 'products#retire', as: :retired
   post 'products/retire/:id',             to: 'products#unretire', as: :unretired
   get 'profile',                          to: 'users#show'
-  get '/orders/:pur_id/:id',              to: 'orders#review_order', as: :review_order
+  get '/orders/:purchase_id/:id',         to: 'orders#review_order', as: :review_order
 
   root 'welcome#index'
   get "/faq",                             to: 'static_pages#faq'
