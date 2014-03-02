@@ -10,7 +10,7 @@ describe UsersController do
   end
 
   it "should create user" do
-    post 'create', {user: {email: "email",
+    post 'create', {user: {email: "email@email.com",
                            user_name: "username",
                            password: "password", 
                            password_confirmation: "password"} }

@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       if params[:category][:product_id].present?
-        @product=Product.find(params[:category][:product_id])
+        @product = Product.find(params[:category][:product_id])
         redirect_to edit_product_path(params[:category][:product_id]), notice: "You have successfully added a category."
       else
         redirect_to new_product_path, notice: "You have successfully added a category"

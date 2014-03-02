@@ -10,11 +10,14 @@ describe SessionsController do
   end
 
   describe "create" do
+    let!(:user){ create(:user) }
 
     it "is successful" do
-      post 'create', {user: {email: "email", 
-                             password_digest: "password"}}
+      post :create, {email: user.email, 
+                     password: 'password'}
       expect(response).to be_redirect
     end
   end
 end
+
+
