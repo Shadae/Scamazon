@@ -11,7 +11,7 @@
 
   <% subtotal = 0 %>
   <% your_products = [] %>
-  <% if @order.user_id == @current_user.id %>
+  <% if @order.user_id = session[:order_id] || @order.user_id == @current_user.id %>
     <% @order.products.each { |product| your_products << product } %>
   <% else %>
     <% @order.products.each do |product| %>
@@ -38,28 +38,11 @@
   <h3>Order status: <%= @order.status %></h3>
 
   <% if @order.status != 'pending' %>
-    <% @purchase = Purchase.find(@order.purchase_id) %>
-    <h3>Order was placed on <%= @purchase.updated_at %></h3>
+    <% @address_info = Purchase.find(@order.purchase_id) %>
+    <h3>Order was placed on <%= @address_info.updated_at %></h3>
 
 
-    <p>Shipping Name:  
-      <%= @purchase.first_name + ' ' + @purchase.last_name%></p>
-
-    <p>Email Address: 
-      <%= @purchase.email_address %></p>
-
-    <p>Shipping Address: <br>
-      <%= @purchase.address1%> 
-      <%= @purchase.address2 %><br>
-      <%= @purchase.city %>, 
-      <%= @purchase.state %> 
-      <%= @purchase.zip %></p>
-
-    <p>Billing Information: <br> 
-      **** - **** - **** -
-      <%=@purchase.credit_card_number[-4, 4]%><br>
-      CVV: <%=@purchase.cvv%><br>
-      Expires: <%=@purchase.expiration_date[0]%><%=@purchase.expiration_date[1]%>/<%=@purchase.expiration_date[2]%><%=@purchase.expiration_date[3]%></p>
+    <%= render 'address_info' %>
   <% end %>
 
 <% end %>

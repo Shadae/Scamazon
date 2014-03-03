@@ -1,19 +1,20 @@
 class PurchasesController < ApplicationController
-  before_action :check_billing, :only =>[:create]
+  # before_action :check_billing, :only =>[:create]
 
   def create
     @purchase = Purchase.new(purchase_params)
     if @purchase.save
-      @order = Order.find_by(status: 'pending')
-      @purchase[:order_id] = @order.id
-      @purchase[:user_id] = @current_user.id
-      @purchase.save
-      Order.update(@order.id, :purchase_id => @purchase.id, :status => 'paid')
+      @purchase.update(user_id: current_user.id) if current_user
+      redirect_to review_order_path(@purchase.id,params[:order_id])
+    else
+      render :new
+    end
+  end
+
+  def complete_order
+    Order.update(@order.id, :purchase_id => @purchase.id, :status => 'paid')
       reduce_stock
       redirect_to purchase_path(@purchase), notice: 'Transaction has been completed', id: @order.id 
-    else
-      render :show
-    end
   end
 
   def new
@@ -26,10 +27,6 @@ class PurchasesController < ApplicationController
 
   def checkpurchase
     @purchase = Purchase.new
-  end
-
-  def show
-    set_purchase
   end
 
   def destroy

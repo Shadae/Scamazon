@@ -8,6 +8,8 @@ gem 'carrierwave'
 gem 'fog'
 gem 'figaro'
 
+gem 'httparty'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -38,6 +40,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'sqlite3'
   gem 'guard-rspec', require: false
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :production do

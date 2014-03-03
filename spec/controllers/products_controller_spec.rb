@@ -2,14 +2,8 @@ require 'spec_helper'
 
 describe ProductsController do
 
-  let(:product1) { Product.create!(name: "apples", 
-                                   description: "delicious",
-                                   price: "100",
-                                   stock: 7) }
-  let(:product2) { Product.create!(name: "bananas", 
-                                   description: "yummy",
-                                   price: "200",
-                                   stock: 4) }
+  let!(:product1) { create(:product) }
+  let(:product2) { create(:product1) }
 
   describe "create new page" do
 
@@ -60,10 +54,5 @@ describe ProductsController do
       request
       expect(response.body).to include("Cart")
     end
-    
   end
-
-
-
-  
 end
