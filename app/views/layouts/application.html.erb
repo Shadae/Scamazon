@@ -5,6 +5,7 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   </head>
 
   <body>
@@ -19,7 +20,7 @@
           <%= link_to "Sign Up", :controller => "users", :action => "new" %>
           <%= link_to "Log In", :controller => "sessions", :action => "new" %>
         <% end %>
-        <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %><a href='#' onclick='overlay()'>Cart</a>
+        <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!")) %><a href='#' id="cart">Cart</a>
       </div>
     </div>
 
@@ -51,11 +52,6 @@
       </ul>
     </div>
 
-    <div id="overlay">
-     <div>
-        <p>Content you want the user to see goes here.</p>
-     </div>
-    </div>
 
   </body>
 </html>
