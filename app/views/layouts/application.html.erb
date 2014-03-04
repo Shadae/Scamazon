@@ -19,7 +19,7 @@
           <%= link_to "Sign Up", :controller => "users", :action => "new" %>
           <%= link_to "Log In", :controller => "sessions", :action => "new" %>
         <% end %>
-        <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %>
+        <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %><a href='#' onclick='overlay()'>Cart</a>
       </div>
     </div>
 
@@ -50,5 +50,14 @@
         <li><a href='http://amigoingtodie.org/'>Am I Going To Die?</a></li>
       </ul>
     </div>
+
+    <div id="overlay">
+     <div>
+        <p>Content you want the user to see goes here.</p>
+     </div>
+    </div>
+
   </body>
 </html>
+
+
