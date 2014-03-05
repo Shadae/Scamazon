@@ -4,14 +4,9 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :purchase
 
-  def add_quantity(amount, product_id)
-    @order_item = set_order_item(product_id)
-    @order_item.add(amount)
-    @order_item
-  end
 
   def check_order_quantities
-    none_over = true  
+    none_over = true
     self.products.each do |product|
       @order_item = set_order_item(product.id)
       if product.stock < @order_item.quantity
@@ -69,11 +64,11 @@ class Order < ActiveRecord::Base
     @response = []
     set_options_hash(purchase_id)
     order.products.order('name ASC').uniq.each do |product|
-      @options[:package] = { weight: product.weight, dimensions: [product.height, product.length, product.depth] } 
+      @options[:package] = { weight: product.weight, dimensions: [product.height, product.length, product.depth] }
       @response << [product,
                     HTTParty.post("http://localhost:4000/ups.json", body: @options.to_json, headers: {'Content-Type' => 'application/json'}),
                     HTTParty.post("http://localhost:4000/fedex.json", body: @options.to_json, headers: {'Content-Type' => 'application/json'})]
-    end 
+    end
     @response
   end
 

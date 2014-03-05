@@ -9,36 +9,53 @@
     <tr>
       <th scope="item">Item</th>
       <th scope="qty">Quantity</th>
-      <th></th>
-      <th></th>
       <th scope="price">Price</th>
       <th scope="sub">Subtotal</th>
+      <th> Remove? </th>
     </tr>
   </thead>
 
   <% subtotal = 0 %>
   <tbody>
-    <%@order.products.each do |product| %>
+    <% @order.order_items.each do |order_item| %>
       <tr>
-        <td><%= image_tag(product.image_url, width: 30, height: 30) if product.image.present? %>
-          <%= link_to product.name, product %></td>
-        <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
-        <td><%= form_for @order, :url => {:controller => 'orders', :action => 'update_quantity'} do |f| %>
-              <div class="field">
-                <%= f.hidden_field :product_id, :value => product.id %>
-                <%= f.number_field :quantity, :value => @order_item.quantity %>
-                <%= submit_tag "Update" %>
-              </div>
-            <% end %>
+        <td>
+          <%= image_tag(order_item.product.image_url, width: 30, height: 30) if order_item.product.image.present? %>
+          <%= link_to order_item.product.name, order_item.product %>
+        </td>
+
+        <td>
+          <%= form_for order_item, :url => {:controller => 'orders', :action => 'update'} do |f| %>
+            <div class="field">
+              <%= f.hidden_field :order_item_id, :value => order_item.id %>
+              <%= f.number_field :quantity, :value => order_item.quantity %>
+              <%= submit_tag "Update" %>
+            </div>
+          <% end %>
+        </td>
 
 
-        <td><%= price_format(product.price) %></td>
-        <% subtotal += product.price * @order_item.quantity %>
-        <td><%= price_format(subtotal) %></td>
-      </tr>
+        <td>
+          <%= price_format(order_item.product.price) %>
+        </td>
+
+        <% subtotal += order_item.product.price * order_item.quantity %>
+        <td>
+          <%= price_format(subtotal) %>
+        </td>
+
+        <td>
+          <%= link_to 'Remove', confirm: 'Are you sure?', :url => {:controller => 'orders', :action => 'remove_item'}  %>
+        </td>
+
+    </tr>
     <% end %>
   </tbody>
-</table>s
+</table>
+
+
+
+
 
 <h3>Your total: <%= price_format(subtotal) %></h3>
 <div class = 'checkout'>

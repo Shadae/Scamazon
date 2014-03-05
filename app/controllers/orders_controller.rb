@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product, :review]
+  before_action :find_pending_order, only: [:add, :remove_product, :cart, :update, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product, :review]
 
   def create
     @order = Order.new(order_params)
@@ -30,9 +30,24 @@ class OrdersController < ApplicationController
   end
 
 
-  def update_quantity
-    @order.add_quantity(params[:quantity], params[:product_id])
-    if @order.save
+  def update
+    order_item = OrderItem.find(params[:order_item][:order_item_id])
+    order_item.update(quantity: params[:order_item][:quantity])
+
+    if order_item.save
+
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.json { render json: order_item.as_json }
+      end
+    else
+      render :back
+    end
+  end
+
+  def remove_item
+    @order.order_item.delete
+      if @order.save
 
       respond_to do |format|
         format.html { redirect_to :back }

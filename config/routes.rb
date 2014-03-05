@@ -22,12 +22,12 @@ Scamazon::Application.routes.draw do
   post 'purchases/new',                   to: 'purchases#new'
   post 'purchases/create',                to: 'purchases#create'
   post 'purchases/confirmation',          to: 'purchases#confirmation'
-  post 'orders/update_quantity',          to: 'orders#update_quantity'
+  post 'orders/update',                   to: 'orders#update'
   post 'orders/add',                      to: 'orders#add'
-
   post 'orders/remove_product',           to: 'orders#remove_product'
   post 'orders/check_order_quantities',   to: 'orders#check_order_quantities'
   post 'orders/mark_as_shipped',          to: 'orders#mark_as_shipped'
+
   # post 'sessions/sign_out',             to: 'sessions#destroy'
   delete 'sessions',                      to: 'sessions#destroy'
   post 'products/:id',                    to: 'products#retire', as: :retired
