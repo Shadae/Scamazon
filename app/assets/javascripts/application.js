@@ -23,7 +23,7 @@ var modal = (function(){
         $content,
         $close;
 
-        // Center the modal in the viewport
+        // Center the modal in the view
         method.center = function () {
           var top, left;
 
@@ -84,12 +84,14 @@ var modal = (function(){
       // Wait until the DOM has loaded before querying the document
       $(document).ready(function(){
 
-        $.get('ajax.html', function(data){
+        $('a#cart').click(function(e){
+
+          $.get('/cart', function(data){
+
           modal.open({content: data});
         });
-
-        $('a#cart').click(function(e){
-          modal.open({content: "cart shit here"});
           e.preventDefault();
         });
       });
+
+

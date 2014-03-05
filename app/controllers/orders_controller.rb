@@ -22,6 +22,10 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
+  def cart
+    render partial: 'cart'
+  end
+
   def show
     set_order
   end
@@ -66,14 +70,14 @@ class OrdersController < ApplicationController
 
   def check_order_quantities
     if @order.check_order_quantities
-      @purchase = Purchase.new 
+      @purchase = Purchase.new
       render '/purchases/new', order_id: @order.id
     else
       redirect_to '/cart', notice: 'We do not have enough products to fulfill that order'
     end
   end
 
-  def fulfillment 
+  def fulfillment
   end
 
   def paid
