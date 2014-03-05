@@ -59,7 +59,7 @@ var modal = (function(){
           $(window).unbind('resize.modal');
         };
 
-        // Generate the HTML and add it to the document
+        // put stuff into modal
         $overlay = $('<div id="overlay"></div>');
         $modal = $('<div id="modal"></div>');
         $content = $('<div id="content"></div>');
@@ -81,7 +81,7 @@ var modal = (function(){
         return method;
       }());
 
-      // Wait until the DOM has loaded before querying the document
+      // Wait until the DOM loaded before grabbing the cart
       $(document).ready(function(){
 
         $('a#cart').click(function(e){
@@ -95,3 +95,8 @@ var modal = (function(){
       });
 
 
+$("#loading").ajaxStart(function(){
+    $(this).show();
+ }).ajaxStop(function(){
+    $(this).hide();
+ });

@@ -13,17 +13,13 @@ class OrdersController < ApplicationController
     redirect_to orders_path, notice: 'Item has been added to your cart'
   end
 
-  def new
-    @order = Order.new
-    @products = Product.all.collect { |p| [p.name, p.id] }
-  end
-
   def index
     redirect_to root_path
   end
 
   def cart
     render partial: 'cart'
+
   end
 
   def show
