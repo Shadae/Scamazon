@@ -23,26 +23,15 @@
         <td><%= image_tag(product.image_url, width: 30, height: 30) if product.image.present? %>
           <%= link_to product.name, product %></td>
         <% @order_item = OrderItem.where(product_id: product.id, order_id: @order.id)[0] %>
-        <td><%= @order_item.quantity %></td>
-        <td><%= form_tag('/orders/add_one_product') do %>
-              <%= hidden_field_tag :order_id, @order.id%>
-              <%= hidden_field_tag :product_id, product.id %>
-              <%= submit_tag '+' %>
-          <% end %></td>
+        <td><%= form_for @order, :url => {:controller => 'orders', :action => 'update_quantity'} do |f| %>
+              <div class="field">
+                <%= f.hidden_field :product_id, :value => product.id %>
+                <%= f.number_field :quantity, :value => @order_item.quantity %>
+                <%= submit_tag "Update" %>
+              </div>
+            <% end %>
 
-        <% if @order_item.quantity == 1 %>
-          <td><%= form_tag('/orders/remove_product') do %>
-                <%= hidden_field_tag :order_id, @order.id%>
-                <%= hidden_field_tag :product_id, product.id %>
-                <%= submit_tag '-', data: { confirm: 'This will remove the product from the order! Are you sure that you want to do that?'} %>
-            <% end %></td>
-        <% else %>
-          <td><%= form_tag('/orders/subtract_one_product') do %>
-                <%= hidden_field_tag :order_id, @order.id%>
-                <%= hidden_field_tag :product_id, product.id %>
-                <%= submit_tag '-', data: { confirm: 'Are you sure?'} %>
-            <% end %></td>
-        <% end %>
+
         <td><%= price_format(product.price) %></td>
         <% subtotal += product.price * @order_item.quantity %>
         <td><%= price_format(subtotal) %></td>

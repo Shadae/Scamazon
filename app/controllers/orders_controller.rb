@@ -29,17 +29,31 @@ class OrdersController < ApplicationController
     end
   end
 
-#this is the + button in the cart
-  def add_one_product
-    @order.add_quantity(1, params[:product_id].to_i)
-    redirect_to :back
+
+  def update_quantity
+    @order.add_quantity(params[:quantity], params[:product_id])
+    if @order.save
+
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.json { render json: @order.as_json }
+      end
+    else
+      render :back
+    end
   end
 
-#this is the - button in the cart
-  def subtract_one_product
-    @order.add_quantity(-1, params[:product_id].to_i)
-    redirect_to :back, id: @order.id
-  end
+# #this is the + button in the cart
+#   def add_one_product
+#     @order.add_quantity(1, params[:product_id].to_i)
+#     redirect_to :back
+#   end
+
+# #this is the - button in the cart
+#   def subtract_one_product
+#     @order.add_quantity(-1, params[:product_id].to_i)
+#     redirect_to :back, id: @order.id
+#   end
 
 #this is called when you reduce the quantity of an item to 0.
 #It destroys the associated OrderItem object.
