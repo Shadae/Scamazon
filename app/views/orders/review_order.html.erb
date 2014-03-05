@@ -1,25 +1,3 @@
 Please review your order carefully before hitting the submit button!<br>
 <%= render 'address_info' %>
-
-<% @shipping_info.each do |shipping_response| %>
-  Product: <%= shipping_response[0].name %> 
-          <%= price_format(shipping_response[0].price) %> <br>
-    Shipping Estimate:<br>
-  <%= shipping_response[1][0][0] %>
-    Price: <%= price_format(shipping_response[1][0][1]) %>  Delivery Range:
-    <% if shipping_response[1][0][2] %>
-      <%= (Date.parse(shipping_response[1][0][2]).strftime('%A, %b %d')) %>
-    <% else %>
-       Not available
-    <% end %>
-      <br>
-    <%= shipping_response[2][0][0] %>
-    Price: <%= price_format(shipping_response[2][0][1]) %>  Delivery Range: 
-    <% if shipping_response[1][0][2] %>
-      <%= (Date.parse(shipping_response[1][0][2]).strftime('%A, %b %d')) %>
-    <% else %>
-       Not available
-    <% end %>
-    <br>
-  <% end %>
-  <br><br>
+<%= render 'shipping' %>
