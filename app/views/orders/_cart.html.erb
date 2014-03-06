@@ -40,14 +40,18 @@
           <%= price_format(order_item.product.price) %>
         </td>
 
-        <% subtotal += order_item.product.price * order_item.quantity %>
+        <% subtotal = order_item.product.price * order_item.quantity %>
         <td>
           <%= price_format(subtotal) %>
         </td>
 
         <td>
-          <%= link_to 'Remove', confirm: 'Are you sure?', :url => {:controller => 'orders', :action => 'remove_item'}  %>
-        </td>
+            <%= form_for order_item, :url => { :action => "remove_item" }, :html => {:class => "delete-item"}, :method => "delete"  do |f| %>
+            <div class="field">
+              <%= f.hidden_field :order_item_id, :value => order_item.id %>
+              <%= f.submit "Remove", class: "delete-link" %>
+              <% end %>
+                 </td>
 
     </tr>
     <% end %>

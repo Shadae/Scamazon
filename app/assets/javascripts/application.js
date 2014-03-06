@@ -115,6 +115,42 @@ var modal = (function(){
       });
 
 
+      // $("body").on( "click", ".delete-link", function() {
+      //   var item = $(this).parents('tr');
+      //   $.ajax({
+      //     url: $(this).attr("href"),
+      //     type: 'DELETE',
+      //     dataType: 'json',
+      //   })
+      //   .done(function(){
+      //     item.remove();
+      //   })
+      //   .fail(function(){
+      //     alert("There was a problem removing the product");
+      //   });
+      //   e.preventDefault();
+      //   return false;
+      // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $("#loading").ajaxStart(function(){
     $(this).show();
  }).ajaxStop(function(){

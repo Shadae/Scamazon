@@ -2,16 +2,19 @@ Scamazon::Application.routes.draw do
 
   get  'cart',                            to: 'orders#cart'
   patch 'orders/update_quantity',         to: 'orders#update_quantity', as: :update_quantity
+  delete 'orders/remove_item',            to: 'orders#remove_item', as: :remove_item
+
   # #this is for entering data for your purchase
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
-  resources :orders, :users
+
   resources :reviews, except: [:show, :index, :edit, :new]
   resources :sessions
   resources :products
   resources :purchases
   resources :categories
-
+  resources :orders, except: [:show]
+  resources :users
 
 
   get  'fulfillment',                     to: 'orders#fulfillment'

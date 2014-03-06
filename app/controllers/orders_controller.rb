@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product, :review]
+  before_action :find_pending_order, only: [:add, :cart, :fulfillment, :check_order_quantities, :review]
 
 
 # stuff liz has written
@@ -25,18 +25,13 @@ class OrdersController < ApplicationController
 
   def remove_item
     order_item = OrderItem.find(params[:order_item][:order_item_id])
-    order_item.delete
-      if @order.save
+    order_item.destroy
 
-      respond_to do |format|
+    respond_to do |format|
         format.html { redirect_to :back }
-        format.json { render json: @order.as_json }
+        format.json { head :no_content }
       end
-    else
-      render :back
-    end
   end
-
 
 # end liz's stuff
 

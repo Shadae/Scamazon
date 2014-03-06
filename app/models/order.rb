@@ -4,6 +4,11 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :purchase
 
+  def add_quantity(amount, product_id)
+    @order_item = set_order_item(product_id)
+    @order_item.add(amount)
+    @order_item
+  end
 
   def check_order_quantities
     none_over = true
