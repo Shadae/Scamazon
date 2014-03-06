@@ -25,11 +25,11 @@
         </td>
 
         <td>
-          <%= form_for order_item, :url => {:controller => 'orders', :action => 'update'} do |f| %>
+          <%= form_for order_item, :url => {:controller => 'orders', :action => 'update'},  html: {:id => "quantity-form"} do |f| %>
             <div class="field">
               <%= f.hidden_field :order_item_id, :value => order_item.id %>
               <%= f.number_field :quantity, :value => order_item.quantity %>
-              <%= submit_tag "Update" %>
+              <%= f.submit "Update", class: "quantity-action" %>
             </div>
           <% end %>
         </td>

@@ -36,7 +36,7 @@ var modal = (function(){
           });
         };
 
-        // Open the modal
+        // open the modal
         method.open = function (settings) {
           $content.empty().append(settings.content);
 
@@ -51,7 +51,7 @@ var modal = (function(){
           $overlay.show();
         };
 
-        // Close the modal
+        // close
         method.close = function () {
           $modal.hide();
           $overlay.hide();
@@ -85,13 +85,36 @@ var modal = (function(){
       $(document).ready(function(){
 
         $('a#cart').click(function(e){
-
           $.get('/cart', function(data){
-
           modal.open({content: data});
-        });
+          });
           e.preventDefault();
         });
+
+// stuff for updating cart quantity
+
+        $("body").on("click", ".quantity-action", function() {
+    alert("it worked2")
+
+         $.ajax({
+           url: $(this).parents('#quantity-form').attr("action"),
+           type: 'PATCH',
+           dataType: 'json',
+           data: {
+             'order_item[quantity]': $('#order_item_order_item_id').value,
+             'order_item[order_item_id]': $('#order_item_quantity').value
+             },
+
+           success: function(data, textStatus, xhr) {
+             console.log("it worked")
+
+           },
+           error: function(xhr, textStatus, errorThrown) {
+             alert("There was a problem updating the quantity");
+           }
+         });
+         return false;
+         });
       });
 
 
@@ -100,3 +123,4 @@ $("#loading").ajaxStart(function(){
  }).ajaxStop(function(){
     $(this).hide();
  });
+
