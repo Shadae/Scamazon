@@ -1,36 +1,14 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :remove_product, :cart, :update, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product, :review]
+  before_action :find_pending_order, only: [:add, :remove_product, :cart, :fulfillment, :check_order_quantities, :add_one_product, :subtract_one_product, :review]
 
-  def create
-    @order = Order.new(order_params)
-    @order.user_id = @current_user.id
-    params[:order][:products].each do |product_id|
-      next if product_id == 0
-      product = Product.find(product_id)
-      @order.products << product
-    end
-    @order.save
-    redirect_to orders_path, notice: 'Item has been added to your cart'
-  end
+
+# stuff liz has written
 
   def cart
     render partial: 'cart'
   end
 
-  def show
-    set_order
-  end
-
-  def add
-    if @order.add(params[:quantity].to_i, params[:product_id].to_i)
-      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name.pluralize(params[:quantity])} have been added to your cart."
-    else
-      redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
-    end
-  end
-
-
-  def update
+  def update_quantity
     order_item = OrderItem.find(params[:order_item][:order_item_id])
     order_item.update(quantity: params[:order_item][:quantity])
 
@@ -46,7 +24,8 @@ class OrdersController < ApplicationController
   end
 
   def remove_item
-    @order.order_item.delete
+    order_item = OrderItem.find(params[:order_item][:order_item_id])
+    order_item.delete
       if @order.save
 
       respond_to do |format|
@@ -58,17 +37,43 @@ class OrdersController < ApplicationController
     end
   end
 
-# #this is the + button in the cart
-#   def add_one_product
-#     @order.add_quantity(1, params[:product_id].to_i)
-#     redirect_to :back
-#   end
 
-# #this is the - button in the cart
-#   def subtract_one_product
-#     @order.add_quantity(-1, params[:product_id].to_i)
-#     redirect_to :back, id: @order.id
-#   end
+# end liz's stuff
+
+
+
+
+
+
+
+
+
+  def create
+    @order = Order.new(order_params)
+    @order.user_id = @current_user.id
+    params[:order][:products].each do |product_id|
+      next if product_id == 0
+      product = Product.find(product_id)
+      @order.products << product
+    end
+    @order.save
+    redirect_to orders_path, notice: 'Item has been added to your cart'
+  end
+
+
+
+  def show
+    set_order
+  end
+
+  def add
+    if @order.add(params[:quantity].to_i, params[:product_id].to_i)
+      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name.pluralize(params[:quantity])} have been added to your cart."
+    else
+      redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
+    end
+  end
+
 
 #this is called when you reduce the quantity of an item to 0.
 #It destroys the associated OrderItem object.
@@ -147,7 +152,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def order_params
-    params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :order_id, :products => {})
-  end
+  # def order_params
+  #   params.require(:order).permit(:status, :user_id, :session_id, :shipping_code, :purchase_id, :order_id, :products => {})
+  # end
 end

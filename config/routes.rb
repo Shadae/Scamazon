@@ -1,6 +1,7 @@
 Scamazon::Application.routes.draw do
 
-
+  get  'cart',                            to: 'orders#cart'
+  patch 'orders/update_quantity',         to: 'orders#update_quantity', as: :update_quantity
   # #this is for entering data for your purchase
   # get 'purchases/new' => 'purchases#new'
   # #this is where you review your page before you finalize the purchase
@@ -12,7 +13,7 @@ Scamazon::Application.routes.draw do
   resources :categories
 
 
-  get  'cart',                            to: 'orders#cart'
+
   get  'fulfillment',                     to: 'orders#fulfillment'
   get  'shipped',                         to: 'orders#shipped'
   get  'paid',                            to: 'orders#paid'
@@ -22,7 +23,6 @@ Scamazon::Application.routes.draw do
   post 'purchases/new',                   to: 'purchases#new'
   post 'purchases/create',                to: 'purchases#create'
   post 'purchases/confirmation',          to: 'purchases#confirmation'
-  post 'orders/update',                   to: 'orders#update'
   post 'orders/add',                      to: 'orders#add'
   post 'orders/remove_product',           to: 'orders#remove_product'
   post 'orders/check_order_quantities',   to: 'orders#check_order_quantities'

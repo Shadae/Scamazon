@@ -94,16 +94,13 @@ var modal = (function(){
 // stuff for updating cart quantity
 
         $("body").on("click", ".quantity-action", function() {
-    alert("it worked2")
+          var form = $(this).parents('.quantity-form')
 
          $.ajax({
-           url: $(this).parents('#quantity-form').attr("action"),
+           url: form.attr("action"),
            type: 'PATCH',
            dataType: 'json',
-           data: {
-             'order_item[quantity]': $('#order_item_order_item_id').value,
-             'order_item[order_item_id]': $('#order_item_quantity').value
-             },
+           data: form.serialize(),
 
            success: function(data, textStatus, xhr) {
              console.log("it worked")
