@@ -1,7 +1,8 @@
+
 <h2>Your Cart</h2>
-<br>
-<% @order.errors.full_messages.each do |error| %>
-  <%= error %><br>
+
+<% if @order.order_items == nil %>
+  <%= "You have nothing in your cart" %>
 <% end %>
 
 <table class="cart">
@@ -11,7 +12,7 @@
       <th scope="qty">Quantity</th>
       <th scope="price">Price</th>
       <th scope="sub">Subtotal</th>
-      <th> Remove? </th>
+      <th></th>
     </tr>
   </thead>
 

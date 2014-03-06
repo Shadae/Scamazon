@@ -21,13 +21,13 @@ class Order < ActiveRecord::Base
     none_over
   end
 
-  def add(quantity, product_id)
-    @product = set_product(product_id)
+  def add(quantity, product)
+    @product = set_product(product)
     unless self.products.include?(@product)
       self.products << @product
     end
     if @product.stock >= quantity
-      self.add_quantity(quantity, product_id)
+      self.add_quantity(quantity, product.id)
     else
       return false
     end
@@ -84,8 +84,8 @@ class Order < ActiveRecord::Base
   end
 
 
-  def set_product(id)
-    Product.find(id)
+  def set_product(product)
+    Product.find(product.id)
   end
 
   def set_order_item(product_id)

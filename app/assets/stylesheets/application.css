@@ -75,6 +75,8 @@ body.loading .modal {
 }
 
 
+
+
 /* end  liz's stuff */
 
  .header {
@@ -135,7 +137,7 @@ li a {
  h3 {
   text-align: center;
   font-size: 35px;
-  text-shadow:-1px -.5px 1px orange;
+/*  text-shadow:-1px -.5px 1px orange;*/
  }
 
  h4 {
@@ -153,9 +155,9 @@ li a {
 li { display:inline-block;
 }
 
+/*
 
-
-/*first line of pictures on welcome page*/
+first line of pictures on welcome page
  #img_cont {
   display: table;
   width: 100%;
@@ -176,7 +178,7 @@ li { display:inline-block;
   border-style: solid;
   box-shadow: 12px 10px 7px black;
  }
-/*second line (line b) of pictures on welcome page*/
+second line (line b) of pictures on welcome page
  #img_cont_b {
   display: table;
   width: 90%;
@@ -198,7 +200,7 @@ li { display:inline-block;
   border-style: solid;
   box-shadow: 9px 7px 5px black;
  }
-
+*/
  .logo_font {
   font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", Times, serif;
   font-size: 50px;
@@ -264,7 +266,7 @@ li { display:inline-block;
   left: 0;
   padding: 10px;
   display: inline-block;
-  border:2px solid orange;
+  border: 2px solid orange;
   border-radius: 10px;
   margin: 10px;
 }
@@ -273,7 +275,7 @@ li { display:inline-block;
 .notice {
   text-align: center;
 }
-
+/*
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -304,3 +306,4 @@ div#konami {
 }
 
 
+*/

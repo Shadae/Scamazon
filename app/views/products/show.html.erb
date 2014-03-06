@@ -1,10 +1,10 @@
 
- <%= link_to 'Back To Products', products_path %>  
+ <%= link_to 'Back To Products', products_path %>
 
 
-  <figure>  
-  <%= image_tag(@product.image_url, :width => 200) if @product.image.present? %> 
-  </figure>  
+  <figure>
+  <%= image_tag(@product.image_url, :width => 200) if @product.image.present? %>
+  </figure>
 
 <div class='product'>
     <hgroup>
@@ -21,13 +21,13 @@
       <% if @product.retired %>
       <h3>This Product Is No Longer Available.</h3>
       <% end %>
-      <summary>Product Details</summary> 
+      <summary>Product Details</summary>
           <ul>
           <li>Category:
               <% @product.categories.each do |category| %>
               <%= category.category %>
               <% end %></li><br>
-          <li>Stock Quantity 
+          <li>Stock Quantity
               <%= @product.stock %></li>
           </ul>
         </p>
@@ -43,12 +43,12 @@
             <%= button_to 'Unretire Product', unretired_path(@product.id) %>
           <% end %>
       <% end %>
-    <br> 
+    <br>
     </p>
 
     <p>
       <% unless @product.retired || @product.stock == 0 %>
-        <%= form_tag('/orders/add') do %>
+        <%= form_tag('/orders/add_to_cart') do %>
           <%= label_tag :quantity %>
           <%= number_field_tag :quantity %>
           <%= hidden_field_tag :product_id, @product.id %>
@@ -73,7 +73,7 @@
 </div>
 
 <div class = 'review'>
-    
+
     <strong>Product Reviews</strong><br>
   <% @product.reviews.each do |r| %>
     <div class='review_show'>
@@ -82,7 +82,7 @@
       <strong>Review: </strong><%= r.review_text %><br>
       <% if current_user == r.user %>
         <%= link_to 'Delete', review_path(r), method: :delete %>
-    </div> 
+    </div>
       <% end %>
       <!-- We know the </div> tag should go here but it looks way more awesome stuck in the loop. SO WE'RE LEAVING IT. -->
   <% end %>

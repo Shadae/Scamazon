@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_pending_order, only: [:add, :cart, :fulfillment, :check_order_quantities, :review]
+  before_action :find_pending_order, only: [:add_to_cart, :cart, :fulfillment, :check_order_quantities, :review]
 
 
 # stuff liz has written
@@ -61,32 +61,15 @@ class OrdersController < ApplicationController
     set_order
   end
 
-  def add
-    if @order.add(params[:quantity].to_i, params[:product_id].to_i)
-      redirect_to :back, notice: "#{params[:quantity] + " " + Product.find(params[:product_id]).name.pluralize(params[:quantity])} have been added to your cart."
+  def add_to_cart
+    product = Product.find(params[:product_id])
+    if @order.add(params[:quantity].to_i, product)
+      redirect_to :back, notice: "#{params[:quantity] + " " + product.name.pluralize(params[:quantity])} have been added to your cart."
     else
       redirect_to :back, notice: "I'm sorry, we don't have enough items in stock."
     end
   end
 
-
-#this is called when you reduce the quantity of an item to 0.
-#It destroys the associated OrderItem object.
-  def remove_product
-    order_item_to_delete = OrderItem.find_by(product_id: params[:product_id],
-                                             order_id:   params[:order_id])
-    order_item_to_delete.destroy
-    redirect_to '/cart'
-  end
-
-  def destroy
-    set_order
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url }
-      format.json { head :no_content }
-    end
-  end
 
   def check_order_quantities
     if @order.check_order_quantities
