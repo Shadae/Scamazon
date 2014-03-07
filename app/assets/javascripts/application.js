@@ -12,38 +12,139 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
-   $(document).ready(function(){
-    var keys     = [];
-    var konami  = '38,38,40,40,37,39,37,39,66,65';
 
-   $(document)
-        .keydown(
-            function(e) {
-                keys.push( e.keyCode );
-                if ( keys.toString().indexOf( konami ) >= 0 ){
- 
-                    var k = window.setInterval(function(){
+var modal = (function(){
+        var
+        method = {},
+        $overlay,
+        $modal,
+        $content,
+        $close;
 
-                      if ($("#konami").is(":visible")) {
-                        $("#konami").hide();
-                      } else {
-                        $("#konami").show();
-                      }
-                    }, 250);
+        // Center the modal in the view
+        method.center = function () {
+          var top, left;
 
-                  setTimeout(function(){
-                    window.clearInterval(k)
-                  }, 4000);
-                    keys = [];
-                }
-            }
-        );
+          top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+          left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+          $modal.css({
+            top:top + $(window).scrollTop(),
+            left:left + $(window).scrollLeft()
+          });
+        };
+
+        // open the modal
+        method.open = function (settings) {
+          $content.empty().append(settings.content);
+
+          $modal.css({
+            width: settings.width || 'auto',
+            height: settings.height || 'auto'
+          });
+
+          method.center();
+          $(window).bind('resize.modal', method.center);
+          $modal.show();
+          $overlay.show();
+        };
+
+        // close
+        method.close = function () {
+          $modal.hide();
+          $overlay.hide();
+          $content.empty();
+          $(window).unbind('resize.modal');
+        };
+
+        // put stuff into modal
+        $overlay = $('<div id="overlay"></div>');
+        $modal = $('<div id="modal"></div>');
+        $content = $('<div id="content"></div>');
+        $close = $('<a id="close" href="#">close</a>');
+        $continueshopping = $('<a id="closecart" href="#">Continue shopping.</a>');
+
+
+        $modal.hide();
+        $overlay.hide();
+        $modal.append($content, $close);
+
+        $(document).ready(function(){
+          $('body').append($overlay, $modal);
+        });
+
+        $close.click(function(e){
+          e.preventDefault();
+          method.close();
+        });
+
+        return method;
+      }());
+
+      // Wait until the DOM loaded before grabbing the cart
+      $(document).ready(function(){
+
+        $('a#cart').click(function(e){
+          $.get('/cart', function(data){
+          modal.open({content: data});
+          });
+          e.preventDefault();
+        });
+
+
+// stuff for updating cart quantity
+
+        $("body").on("click", ".quantity-action", function() {
+          var form = $(this).parents('.quantity-form')
+
+         $.ajax({
+           url: form.attr("action"),
+           type: 'PATCH',
+           dataType: 'json',
+           data: form.serialize(),
+
+           success: function(data, textStatus, xhr) {
+            console.log("it worked")
+
+            var price = parseFloat($(".quantity-action").parents('tr').children('td.item-price').html().split("$")[1]);
+            console.log(price);
+            var quantity = parseFloat($(".quantity-action").parents('tr').find("#order_item_quantity").val());
+              console.log(quantity);
+            var subtotal = price * quantity;
+
+              $(".quantity-action").parents('tr').children('td.item-subtotal').html(subtotal.toFixed(2))
+
+           },
+           error: function(xhr, textStatus, errorThrown) {
+             alert("There was a problem updating the quantity");
+           }
+         });
+
+
+         return false;
+
+         });
       });
 
 
 
+      $("body").on( "click", ".delete-link", function() {
+        var item = $(this).parents('tr');
+          e.preventDefault();
+        $.ajax({
+          url: $(this).attr("href"),
+          type: 'DELETE',
+          dataType: 'json',
+        })
+        .done(function(){
+          item.remove();
+        })
+        .fail(function(){
+          alert("There was a problem removing the product");
+        });
 
+        return false;
+      });
 

@@ -16,9 +16,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:review][:product_id])
-    @review = Review.find(params[:id])
-    
     if @review.update(review_params)
       redirect_to product_path(@product.id), notice: "Your review has been successfully updated."
     else
@@ -41,7 +38,9 @@ class ReviewsController < ApplicationController
 
 
   private
-  def set_review
+
+  def set_review_and_product
+    @product = Product.find(params[:product_id])
     @review = Review.find(params[:id])
   end
 

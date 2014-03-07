@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Scamazon</title>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   </head>
 
   <body>
 
-    <div class='header'> 
+    <div class='header'>
       <%= link_to(image_tag('scamazon.png', :alt => "logo", :title => "Welcome"),"/") %>
       <div id= 'box_in_header'>
         <% if current_user.present? %>
@@ -19,9 +20,7 @@
           <%= link_to "Sign Up", :controller => "users", :action => "new" %>
           <%= link_to "Log In", :controller => "sessions", :action => "new" %>
         <% end %>
-      <!-- <div class='cart_icon'> -->
-        <div id= 'cart_icon'> <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"),"/cart") %>
-        </div>
+        <%= link_to(image_tag('empty_shopping_cart.png', :alt => "shopping cart", :title => "mmmm...shopping!"), '/cart', id: 'cart') %>
       </div>
     </div>
 
@@ -39,7 +38,7 @@
       </ul>
     </div>
     <div class='container'>
-      <div class='notice'>  
+      <div class='notice'>
         <%= flash[:notice] %>
       </div>
       <%= yield %>
@@ -52,5 +51,8 @@
         <li><a href='http://amigoingtodie.org/'>Am I Going To Die?</a></li>
       </ul>
     </div>
+
   </body>
 </html>
+
+
