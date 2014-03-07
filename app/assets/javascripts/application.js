@@ -64,6 +64,8 @@ var modal = (function(){
         $modal = $('<div id="modal"></div>');
         $content = $('<div id="content"></div>');
         $close = $('<a id="close" href="#">close</a>');
+        $continueshopping = $('<a id="closecart" href="#">Continue shopping.</a>');
+
 
         $modal.hide();
         $overlay.hide();
@@ -91,6 +93,7 @@ var modal = (function(){
           e.preventDefault();
         });
 
+
 // stuff for updating cart quantity
 
         $("body").on("click", ".quantity-action", function() {
@@ -103,16 +106,28 @@ var modal = (function(){
            data: form.serialize(),
 
            success: function(data, textStatus, xhr) {
-             console.log("it worked")
+            console.log("it worked")
+
+            var price = parseFloat($(".quantity-action").parents('tr').children('td.item-price').html().split("$")[1]);
+            console.log(price);
+            var quantity = parseFloat($(".quantity-action").parents('tr').find("#order_item_quantity").val());
+              console.log(quantity);
+            var subtotal = price * quantity;
+
+              $(".quantity-action").parents('tr').children('td.item-subtotal').html(subtotal.toFixed(2))
 
            },
            error: function(xhr, textStatus, errorThrown) {
              alert("There was a problem updating the quantity");
            }
          });
+
+
          return false;
+
          });
       });
+
 
 
       $("body").on( "click", ".delete-link", function() {
@@ -132,29 +147,4 @@ var modal = (function(){
 
         return false;
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$("#loading").ajaxStart(function(){
-    $(this).show();
- }).ajaxStop(function(){
-    $(this).hide();
- });
 

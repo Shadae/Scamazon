@@ -1,73 +1,75 @@
 
 <h2>Your Cart</h2>
 
-<% if @order.order_items == nil %>
-  <%= "You have nothing in your cart" %>
-<% end %>
+<% if @order.order_items == [] %>
+  <div>You have nothing in your cart. Add products to get started!</div>
+  <div><%= link_to("Continue shopping.", '/', html_options = {id: "closecart"}) %></div>
 
-<table class="cart">
-  <thead>
-    <tr>
-      <th scope="item">Item</th>
-      <th scope="qty">Quantity</th>
-      <th scope="price">Price</th>
-      <th scope="sub">Subtotal</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <% subtotal = 0 %>
-  <tbody>
-    <% @order.order_items.each do |order_item| %>
+<% else %>
+    <table class="cart">
+    <thead>
       <tr>
-        <td>
-          <%= image_tag(order_item.product.image_url, width: 30, height: 30) if order_item.product.image.present? %>
-          <%= link_to order_item.product.name, order_item.product %>
-        </td>
+        <th scope="item">Item</th>
+        <th scope="qty">Quantity</th>
+        <th scope="price">Price</th>
+        <th scope="sub">Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <% subtotal = 0 %>
+    <tbody>
+      <% @order.order_items.each do |order_item| %>
+        <tr>
+          <td>
+            <%= image_tag(order_item.product.image_url, width: 30, height: 30) if order_item.product.image.present? %>
+            <%= link_to order_item.product.name, order_item.product %>
+          </td>
 
 
-        <td>
-          <%= form_for order_item, :url => { :action => "update_quantity" }, :html => {:class => "quantity-form"}, :method => "patch"  do |f| %>
-            <div class="field">
-              <%= f.hidden_field :order_item_id, :value => order_item.id %>
-              <%= f.number_field :quantity, :value => order_item.quantity %>
-              <%= f.submit "Update", class: "quantity-action" %>
-            </div>
-          <% end %>
-        </td>
+          <td class="quantity">
+            <%= form_for order_item, :url => { :action => "update_quantity" }, :html => {:class => "quantity-form"}, :method => "patch"  do |f| %>
+              <div class="field">
+                <%= f.hidden_field :order_item_id, :value => order_item.id %>
+                <%= f.number_field :quantity, :value => order_item.quantity %>
+                <%= f.submit "Update", class: "quantity-action" %>
+              </div>
+            <% end %>
+          </td>
 
 
-        <td>
-          <%= price_format(order_item.product.price) %>
-        </td>
+          <td class="item-price">
+            <%= price_format(order_item.product.price) %>
+          </td>
 
-        <% subtotal = order_item.product.price * order_item.quantity %>
-        <td>
-          <%= price_format(subtotal) %>
-        </td>
+          <% subtotal = order_item.product.price * order_item.quantity %>
+          <td class="item-subtotal">
+            <%= price_format(subtotal) %>
+          </td>
 
-        <td>
-            <%= form_for order_item, :url => { :action => "remove_item" }, :html => {:class => "delete-item"}, :method => "delete"  do |f| %>
-            <div class="field">
-              <%= f.hidden_field :order_item_id, :value => order_item.id %>
-              <%= f.submit "Remove", class: "delete-link" %>
-              <% end %>
-                 </td>
+          <td>
+              <%= form_for order_item, :url => { :action => "remove_item" }, :html => {:class => "delete-item"}, :method => "delete"  do |f| %>
+              <div class="field">
+                <%= f.hidden_field :order_item_id, :value => order_item.id %>
+                <%= f.submit "Remove", class: "delete-link" %>
+                <% end %>
+                   </td>
 
-    </tr>
+      </tr>
+      <% end %>
+    </tbody>
+    </table>
+
+
+
+
+
+    <h3>Your total: <%= price_format(subtotal) %></h3>
+    <div class = 'checkout'>
+    <%= form_tag('/orders/check_order_quantities') do %>
+    <%= hidden_field_tag :order_id, @order.id %>
+    <%= submit_tag 'Checkout' %>
     <% end %>
-  </tbody>
-</table>
+    </div>
 
-
-
-
-
-<h3>Your total: <%= price_format(subtotal) %></h3>
-<div class = 'checkout'>
-<%= form_tag('/orders/check_order_quantities') do %>
-  <%= hidden_field_tag :order_id, @order.id %>
-  <%= submit_tag 'Checkout' %>
 <% end %>
-</div>
-
